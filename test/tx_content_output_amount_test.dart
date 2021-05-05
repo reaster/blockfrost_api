@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/model/tx_content_output_amount.dart';
 import 'package:test/test.dart';
+import 'package:blockfrost/blockfrost.dart';
 
 // tests for TxContentOutputAmount
 void main() {
@@ -26,7 +19,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

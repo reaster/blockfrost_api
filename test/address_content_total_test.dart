@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/model/address_content_total.dart';
 import 'package:test/test.dart';
+import 'package:blockfrost/blockfrost.dart';
 
 // tests for AddressContentTotal
 void main() {
@@ -30,7 +23,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

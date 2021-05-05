@@ -1,0 +1,801 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+import 'dart:async';
+
+import 'package:built_value/serializer.dart';
+import 'package:dio/dio.dart';
+
+import 'package:blockfrost/src/model/tx_content_utxo.dart';
+import 'package:blockfrost/src/model/tx_content_pool_certs.dart';
+import 'package:blockfrost/src/model/inline_response400.dart';
+import 'package:blockfrost/src/model/inline_response500.dart';
+import 'package:blockfrost/src/model/tx_content_pool_retires.dart';
+import 'package:blockfrost/src/model/inline_response418.dart';
+import 'package:blockfrost/src/model/inline_response429.dart';
+import 'package:blockfrost/src/model/tx_content_withdrawals.dart';
+import 'package:blockfrost/src/model/inline_response403.dart';
+import 'package:blockfrost/src/model/tx_content_delegations.dart';
+import 'package:blockfrost/src/model/inline_response404.dart';
+import 'package:blockfrost/src/model/tx_content.dart';
+import 'package:blockfrost/src/model/tx_content_stake_addr.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
+
+class CardanoTransactionsApi {
+
+  final Dio _dio;
+
+  final Serializers _serializers;
+
+  const CardanoTransactionsApi(this._dio, this._serializers);
+
+  /// Submit a transaction
+  ///
+  /// Submit a base64 encoding serialized transaction to the network.
+  Future<Response<String>> txSubmitPost({ 
+    required String contentType,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/tx/submit';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        r'Content-Type': contentType,
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    String _responseData;
+
+    try {
+      _responseData = _response.data as String;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<String>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction delegation certificates
+  ///
+  /// Obtain information about delegation certificates of a specific transaction. 
+  Future<Response<BuiltList<TxContentDelegations>>> txsHashDelegationsGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/delegations'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<TxContentDelegations> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(TxContentDelegations)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<TxContentDelegations>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<TxContentDelegations>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Specific transaction
+  ///
+  /// Return content of the requested transaction.
+  Future<Response<TxContent>> txsHashGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    TxContent _responseData;
+
+    try {
+      const _responseType = FullType(TxContent);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as TxContent;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<TxContent>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction metadata in CBOR
+  ///
+  /// Obtain the transaction metadata in CBOR.
+  Future<Response<BuiltList<JsonObject>>> txsHashMetadataCborGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/metadata/cbor'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<JsonObject> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<JsonObject>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<JsonObject>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction metadata
+  ///
+  /// Obtain the transaction metadata.
+  Future<Response<BuiltList<JsonObject>>> txsHashMetadataGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/metadata'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<JsonObject> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<JsonObject>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<JsonObject>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction stake pool retirement certificates
+  ///
+  /// Obtain information about stake pool retirements within a specific transaction. 
+  Future<Response<BuiltList<TxContentPoolRetires>>> txsHashPoolRetiresGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/pool_retires'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<TxContentPoolRetires> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(TxContentPoolRetires)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<TxContentPoolRetires>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<TxContentPoolRetires>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction stake pool registration and update certificates
+  ///
+  /// Obtain information about stake pool registration and update certificates of a specific transaction. 
+  Future<Response<BuiltList<TxContentPoolCerts>>> txsHashPoolUpdatesGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/pool_updates'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<TxContentPoolCerts> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(TxContentPoolCerts)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<TxContentPoolCerts>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<TxContentPoolCerts>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Trasanction stake addresses certificates
+  ///
+  /// Obtain information about (de)registration of stake addresses within a transaction. 
+  Future<Response<BuiltList<TxContentStakeAddr>>> txsHashStakesGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/stakes'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<TxContentStakeAddr> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(TxContentStakeAddr)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<TxContentStakeAddr>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<TxContentStakeAddr>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction UTXOs
+  ///
+  /// Return the inputs and UTXOs of the specific transaction.
+  Future<Response<TxContentUtxo>> txsHashUtxosGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/utxos'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    TxContentUtxo _responseData;
+
+    try {
+      const _responseType = FullType(TxContentUtxo);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as TxContentUtxo;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<TxContentUtxo>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Transaction withdrawal
+  ///
+  /// Obtain information about withdrawals of a specific transaction.
+  Future<Response<BuiltList<TxContentWithdrawals>>> txsHashWithdrawalsGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/withdrawals'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<TxContentWithdrawals> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(TxContentWithdrawals)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<TxContentWithdrawals>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<TxContentWithdrawals>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+}

@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/model/pool_metadata.dart';
 import 'package:test/test.dart';
+import 'package:blockfrost/blockfrost.dart';
 
 // tests for PoolMetadata
 void main() {
@@ -50,7 +43,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

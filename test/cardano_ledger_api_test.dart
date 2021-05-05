@@ -1,18 +1,14 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/api.dart';
-import 'package:blockfrost/api/cardano_ledger_api.dart';
+import 'package:dio/dio.dart';
 import 'package:test/test.dart';
-
+import 'package:blockfrost/blockfrost.dart';
+import 'package:blockfrost/src/auth/my_api_key_auth.dart';
 
 /// tests for CardanoLedgerApi
 void main() {
-  final instance = Blockfrost().getCardanoLedgerApi();
+  final instance = Blockfrost(
+    basePathOverride: "https://cardano-testnet.blockfrost.io/api/v0",
+    interceptors: [MyApiKeyAuthInterceptor()],
+  ).getCardanoLedgerApi();
 
   group(CardanoLedgerApi, () {
     // Blockchain genesis
@@ -21,8 +17,8 @@ void main() {
     //
     //Future<GenesisContent> genesisGet() async
     test('test genesisGet', () async {
-      // TODO
+      Response<GenesisContent> response = await instance.genesisGet();
+      print(response.toString());
     });
-
   });
 }

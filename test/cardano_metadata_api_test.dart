@@ -1,13 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/api.dart';
-import 'package:blockfrost/api/cardano_metadata_api.dart';
 import 'package:test/test.dart';
+import 'package:blockfrost/blockfrost.dart';
 
 
 /// tests for CardanoMetadataApi

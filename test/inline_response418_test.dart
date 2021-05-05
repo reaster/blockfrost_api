@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:blockfrost/model/inline_response418.dart';
 import 'package:test/test.dart';
+import 'package:blockfrost/blockfrost.dart';
 
 // tests for InlineResponse418
 void main() {
@@ -29,7 +22,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }
