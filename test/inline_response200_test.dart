@@ -3,19 +3,19 @@ import 'package:blockfrost/blockfrost.dart';
 
 // tests for InlineResponse200
 void main() {
-  final instance = InlineResponse200Builder();
-  // TODO add properties to the builder and call build()
-
   group(InlineResponse200, () {
     // String url
-    test('to test the property `url`', () async {
-      // TODO
-    });
-
     // String version
-    test('to test the property `version`', () async {
-      // TODO
+    test('to test the properties `url` and `version`', () async {
+      final r1 = InlineResponse200((b) => b
+        ..url = 'https://go.net'
+        ..version = '2.3');
+      print(r1);
+      expect(r1, isNotNull);
+      final r2 = r1.rebuild((b) => b..version = '1.1');
+      print(r2);
+      expect(r2.url, r1.url);
+      expect(r2.version, isNot(r1.version));
     });
-
   });
 }
