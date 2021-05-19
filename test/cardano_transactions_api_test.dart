@@ -1,10 +1,20 @@
 import 'package:test/test.dart';
+import './const.dart';
 import 'package:blockfrost/blockfrost.dart';
-
+import 'package:dio/dio.dart';
+import 'package:blockfrost/src/auth/my_api_key_auth.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_collection/built_collection.dart';
 
 /// tests for CardanoTransactionsApi
 void main() {
-  final instance = Blockfrost().getCardanoTransactionsApi();
+  final instance = Blockfrost(
+    basePathOverride: testnet,
+    interceptors: [MyApiKeyAuthInterceptor()],
+  ).getCardanoTransactionsApi();
+
+  //https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=a3d3792fe94fd4d5ed37595686b4af2fc28259b4e23ba85a12e7f48c0c67b16e
+  String txEpoch131Block2582075 = 'a3d3792fe94fd4d5ed37595686b4af2fc28259b4e23ba85a12e7f48c0c67b16e';
 
   group(CardanoTransactionsApi, () {
     // Submit a transaction
@@ -18,11 +28,12 @@ void main() {
 
     // Transaction delegation certificates
     //
-    // Obtain information about delegation certificates of a specific transaction. 
+    // Obtain information about delegation certificates of a specific transaction.
     //
     //Future<BuiltList<TxContentDelegations>> txsHashDelegationsGet(String hash) async
     test('test txsHashDelegationsGet', () async {
-      // TODO
+      Response<BuiltList<TxContentDelegations>> result = await instance.txsHashDelegationsGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Specific transaction
@@ -31,7 +42,8 @@ void main() {
     //
     //Future<TxContent> txsHashGet(String hash) async
     test('test txsHashGet', () async {
-      // TODO
+      Response<TxContent> result = await instance.txsHashGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction metadata in CBOR
@@ -40,7 +52,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> txsHashMetadataCborGet(String hash) async
     test('test txsHashMetadataCborGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.txsHashMetadataCborGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction metadata
@@ -49,34 +62,38 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> txsHashMetadataGet(String hash) async
     test('test txsHashMetadataGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.txsHashMetadataGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction stake pool retirement certificates
     //
-    // Obtain information about stake pool retirements within a specific transaction. 
+    // Obtain information about stake pool retirements within a specific transaction.
     //
     //Future<BuiltList<TxContentPoolRetires>> txsHashPoolRetiresGet(String hash) async
     test('test txsHashPoolRetiresGet', () async {
-      // TODO
+      Response<BuiltList<TxContentPoolRetires>> result = await instance.txsHashPoolRetiresGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction stake pool registration and update certificates
     //
-    // Obtain information about stake pool registration and update certificates of a specific transaction. 
+    // Obtain information about stake pool registration and update certificates of a specific transaction.
     //
     //Future<BuiltList<TxContentPoolCerts>> txsHashPoolUpdatesGet(String hash) async
     test('test txsHashPoolUpdatesGet', () async {
-      // TODO
+      Response<BuiltList<TxContentPoolCerts>> result = await instance.txsHashPoolUpdatesGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Trasanction stake addresses certificates
     //
-    // Obtain information about (de)registration of stake addresses within a transaction. 
+    // Obtain information about (de)registration of stake addresses within a transaction.
     //
     //Future<BuiltList<TxContentStakeAddr>> txsHashStakesGet(String hash) async
     test('test txsHashStakesGet', () async {
-      // TODO
+      Response<BuiltList<TxContentStakeAddr>> result = await instance.txsHashStakesGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction UTXOs
@@ -85,7 +102,8 @@ void main() {
     //
     //Future<TxContentUtxo> txsHashUtxosGet(String hash) async
     test('test txsHashUtxosGet', () async {
-      // TODO
+      Response<TxContentUtxo> result = await instance.txsHashUtxosGet(hash: txEpoch131Block2582075);
+      print(result);
     });
 
     // Transaction withdrawal
@@ -94,8 +112,9 @@ void main() {
     //
     //Future<BuiltList<TxContentWithdrawals>> txsHashWithdrawalsGet(String hash) async
     test('test txsHashWithdrawalsGet', () async {
-      // TODO
+      Response<BuiltList<TxContentWithdrawals>> result = await instance.txsHashWithdrawalsGet(hash: txEpoch131Block2582075);
+      print(result);
     });
-
-  });
+  } //, skip: 'all tests currently failing with Http status error [404]'
+      );
 }
