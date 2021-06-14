@@ -2,6 +2,7 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+import 'package:blockfrost/src/auth/my_api_key_auth.dart';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 import 'package:blockfrost/src/serializers.dart';
@@ -45,7 +46,8 @@ class Blockfrost {
       this.dio.interceptors.addAll([
         OAuthInterceptor(),
         BasicAuthInterceptor(),
-        ApiKeyAuthInterceptor(),
+        MyApiKeyAuthInterceptor(),
+//        ApiKeyAuthInterceptor(projectId: ''),
       ]);
     } else {
       this.dio.interceptors.addAll(interceptors);

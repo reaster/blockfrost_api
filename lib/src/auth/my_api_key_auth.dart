@@ -9,14 +9,12 @@ import 'package:blockfrost/src/auth/auth.dart';
 /// You'll need to obtian a free apiKey from https://blockfrost.io to run these tests.
 ///
 /// Once you have a key, place it in a text file in the parent directory of this project,
-/// in a file named: blockfrost_api_testnet.txt
+/// in a file named: blockfrost_api_key.txt
 ///
 class MyApiKeyAuthInterceptor extends AuthInterceptor {
   late final String apiKey;
 
-  factory MyApiKeyAuthInterceptor() {
-    return _instance;
-  }
+  MyApiKeyAuthInterceptor() : apiKey = _readApiKey();
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -24,11 +22,10 @@ class MyApiKeyAuthInterceptor extends AuthInterceptor {
     super.onRequest(options, handler);
   }
 
-  MyApiKeyAuthInterceptor._internal() {
+  static String _readApiKey() {
     final file = File(apiKeyFilePath);
-    apiKey = file.readAsStringSync();
+    return file.readAsStringSync();
   }
 
-  static final MyApiKeyAuthInterceptor _instance = MyApiKeyAuthInterceptor._internal();
-  static final apiKeyFilePath = '../blockfrost_api_testnet.txt';
+  static final apiKeyFilePath = '../blockfrost_api_key.txt';
 }

@@ -1,19 +1,32 @@
 import 'package:test/test.dart';
+import './const.dart';
 import 'package:blockfrost/blockfrost.dart';
-
+import 'package:dio/dio.dart';
+import 'package:blockfrost/src/auth/my_api_key_auth.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_collection/built_collection.dart';
 
 /// tests for CardanoAccountsApi
 void main() {
-  final instance = Blockfrost().getCardanoAccountsApi();
+  final instance = Blockfrost(
+    basePathOverride: testnet,
+    interceptors: [MyApiKeyAuthInterceptor()],
+  ).getCardanoAccountsApi();
+
+  final stakeAddressAcct1 = 'stake_test1uqnf58xmqyqvxf93d3d92kav53d0zgyc6zlt927zpqy2v9cyvwl7a'; // Account-1
 
   group(CardanoAccountsApi, () {
     // Account associated addresses
     //
-    // Obtain information about the addresses of a specific account.
+    // Obtain information about the addresses of a specific account. All the addresses that have been used to receive or send tokens.
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressAddressesGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressAddressesGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressAddressesGet(stakeAddress: stakeAddressAcct1, count: 20);
+      result.data?.forEach((addr) {
+        if (addr.isMap) print(addr.asMap['address']);
+      });
+      //print(result);
     });
 
     // Account delegation history
@@ -22,44 +35,61 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressDelegationsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressDelegationsGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressDelegationsGet(stakeAddress: stakeAddressAcct1);
+      // result.data?.forEach((addr) {
+      //   if (addr.isMap) print(addr.asMap['address']);
+      // });
+      print(result);
     });
 
     // Specific account address
     //
-    // Obtain information about a specific stake account. 
+    // Obtain information about a specific stake account.
     //
     //Future<AccountContent> accountsStakeAddressGet(String stakeAddress) async
     test('test accountsStakeAddressGet', () async {
-      // TODO
+      Response<AccountContent> result = await instance.accountsStakeAddressGet(stakeAddress: stakeAddressAcct1);
+      print(result);
     });
 
     // Account history
     //
-    // Obtain information about the history of a specific account. 
+    // Obtain information about the history of a specific account.
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressHistoryGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressHistoryGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressHistoryGet(stakeAddress: stakeAddressAcct1, count: 20);
+      // result.data?.forEach((addr) {
+      //   if (addr.isMap) print(addr.asMap['address']);
+      // });
+      print(result);
     });
 
     // Account registration history
     //
-    // Obtain information about the registrations and deregistrations of a specific account. 
+    // Obtain information about the registrations and deregistrations of a specific account.
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressRegistrationsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressRegistrationsGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result =
+          await instance.accountsStakeAddressRegistrationsGet(stakeAddress: stakeAddressAcct1, count: 20);
+      // result.data?.forEach((addr) {
+      //   if (addr.isMap) print(addr.asMap['address']);
+      // });
+      print(result);
     });
 
     // Account reward history
     //
-    // Obtain information about the history of a specific account. 
+    // Obtain information about the history of a specific account.
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressRewardsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressRewardsGet', () async {
-      // TODO
+      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressRewardsGet(stakeAddress: stakeAddressAcct1, count: 20);
+      // result.data?.forEach((addr) {
+      //   if (addr.isMap) print(addr.asMap['address']);
+      // });
+      print(result);
     });
-
   });
 }

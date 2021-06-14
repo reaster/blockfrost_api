@@ -15,6 +15,7 @@ void main() {
 
   //https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=a3d3792fe94fd4d5ed37595686b4af2fc28259b4e23ba85a12e7f48c0c67b16e
   String txEpoch131Block2582075 = 'a3d3792fe94fd4d5ed37595686b4af2fc28259b4e23ba85a12e7f48c0c67b16e';
+  final txAcct1ToAcct3 = '93b09402d481f10468f96522aa10dc0b618a052bb438fde906e194c62a50ea3c';
 
   group(CardanoTransactionsApi, () {
     // Submit a transaction
@@ -44,6 +45,20 @@ void main() {
     test('test txsHashGet', () async {
       Response<TxContent> result = await instance.txsHashGet(hash: txEpoch131Block2582075);
       print(result);
+      final isData = result.statusCode == 200 && result.data != null;
+      if (isData) {
+        final deposit = int.tryParse(result.data!.deposit);
+        final fees = int.tryParse(result.data!.fees);
+        final withdrawalCount = result.data!.withdrawalCount;
+        print("deposit: $deposit, fees: $fees, withdrawalCount: $withdrawalCount");
+        BuiltList<TxContentOutputAmount> amounts = result.data!.outputAmount;
+        for (var amount in amounts) {
+          print("${amount.quantity} ${amount.unit}");
+        }
+      }
+
+      // Response<BuiltList<TxContentDelegations>> result2 = await instance.txsHashDelegationsGet(hash: txAcct1ToAcct3);
+      // print(result2);
     });
 
     // Transaction metadata in CBOR

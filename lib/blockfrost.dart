@@ -6,6 +6,7 @@ library blockfrost;
 
 export 'package:blockfrost/src/api.dart';
 export 'package:blockfrost/src/auth/api_key_auth.dart';
+export 'package:blockfrost/src/auth/my_api_key_auth.dart';
 export 'package:blockfrost/src/auth/basic_auth.dart';
 export 'package:blockfrost/src/auth/oauth.dart';
 export 'package:blockfrost/src/serializers.dart';
