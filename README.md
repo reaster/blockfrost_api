@@ -1,6 +1,10 @@
 # blockfrost (EXPERIMENTAL)
 Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.
 
+## Author Notes
+
+This document is a code generation artifact, refer to [NOTES](NOTES.md) for usage tips, issues and implementation notes.
+
 ## Authentication
 
 After signing up on https://blockfrost.io, a `project_id` token is automatically generated for each project.

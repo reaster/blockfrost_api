@@ -65,11 +65,11 @@ void main() {
         expect(t1['json_metadata'], isNotNull);
         final metadata = t1['json_metadata'] as Map;
         print(t1);
-        final adaEur = metadata['ADAEUR'] as List;
-        expect(adaEur.isNotEmpty, isTrue);
-        final priceAdaEurMap = adaEur[0] as Map;
-        final priceAdaEur = priceAdaEurMap['value'];
-        print(priceAdaEur);
+        // final adaEur = metadata['ADAEUR'] as List;
+        // expect(adaEur.isNotEmpty, isTrue);
+        // final priceAdaEurMap = adaEur[0] as Map;
+        // final priceAdaEur = priceAdaEurMap['value'];
+        // print(priceAdaEur);
         final adaUsd = metadata['ADAUSD'] as List;
         expect(adaUsd.isNotEmpty, isTrue);
         //final ergUsd = metadata['ERGUSD'] as List;

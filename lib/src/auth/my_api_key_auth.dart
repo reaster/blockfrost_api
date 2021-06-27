@@ -27,5 +27,5 @@ class MyApiKeyAuthInterceptor extends AuthInterceptor {
     return file.readAsStringSync();
   }
 
-  static final apiKeyFilePath = '../blockfrost_api_key.txt';
+  static final apiKeyFilePath = '../blockfrost_project_id.txt';
 }
