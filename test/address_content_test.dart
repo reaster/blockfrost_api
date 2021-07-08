@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
 import 'package:dio/dio.dart';
-import 'package:blockfrost/src/auth/my_api_key_auth.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
-// import 'package:blockfrost/tx_content_output_amount_test.dart';
 
 // tests for AddressContent
 void main() {

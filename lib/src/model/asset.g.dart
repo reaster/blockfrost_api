@@ -12,11 +12,15 @@ class _$Asset extends Asset {
   @override
   final String? assetName;
   @override
-  final String? fingerprint;
+  final String fingerprint;
   @override
   final String quantity;
   @override
   final String initialMintTxHash;
+  @override
+  final int mintOrBurnCount;
+  @override
+  final BuiltMap<String, JsonObject>? onchainMetadata;
   @override
   final AssetMetadata? metadata;
 
@@ -26,15 +30,20 @@ class _$Asset extends Asset {
   _$Asset._(
       {required this.policyId,
       this.assetName,
-      this.fingerprint,
+      required this.fingerprint,
       required this.quantity,
       required this.initialMintTxHash,
+      required this.mintOrBurnCount,
+      this.onchainMetadata,
       this.metadata})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(policyId, 'Asset', 'policyId');
+    BuiltValueNullFieldError.checkNotNull(fingerprint, 'Asset', 'fingerprint');
     BuiltValueNullFieldError.checkNotNull(quantity, 'Asset', 'quantity');
     BuiltValueNullFieldError.checkNotNull(
         initialMintTxHash, 'Asset', 'initialMintTxHash');
+    BuiltValueNullFieldError.checkNotNull(
+        mintOrBurnCount, 'Asset', 'mintOrBurnCount');
   }
 
   @override
@@ -53,6 +62,8 @@ class _$Asset extends Asset {
         fingerprint == other.fingerprint &&
         quantity == other.quantity &&
         initialMintTxHash == other.initialMintTxHash &&
+        mintOrBurnCount == other.mintOrBurnCount &&
+        onchainMetadata == other.onchainMetadata &&
         metadata == other.metadata;
   }
 
@@ -61,10 +72,14 @@ class _$Asset extends Asset {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, policyId.hashCode), assetName.hashCode),
-                    fingerprint.hashCode),
-                quantity.hashCode),
-            initialMintTxHash.hashCode),
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, policyId.hashCode), assetName.hashCode),
+                            fingerprint.hashCode),
+                        quantity.hashCode),
+                    initialMintTxHash.hashCode),
+                mintOrBurnCount.hashCode),
+            onchainMetadata.hashCode),
         metadata.hashCode));
   }
 
@@ -76,6 +91,8 @@ class _$Asset extends Asset {
           ..add('fingerprint', fingerprint)
           ..add('quantity', quantity)
           ..add('initialMintTxHash', initialMintTxHash)
+          ..add('mintOrBurnCount', mintOrBurnCount)
+          ..add('onchainMetadata', onchainMetadata)
           ..add('metadata', metadata))
         .toString();
   }
@@ -105,6 +122,17 @@ class AssetBuilder implements Builder<Asset, AssetBuilder> {
   set initialMintTxHash(String? initialMintTxHash) =>
       _$this._initialMintTxHash = initialMintTxHash;
 
+  int? _mintOrBurnCount;
+  int? get mintOrBurnCount => _$this._mintOrBurnCount;
+  set mintOrBurnCount(int? mintOrBurnCount) =>
+      _$this._mintOrBurnCount = mintOrBurnCount;
+
+  MapBuilder<String, JsonObject>? _onchainMetadata;
+  MapBuilder<String, JsonObject> get onchainMetadata =>
+      _$this._onchainMetadata ??= new MapBuilder<String, JsonObject>();
+  set onchainMetadata(MapBuilder<String, JsonObject>? onchainMetadata) =>
+      _$this._onchainMetadata = onchainMetadata;
+
   AssetMetadataBuilder? _metadata;
   AssetMetadataBuilder get metadata =>
       _$this._metadata ??= new AssetMetadataBuilder();
@@ -122,6 +150,8 @@ class AssetBuilder implements Builder<Asset, AssetBuilder> {
       _fingerprint = $v.fingerprint;
       _quantity = $v.quantity;
       _initialMintTxHash = $v.initialMintTxHash;
+      _mintOrBurnCount = $v.mintOrBurnCount;
+      _onchainMetadata = $v.onchainMetadata?.toBuilder();
       _metadata = $v.metadata?.toBuilder();
       _$v = null;
     }
@@ -148,15 +178,21 @@ class AssetBuilder implements Builder<Asset, AssetBuilder> {
               policyId: BuiltValueNullFieldError.checkNotNull(
                   policyId, 'Asset', 'policyId'),
               assetName: assetName,
-              fingerprint: fingerprint,
+              fingerprint: BuiltValueNullFieldError.checkNotNull(
+                  fingerprint, 'Asset', 'fingerprint'),
               quantity: BuiltValueNullFieldError.checkNotNull(
                   quantity, 'Asset', 'quantity'),
               initialMintTxHash: BuiltValueNullFieldError.checkNotNull(
                   initialMintTxHash, 'Asset', 'initialMintTxHash'),
+              mintOrBurnCount: BuiltValueNullFieldError.checkNotNull(
+                  mintOrBurnCount, 'Asset', 'mintOrBurnCount'),
+              onchainMetadata: _onchainMetadata?.build(),
               metadata: _metadata?.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'onchainMetadata';
+        _onchainMetadata?.build();
         _$failedField = 'metadata';
         _metadata?.build();
       } catch (e) {

@@ -30,7 +30,7 @@ class _$AccountContent extends AccountContent {
 
   _$AccountContent._(
       {required this.active,
-      required this.activeEpoch,
+      this.activeEpoch,
       required this.controlledAmount,
       required this.rewardsSum,
       required this.withdrawalsSum,
@@ -40,7 +40,6 @@ class _$AccountContent extends AccountContent {
       this.poolId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(active, 'AccountContent', 'active');
-    //BuiltValueNullFieldError.checkNotNull(activeEpoch, 'AccountContent', 'activeEpoch');
     BuiltValueNullFieldError.checkNotNull(controlledAmount, 'AccountContent', 'controlledAmount');
     BuiltValueNullFieldError.checkNotNull(rewardsSum, 'AccountContent', 'rewardsSum');
     BuiltValueNullFieldError.checkNotNull(withdrawalsSum, 'AccountContent', 'withdrawalsSum');
@@ -176,7 +175,7 @@ class AccountContentBuilder implements Builder<AccountContent, AccountContentBui
     final _$result = _$v ??
         new _$AccountContent._(
             active: BuiltValueNullFieldError.checkNotNull(active, 'AccountContent', 'active'),
-            activeEpoch: activeEpoch, //BuiltValueNullFieldError.checkNotNull(activeEpoch, 'AccountContent', 'activeEpoch'),
+            activeEpoch: activeEpoch,
             controlledAmount: BuiltValueNullFieldError.checkNotNull(controlledAmount, 'AccountContent', 'controlledAmount'),
             rewardsSum: BuiltValueNullFieldError.checkNotNull(rewardsSum, 'AccountContent', 'rewardsSum'),
             withdrawalsSum: BuiltValueNullFieldError.checkNotNull(withdrawalsSum, 'AccountContent', 'withdrawalsSum'),

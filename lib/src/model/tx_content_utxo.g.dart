@@ -8,14 +8,17 @@ part of 'tx_content_utxo.dart';
 
 class _$TxContentUtxo extends TxContentUtxo {
   @override
-  final BuiltList<TxContentUtxoInputs>? inputs;
+  final BuiltList<TxContentUtxoInputs> inputs;
   @override
-  final BuiltList<TxContentUtxoOutputs>? outputs;
+  final BuiltList<TxContentUtxoOutputs> outputs;
 
   factory _$TxContentUtxo([void Function(TxContentUtxoBuilder)? updates]) =>
       (new TxContentUtxoBuilder()..update(updates)).build();
 
-  _$TxContentUtxo._({this.inputs, this.outputs}) : super._();
+  _$TxContentUtxo._({required this.inputs, required this.outputs}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(inputs, 'TxContentUtxo', 'inputs');
+    BuiltValueNullFieldError.checkNotNull(outputs, 'TxContentUtxo', 'outputs');
+  }
 
   @override
   TxContentUtxo rebuild(void Function(TxContentUtxoBuilder) updates) =>
@@ -69,8 +72,8 @@ class TxContentUtxoBuilder
   TxContentUtxoBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _inputs = $v.inputs?.toBuilder();
-      _outputs = $v.outputs?.toBuilder();
+      _inputs = $v.inputs.toBuilder();
+      _outputs = $v.outputs.toBuilder();
       _$v = null;
     }
     return this;
@@ -93,14 +96,14 @@ class TxContentUtxoBuilder
     try {
       _$result = _$v ??
           new _$TxContentUtxo._(
-              inputs: _inputs?.build(), outputs: _outputs?.build());
+              inputs: inputs.build(), outputs: outputs.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'inputs';
-        _inputs?.build();
+        inputs.build();
         _$failedField = 'outputs';
-        _outputs?.build();
+        outputs.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TxContentUtxo', _$failedField, e.toString());

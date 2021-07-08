@@ -7,19 +7,14 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:blockfrost/src/model/tx_content_utxo.dart';
-import 'package:blockfrost/src/model/tx_content_pool_certs.dart';
 import 'package:blockfrost/src/model/inline_response400.dart';
-import 'package:blockfrost/src/model/inline_response500.dart';
-import 'package:blockfrost/src/model/tx_content_pool_retires.dart';
+import 'package:blockfrost/src/model/inline_response403.dart';
+import 'package:blockfrost/src/model/inline_response404.dart';
 import 'package:blockfrost/src/model/inline_response418.dart';
 import 'package:blockfrost/src/model/inline_response429.dart';
-import 'package:blockfrost/src/model/tx_content_withdrawals.dart';
-import 'package:blockfrost/src/model/inline_response403.dart';
-import 'package:blockfrost/src/model/tx_content_delegations.dart';
-import 'package:blockfrost/src/model/inline_response404.dart';
+import 'package:blockfrost/src/model/inline_response500.dart';
 import 'package:blockfrost/src/model/tx_content.dart';
-import 'package:blockfrost/src/model/tx_content_stake_addr.dart';
+import 'package:blockfrost/src/model/tx_content_utxo.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
@@ -33,7 +28,7 @@ class CardanoTransactionsApi {
 
   /// Submit a transaction
   ///
-  /// Submit a base64 encoding serialized transaction to the network.
+  /// Submit an already serialized transaction to the network.
   Future<Response<String>> txSubmitPost({ 
     required String contentType,
     CancelToken? cancelToken,
@@ -108,7 +103,7 @@ class CardanoTransactionsApi {
   /// Transaction delegation certificates
   ///
   /// Obtain information about delegation certificates of a specific transaction. 
-  Future<Response<BuiltList<TxContentDelegations>>> txsHashDelegationsGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashDelegationsGet({ 
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -152,14 +147,14 @@ class CardanoTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TxContentDelegations> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TxContentDelegations)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<TxContentDelegations>;
+      ) as BuiltList<JsonObject>;
 
     } catch (error) {
       throw DioError(
@@ -170,7 +165,7 @@ class CardanoTransactionsApi {
       );
     }
 
-    return Response<BuiltList<TxContentDelegations>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -413,10 +408,87 @@ class CardanoTransactionsApi {
     );
   }
 
+  /// Transaction MIRs
+  ///
+  /// Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction.
+  Future<Response<BuiltList<JsonObject>>> txsHashMirsGet({ 
+    required String hash,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/txs/{hash}/mirs'.replaceAll('{' r'hash' '}', hash.toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'apiKey',
+            'name': 'ApiKeyAuth',
+            'keyName': 'project_id',
+            'where': 'header',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: [
+        'application/json',
+      ].first,
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    BuiltList<JsonObject> _responseData;
+
+    try {
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
+      _responseData = _serializers.deserialize(
+        _response.data!,
+        specifiedType: _responseType,
+      ) as BuiltList<JsonObject>;
+
+    } catch (error) {
+      throw DioError(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioErrorType.other,
+        error: error,
+      );
+    }
+
+    return Response<BuiltList<JsonObject>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Transaction stake pool retirement certificates
   ///
   /// Obtain information about stake pool retirements within a specific transaction. 
-  Future<Response<BuiltList<TxContentPoolRetires>>> txsHashPoolRetiresGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashPoolRetiresGet({ 
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -460,14 +532,14 @@ class CardanoTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TxContentPoolRetires> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TxContentPoolRetires)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<TxContentPoolRetires>;
+      ) as BuiltList<JsonObject>;
 
     } catch (error) {
       throw DioError(
@@ -478,7 +550,7 @@ class CardanoTransactionsApi {
       );
     }
 
-    return Response<BuiltList<TxContentPoolRetires>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -493,7 +565,7 @@ class CardanoTransactionsApi {
   /// Transaction stake pool registration and update certificates
   ///
   /// Obtain information about stake pool registration and update certificates of a specific transaction. 
-  Future<Response<BuiltList<TxContentPoolCerts>>> txsHashPoolUpdatesGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashPoolUpdatesGet({ 
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -537,14 +609,14 @@ class CardanoTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TxContentPoolCerts> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TxContentPoolCerts)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<TxContentPoolCerts>;
+      ) as BuiltList<JsonObject>;
 
     } catch (error) {
       throw DioError(
@@ -555,7 +627,7 @@ class CardanoTransactionsApi {
       );
     }
 
-    return Response<BuiltList<TxContentPoolCerts>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -567,10 +639,10 @@ class CardanoTransactionsApi {
     );
   }
 
-  /// Trasanction stake addresses certificates
+  /// Transaction stake addresses certificates
   ///
   /// Obtain information about (de)registration of stake addresses within a transaction. 
-  Future<Response<BuiltList<TxContentStakeAddr>>> txsHashStakesGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashStakesGet({ 
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -614,14 +686,14 @@ class CardanoTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TxContentStakeAddr> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TxContentStakeAddr)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<TxContentStakeAddr>;
+      ) as BuiltList<JsonObject>;
 
     } catch (error) {
       throw DioError(
@@ -632,7 +704,7 @@ class CardanoTransactionsApi {
       );
     }
 
-    return Response<BuiltList<TxContentStakeAddr>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -724,7 +796,7 @@ class CardanoTransactionsApi {
   /// Transaction withdrawal
   ///
   /// Obtain information about withdrawals of a specific transaction.
-  Future<Response<BuiltList<TxContentWithdrawals>>> txsHashWithdrawalsGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashWithdrawalsGet({ 
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -768,14 +840,14 @@ class CardanoTransactionsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<TxContentWithdrawals> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(TxContentWithdrawals)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<TxContentWithdrawals>;
+      ) as BuiltList<JsonObject>;
 
     } catch (error) {
       throw DioError(
@@ -786,7 +858,7 @@ class CardanoTransactionsApi {
       );
     }
 
-    return Response<BuiltList<TxContentWithdrawals>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

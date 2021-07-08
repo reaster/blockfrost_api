@@ -16,6 +16,14 @@ abstract class TxContent implements Built<TxContent, TxContentBuilder> {
     @BuiltValueField(wireName: r'block')
     String get block;
 
+    /// Block number
+    @BuiltValueField(wireName: r'block_height')
+    int get blockHeight;
+
+    /// Slot number
+    @BuiltValueField(wireName: r'slot')
+    int get slot;
+
     /// Transaction index within the block
     @BuiltValueField(wireName: r'index')
     int get index;
@@ -51,21 +59,29 @@ abstract class TxContent implements Built<TxContent, TxContentBuilder> {
     @BuiltValueField(wireName: r'withdrawal_count')
     int get withdrawalCount;
 
+    /// Count of the MIR certificates within the transaction
+    @BuiltValueField(wireName: r'mir_cert_count')
+    int get mirCertCount;
+
     /// Count of the delegations within the transaction
     @BuiltValueField(wireName: r'delegation_count')
     int get delegationCount;
 
-    /// Count of the stake keys (de)registrations and delegations within the transaction
+    /// Count of the stake keys (de)registration and delegation certificates within the transaction
     @BuiltValueField(wireName: r'stake_cert_count')
     int get stakeCertCount;
 
-    /// Count of the stake pool registrations and updates within the transaction
+    /// Count of the stake pool registration and update certificates within the transaction
     @BuiltValueField(wireName: r'pool_update_count')
     int get poolUpdateCount;
 
-    /// Count of the stake pool retirements within the transaction
+    /// Count of the stake pool retirement certificates within the transaction
     @BuiltValueField(wireName: r'pool_retire_count')
     int get poolRetireCount;
+
+    /// Count of asset mints and burns within the transaction
+    @BuiltValueField(wireName: r'asset_mint_or_burn_count')
+    int get assetMintOrBurnCount;
 
     TxContent._();
 
@@ -92,6 +108,14 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
             ..add(r'block')
             ..add(serializers.serialize(object.block,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'block_height')
+            ..add(serializers.serialize(object.blockHeight,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'slot')
+            ..add(serializers.serialize(object.slot,
+                specifiedType: const FullType(int)));
         result
             ..add(r'index')
             ..add(serializers.serialize(object.index,
@@ -129,6 +153,10 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
             ..add(serializers.serialize(object.withdrawalCount,
                 specifiedType: const FullType(int)));
         result
+            ..add(r'mir_cert_count')
+            ..add(serializers.serialize(object.mirCertCount,
+                specifiedType: const FullType(int)));
+        result
             ..add(r'delegation_count')
             ..add(serializers.serialize(object.delegationCount,
                 specifiedType: const FullType(int)));
@@ -143,6 +171,10 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
         result
             ..add(r'pool_retire_count')
             ..add(serializers.serialize(object.poolRetireCount,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'asset_mint_or_burn_count')
+            ..add(serializers.serialize(object.assetMintOrBurnCount,
                 specifiedType: const FullType(int)));
         return result;
     }
@@ -161,6 +193,14 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
                 case r'block':
                     result.block = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'block_height':
+                    result.blockHeight = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'slot':
+                    result.slot = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
                 case r'index':
                     result.index = serializers.deserialize(value,
@@ -198,6 +238,10 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
                     result.withdrawalCount = serializers.deserialize(value,
                         specifiedType: const FullType(int)) as int;
                     break;
+                case r'mir_cert_count':
+                    result.mirCertCount = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
                 case r'delegation_count':
                     result.delegationCount = serializers.deserialize(value,
                         specifiedType: const FullType(int)) as int;
@@ -212,6 +256,10 @@ class _$TxContentSerializer implements StructuredSerializer<TxContent> {
                     break;
                 case r'pool_retire_count':
                     result.poolRetireCount = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'asset_mint_or_burn_count':
+                    result.assetMintOrBurnCount = serializers.deserialize(value,
                         specifiedType: const FullType(int)) as int;
                     break;
             }

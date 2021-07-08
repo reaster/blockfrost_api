@@ -7,18 +7,16 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:blockfrost/src/model/inline_response418.dart';
-import 'package:blockfrost/src/model/inline_response429.dart';
-import 'package:blockfrost/src/model/inline_response403.dart';
-import 'package:blockfrost/src/model/inline_response404.dart';
+// import 'package:blockfrost/src/model/any_ofpool_metadataobject.dart';
+// import 'package:blockfrost/src/model/inline_response400.dart';
+// import 'package:blockfrost/src/model/inline_response403.dart';
+// import 'package:blockfrost/src/model/inline_response404.dart';
+// import 'package:blockfrost/src/model/inline_response418.dart';
+// import 'package:blockfrost/src/model/inline_response429.dart';
+// import 'package:blockfrost/src/model/inline_response500.dart';
 import 'package:blockfrost/src/model/pool.dart';
-import 'package:blockfrost/src/model/inline_response400.dart';
-import 'package:blockfrost/src/model/inline_response500.dart';
-//import 'package:blockfrost/src/model/any_ofpool_metadataobject.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
-
-class AnyOfpoolMetadataobject {}
 
 class CardanoPoolsApi {
   final Dio _dio;
@@ -41,7 +39,7 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/';
+    final _path = r'/pools';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -823,3 +821,5 @@ class CardanoPoolsApi {
     );
   }
 }
+
+class AnyOfpoolMetadataobject {}

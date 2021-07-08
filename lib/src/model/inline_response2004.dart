@@ -13,11 +13,11 @@ part 'inline_response2004.g.dart';
 abstract class InlineResponse2004 implements Built<InlineResponse2004, InlineResponse2004Builder> {
     /// IPFS hash of the pinned object
     @BuiltValueField(wireName: r'ipfs_hash')
-    String? get ipfsHash;
+    String get ipfsHash;
 
     /// State of the pin action
     @BuiltValueField(wireName: r'state')
-    InlineResponse2004StateEnum? get state;
+    InlineResponse2004StateEnum get state;
     // enum stateEnum {  queued|pinned|unpinned|failed|gc,  };
 
     InlineResponse2004._();
@@ -41,18 +41,14 @@ class _$InlineResponse2004Serializer implements StructuredSerializer<InlineRespo
     Iterable<Object?> serialize(Serializers serializers, InlineResponse2004 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.ipfsHash != null) {
-            result
-                ..add(r'ipfs_hash')
-                ..add(serializers.serialize(object.ipfsHash,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.state != null) {
-            result
-                ..add(r'state')
-                ..add(serializers.serialize(object.state,
-                    specifiedType: const FullType(InlineResponse2004StateEnum)));
-        }
+        result
+            ..add(r'ipfs_hash')
+            ..add(serializers.serialize(object.ipfsHash,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'state')
+            ..add(serializers.serialize(object.state,
+                specifiedType: const FullType(InlineResponse2004StateEnum)));
         return result;
     }
 

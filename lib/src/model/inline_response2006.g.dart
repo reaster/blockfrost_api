@@ -56,28 +56,41 @@ class _$InlineResponse2006StateEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       InlineResponse2006StateEnum.valueOf(
-          _fromWire[serialized] ?? serialized as String);
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 class _$InlineResponse2006 extends InlineResponse2006 {
   @override
-  final int? timeCreated;
+  final int timeCreated;
   @override
-  final int? timePinned;
+  final int timePinned;
   @override
-  final String? ipfsHash;
+  final String ipfsHash;
   @override
-  final String? size;
+  final String size;
   @override
-  final InlineResponse2006StateEnum? state;
+  final InlineResponse2006StateEnum state;
 
   factory _$InlineResponse2006(
           [void Function(InlineResponse2006Builder)? updates]) =>
       (new InlineResponse2006Builder()..update(updates)).build();
 
   _$InlineResponse2006._(
-      {this.timeCreated, this.timePinned, this.ipfsHash, this.size, this.state})
-      : super._();
+      {required this.timeCreated,
+      required this.timePinned,
+      required this.ipfsHash,
+      required this.size,
+      required this.state})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        timeCreated, 'InlineResponse2006', 'timeCreated');
+    BuiltValueNullFieldError.checkNotNull(
+        timePinned, 'InlineResponse2006', 'timePinned');
+    BuiltValueNullFieldError.checkNotNull(
+        ipfsHash, 'InlineResponse2006', 'ipfsHash');
+    BuiltValueNullFieldError.checkNotNull(size, 'InlineResponse2006', 'size');
+    BuiltValueNullFieldError.checkNotNull(state, 'InlineResponse2006', 'state');
+  }
 
   @override
   InlineResponse2006 rebuild(
@@ -177,11 +190,16 @@ class InlineResponse2006Builder
   _$InlineResponse2006 build() {
     final _$result = _$v ??
         new _$InlineResponse2006._(
-            timeCreated: timeCreated,
-            timePinned: timePinned,
-            ipfsHash: ipfsHash,
-            size: size,
-            state: state);
+            timeCreated: BuiltValueNullFieldError.checkNotNull(
+                timeCreated, 'InlineResponse2006', 'timeCreated'),
+            timePinned: BuiltValueNullFieldError.checkNotNull(
+                timePinned, 'InlineResponse2006', 'timePinned'),
+            ipfsHash: BuiltValueNullFieldError.checkNotNull(
+                ipfsHash, 'InlineResponse2006', 'ipfsHash'),
+            size: BuiltValueNullFieldError.checkNotNull(
+                size, 'InlineResponse2006', 'size'),
+            state: BuiltValueNullFieldError.checkNotNull(
+                state, 'InlineResponse2006', 'state'));
     replace(_$result);
     return _$result;
   }

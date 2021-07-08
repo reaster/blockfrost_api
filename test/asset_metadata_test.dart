@@ -5,10 +5,7 @@ import 'package:blockfrost/blockfrost.dart';
 void main() {
   final instance = AssetMetadataBuilder();
   // TODO add properties to the builder and call build()
-  //
-  //price oracle: https://nut.link
-  //description: The oracles registry is recorded under transaction metadata label 1967 and data points are posted under label 1968.
-  //address: 86cd416384d186f48db3a516b44e388ee21e978c9f26f993a463acff719e2408
+
   group(AssetMetadata, () {
     // Asset name
     // String name
@@ -38,5 +35,12 @@ void main() {
     test('to test the property `logo`', () async {
       // TODO
     });
+
+    // Number of decimal places of the asset unit
+    // int decimals
+    test('to test the property `decimals`', () async {
+      // TODO
+    });
+
   });
 }

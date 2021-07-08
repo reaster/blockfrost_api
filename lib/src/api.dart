@@ -2,7 +2,6 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-import 'package:blockfrost/src/auth/my_api_key_auth.dart';
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 import 'package:blockfrost/src/serializers.dart';
@@ -23,6 +22,7 @@ import 'package:blockfrost/src/api/ipfs_add_api.dart';
 import 'package:blockfrost/src/api/ipfs_gateway_api.dart';
 import 'package:blockfrost/src/api/ipfs_pins_api.dart';
 import 'package:blockfrost/src/api/metrics_api.dart';
+import 'package:blockfrost/src/api/nut_link_api.dart';
 
 class Blockfrost {
   static const String basePath = r'https://cardano-mainnet.blockfrost.io/api/v0';
@@ -46,8 +46,7 @@ class Blockfrost {
       this.dio.interceptors.addAll([
         OAuthInterceptor(),
         BasicAuthInterceptor(),
-        MyApiKeyAuthInterceptor(),
-//        ApiKeyAuthInterceptor(projectId: ''),
+        ApiKeyAuthInterceptor(),
       ]);
     } else {
       this.dio.interceptors.addAll(interceptors);
@@ -62,8 +61,7 @@ class Blockfrost {
 
   void setBasicAuth(String name, String username, String password) {
     if (this.dio.interceptors.any((i) => i is BasicAuthInterceptor)) {
-      (this.dio.interceptors.firstWhere((i) => i is BasicAuthInterceptor) as BasicAuthInterceptor).authInfo[name] =
-          BasicAuthInfo(username, password);
+      (this.dio.interceptors.firstWhere((i) => i is BasicAuthInterceptor) as BasicAuthInterceptor).authInfo[name] = BasicAuthInfo(username, password);
     }
   }
 
@@ -155,5 +153,11 @@ class Blockfrost {
   /// by doing that all interceptors will not be executed
   MetricsApi getMetricsApi() {
     return MetricsApi(dio, serializers);
+  }
+
+  /// Get NutLinkApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  NutLinkApi getNutLinkApi() {
+    return NutLinkApi(dio, serializers);
   }
 }

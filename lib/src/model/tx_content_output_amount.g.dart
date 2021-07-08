@@ -8,15 +8,21 @@ part of 'tx_content_output_amount.dart';
 
 class _$TxContentOutputAmount extends TxContentOutputAmount {
   @override
-  final String? unit;
+  final String unit;
   @override
-  final String? quantity;
+  final String quantity;
 
   factory _$TxContentOutputAmount(
           [void Function(TxContentOutputAmountBuilder)? updates]) =>
       (new TxContentOutputAmountBuilder()..update(updates)).build();
 
-  _$TxContentOutputAmount._({this.unit, this.quantity}) : super._();
+  _$TxContentOutputAmount._({required this.unit, required this.quantity})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        unit, 'TxContentOutputAmount', 'unit');
+    BuiltValueNullFieldError.checkNotNull(
+        quantity, 'TxContentOutputAmount', 'quantity');
+  }
 
   @override
   TxContentOutputAmount rebuild(
@@ -88,8 +94,12 @@ class TxContentOutputAmountBuilder
 
   @override
   _$TxContentOutputAmount build() {
-    final _$result =
-        _$v ?? new _$TxContentOutputAmount._(unit: unit, quantity: quantity);
+    final _$result = _$v ??
+        new _$TxContentOutputAmount._(
+            unit: BuiltValueNullFieldError.checkNotNull(
+                unit, 'TxContentOutputAmount', 'unit'),
+            quantity: BuiltValueNullFieldError.checkNotNull(
+                quantity, 'TxContentOutputAmount', 'quantity'));
     replace(_$result);
     return _$result;
   }

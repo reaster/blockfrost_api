@@ -8,18 +8,25 @@ part of 'inline_response403.dart';
 
 class _$InlineResponse403 extends InlineResponse403 {
   @override
-  final int? statusCode;
+  final int statusCode;
   @override
-  final String? error;
+  final String error;
   @override
-  final String? message;
+  final String message;
 
   factory _$InlineResponse403(
           [void Function(InlineResponse403Builder)? updates]) =>
       (new InlineResponse403Builder()..update(updates)).build();
 
-  _$InlineResponse403._({this.statusCode, this.error, this.message})
-      : super._();
+  _$InlineResponse403._(
+      {required this.statusCode, required this.error, required this.message})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, 'InlineResponse403', 'statusCode');
+    BuiltValueNullFieldError.checkNotNull(error, 'InlineResponse403', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'InlineResponse403', 'message');
+  }
 
   @override
   InlineResponse403 rebuild(void Function(InlineResponse403Builder) updates) =>
@@ -100,7 +107,12 @@ class InlineResponse403Builder
   _$InlineResponse403 build() {
     final _$result = _$v ??
         new _$InlineResponse403._(
-            statusCode: statusCode, error: error, message: message);
+            statusCode: BuiltValueNullFieldError.checkNotNull(
+                statusCode, 'InlineResponse403', 'statusCode'),
+            error: BuiltValueNullFieldError.checkNotNull(
+                error, 'InlineResponse403', 'error'),
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'InlineResponse403', 'message'));
     replace(_$result);
     return _$result;
   }

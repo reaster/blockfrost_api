@@ -8,13 +8,16 @@ part of 'inline_response2001.dart';
 
 class _$InlineResponse2001 extends InlineResponse2001 {
   @override
-  final bool? isHealthy;
+  final bool isHealthy;
 
   factory _$InlineResponse2001(
           [void Function(InlineResponse2001Builder)? updates]) =>
       (new InlineResponse2001Builder()..update(updates)).build();
 
-  _$InlineResponse2001._({this.isHealthy}) : super._();
+  _$InlineResponse2001._({required this.isHealthy}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        isHealthy, 'InlineResponse2001', 'isHealthy');
+  }
 
   @override
   InlineResponse2001 rebuild(
@@ -78,7 +81,10 @@ class InlineResponse2001Builder
 
   @override
   _$InlineResponse2001 build() {
-    final _$result = _$v ?? new _$InlineResponse2001._(isHealthy: isHealthy);
+    final _$result = _$v ??
+        new _$InlineResponse2001._(
+            isHealthy: BuiltValueNullFieldError.checkNotNull(
+                isHealthy, 'InlineResponse2001', 'isHealthy'));
     replace(_$result);
     return _$result;
   }

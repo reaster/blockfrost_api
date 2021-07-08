@@ -65,7 +65,9 @@ class _$AccountContentSerializer implements StructuredSerializer<AccountContent>
   Iterable<Object?> serialize(Serializers serializers, AccountContent object, {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     result..add(r'active')..add(serializers.serialize(object.active, specifiedType: const FullType(bool)));
-    result..add(r'active_epoch')..add(serializers.serialize(object.activeEpoch, specifiedType: const FullType(int)));
+    if (object.activeEpoch != null) {
+      result..add(r'active_epoch')..add(serializers.serialize(object.activeEpoch, specifiedType: const FullType(int)));
+    }
     result..add(r'controlled_amount')..add(serializers.serialize(object.controlledAmount, specifiedType: const FullType(String)));
     result..add(r'rewards_sum')..add(serializers.serialize(object.rewardsSum, specifiedType: const FullType(String)));
     result..add(r'withdrawals_sum')..add(serializers.serialize(object.withdrawalsSum, specifiedType: const FullType(String)));

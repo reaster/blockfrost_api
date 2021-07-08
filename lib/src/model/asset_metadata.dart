@@ -29,6 +29,10 @@ abstract class AssetMetadata implements Built<AssetMetadata, AssetMetadataBuilde
     @BuiltValueField(wireName: r'logo')
     String? get logo;
 
+    /// Number of decimal places of the asset unit
+    @BuiltValueField(wireName: r'decimals')
+    int? get decimals;
+
     AssetMetadata._();
 
     static void _initializeBuilder(AssetMetadataBuilder b) => b;
@@ -58,24 +62,22 @@ class _$AssetMetadataSerializer implements StructuredSerializer<AssetMetadata> {
             ..add(r'description')
             ..add(serializers.serialize(object.description,
                 specifiedType: const FullType(String)));
-        if (object.ticker != null) {
-            result
-                ..add(r'ticker')
-                ..add(serializers.serialize(object.ticker,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.url != null) {
-            result
-                ..add(r'url')
-                ..add(serializers.serialize(object.url,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.logo != null) {
-            result
-                ..add(r'logo')
-                ..add(serializers.serialize(object.logo,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'ticker')
+            ..add(object.ticker == null ? null : serializers.serialize(object.ticker,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'url')
+            ..add(object.url == null ? null : serializers.serialize(object.url,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'logo')
+            ..add(object.logo == null ? null : serializers.serialize(object.logo,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'decimals')
+            ..add(object.decimals == null ? null : serializers.serialize(object.decimals,
+                specifiedType: const FullType(int)));
         return result;
     }
 
@@ -109,6 +111,10 @@ class _$AssetMetadataSerializer implements StructuredSerializer<AssetMetadata> {
                 case r'logo':
                     result.logo = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'decimals':
+                    result.decimals = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
                     break;
             }
         }

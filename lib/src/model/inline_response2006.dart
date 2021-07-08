@@ -13,23 +13,23 @@ part 'inline_response2006.g.dart';
 abstract class InlineResponse2006 implements Built<InlineResponse2006, InlineResponse2006Builder> {
     /// Time of the creation of the IPFS object on our backends
     @BuiltValueField(wireName: r'time_created')
-    int? get timeCreated;
+    int get timeCreated;
 
     /// Time of the pin of the IPFS object on our backends
     @BuiltValueField(wireName: r'time_pinned')
-    int? get timePinned;
+    int get timePinned;
 
     /// IPFS hash of the pinned object
     @BuiltValueField(wireName: r'ipfs_hash')
-    String? get ipfsHash;
+    String get ipfsHash;
 
     /// Size of the object in Bytes
     @BuiltValueField(wireName: r'size')
-    String? get size;
+    String get size;
 
     /// State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`. When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`. If the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise. When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection. State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota. 
     @BuiltValueField(wireName: r'state')
-    InlineResponse2006StateEnum? get state;
+    InlineResponse2006StateEnum get state;
     // enum stateEnum {  queued|pinned|unpinned|failed|gc,  };
 
     InlineResponse2006._();
@@ -53,36 +53,26 @@ class _$InlineResponse2006Serializer implements StructuredSerializer<InlineRespo
     Iterable<Object?> serialize(Serializers serializers, InlineResponse2006 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.timeCreated != null) {
-            result
-                ..add(r'time_created')
-                ..add(serializers.serialize(object.timeCreated,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.timePinned != null) {
-            result
-                ..add(r'time_pinned')
-                ..add(serializers.serialize(object.timePinned,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.ipfsHash != null) {
-            result
-                ..add(r'ipfs_hash')
-                ..add(serializers.serialize(object.ipfsHash,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.size != null) {
-            result
-                ..add(r'size')
-                ..add(serializers.serialize(object.size,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.state != null) {
-            result
-                ..add(r'state')
-                ..add(serializers.serialize(object.state,
-                    specifiedType: const FullType(InlineResponse2006StateEnum)));
-        }
+        result
+            ..add(r'time_created')
+            ..add(serializers.serialize(object.timeCreated,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'time_pinned')
+            ..add(serializers.serialize(object.timePinned,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'ipfs_hash')
+            ..add(serializers.serialize(object.ipfsHash,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'size')
+            ..add(serializers.serialize(object.size,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'state')
+            ..add(serializers.serialize(object.state,
+                specifiedType: const FullType(InlineResponse2006StateEnum)));
         return result;
     }
 

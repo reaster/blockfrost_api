@@ -12,11 +12,11 @@ part 'tx_content_output_amount.g.dart';
 abstract class TxContentOutputAmount implements Built<TxContentOutputAmount, TxContentOutputAmountBuilder> {
     /// The unit of the value
     @BuiltValueField(wireName: r'unit')
-    String? get unit;
+    String get unit;
 
     /// The quantity of the unit
     @BuiltValueField(wireName: r'quantity')
-    String? get quantity;
+    String get quantity;
 
     TxContentOutputAmount._();
 
@@ -39,18 +39,14 @@ class _$TxContentOutputAmountSerializer implements StructuredSerializer<TxConten
     Iterable<Object?> serialize(Serializers serializers, TxContentOutputAmount object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.unit != null) {
-            result
-                ..add(r'unit')
-                ..add(serializers.serialize(object.unit,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.quantity != null) {
-            result
-                ..add(r'quantity')
-                ..add(serializers.serialize(object.quantity,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'unit')
+            ..add(serializers.serialize(object.unit,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'quantity')
+            ..add(serializers.serialize(object.quantity,
+                specifiedType: const FullType(String)));
         return result;
     }
 

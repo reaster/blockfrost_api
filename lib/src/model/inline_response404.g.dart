@@ -8,18 +8,25 @@ part of 'inline_response404.dart';
 
 class _$InlineResponse404 extends InlineResponse404 {
   @override
-  final int? statusCode;
+  final int statusCode;
   @override
-  final String? error;
+  final String error;
   @override
-  final String? message;
+  final String message;
 
   factory _$InlineResponse404(
           [void Function(InlineResponse404Builder)? updates]) =>
       (new InlineResponse404Builder()..update(updates)).build();
 
-  _$InlineResponse404._({this.statusCode, this.error, this.message})
-      : super._();
+  _$InlineResponse404._(
+      {required this.statusCode, required this.error, required this.message})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, 'InlineResponse404', 'statusCode');
+    BuiltValueNullFieldError.checkNotNull(error, 'InlineResponse404', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'InlineResponse404', 'message');
+  }
 
   @override
   InlineResponse404 rebuild(void Function(InlineResponse404Builder) updates) =>
@@ -100,7 +107,12 @@ class InlineResponse404Builder
   _$InlineResponse404 build() {
     final _$result = _$v ??
         new _$InlineResponse404._(
-            statusCode: statusCode, error: error, message: message);
+            statusCode: BuiltValueNullFieldError.checkNotNull(
+                statusCode, 'InlineResponse404', 'statusCode'),
+            error: BuiltValueNullFieldError.checkNotNull(
+                error, 'InlineResponse404', 'error'),
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'InlineResponse404', 'message'));
     replace(_$result);
     return _$result;
   }

@@ -2,7 +2,9 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
+import 'package:built_collection/built_collection.dart';
 import 'package:blockfrost/src/model/asset_metadata.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -21,7 +23,7 @@ abstract class Asset implements Built<Asset, AssetBuilder> {
 
     /// CIP14 based user-facing fingerprint
     @BuiltValueField(wireName: r'fingerprint')
-    String? get fingerprint;
+    String get fingerprint;
 
     /// Current asset quantity
     @BuiltValueField(wireName: r'quantity')
@@ -30,6 +32,14 @@ abstract class Asset implements Built<Asset, AssetBuilder> {
     /// ID of the initial minting transaction
     @BuiltValueField(wireName: r'initial_mint_tx_hash')
     String get initialMintTxHash;
+
+    /// Count of mint and burn transactions
+    @BuiltValueField(wireName: r'mint_or_burn_count')
+    int get mintOrBurnCount;
+
+    /// On-chain metadata stored in the minting transaction under label 721, community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85 
+    @BuiltValueField(wireName: r'onchain_metadata')
+    BuiltMap<String, JsonObject>? get onchainMetadata;
 
     @BuiltValueField(wireName: r'metadata')
     AssetMetadata? get metadata;
@@ -63,12 +73,10 @@ class _$AssetSerializer implements StructuredSerializer<Asset> {
             ..add(r'asset_name')
             ..add(object.assetName == null ? null : serializers.serialize(object.assetName,
                 specifiedType: const FullType(String)));
-        if (object.fingerprint != null) {
-            result
-                ..add(r'fingerprint')
-                ..add(serializers.serialize(object.fingerprint,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'fingerprint')
+            ..add(serializers.serialize(object.fingerprint,
+                specifiedType: const FullType(String)));
         result
             ..add(r'quantity')
             ..add(serializers.serialize(object.quantity,
@@ -77,6 +85,14 @@ class _$AssetSerializer implements StructuredSerializer<Asset> {
             ..add(r'initial_mint_tx_hash')
             ..add(serializers.serialize(object.initialMintTxHash,
                 specifiedType: const FullType(String)));
+        result
+            ..add(r'mint_or_burn_count')
+            ..add(serializers.serialize(object.mintOrBurnCount,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'onchain_metadata')
+            ..add(object.onchainMetadata == null ? null : serializers.serialize(object.onchainMetadata,
+                specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])));
         result
             ..add(r'metadata')
             ..add(object.metadata == null ? null : serializers.serialize(object.metadata,
@@ -114,6 +130,14 @@ class _$AssetSerializer implements StructuredSerializer<Asset> {
                 case r'initial_mint_tx_hash':
                     result.initialMintTxHash = serializers.deserialize(value,
                         specifiedType: const FullType(String)) as String;
+                    break;
+                case r'mint_or_burn_count':
+                    result.mintOrBurnCount = serializers.deserialize(value,
+                        specifiedType: const FullType(int)) as int;
+                    break;
+                case r'onchain_metadata':
+                    result.onchainMetadata.replace(serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(JsonObject)])) as BuiltMap<String, JsonObject>);
                     break;
                 case r'metadata':
                     result.metadata.replace(serializers.deserialize(value,

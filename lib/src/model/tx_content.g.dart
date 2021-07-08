@@ -10,6 +10,10 @@ class _$TxContent extends TxContent {
   @override
   final String block;
   @override
+  final int blockHeight;
+  @override
+  final int slot;
+  @override
   final int index;
   @override
   final BuiltList<TxContentOutputAmount> outputAmount;
@@ -28,6 +32,8 @@ class _$TxContent extends TxContent {
   @override
   final int withdrawalCount;
   @override
+  final int mirCertCount;
+  @override
   final int delegationCount;
   @override
   final int stakeCertCount;
@@ -35,12 +41,16 @@ class _$TxContent extends TxContent {
   final int poolUpdateCount;
   @override
   final int poolRetireCount;
+  @override
+  final int assetMintOrBurnCount;
 
   factory _$TxContent([void Function(TxContentBuilder)? updates]) =>
       (new TxContentBuilder()..update(updates)).build();
 
   _$TxContent._(
       {required this.block,
+      required this.blockHeight,
+      required this.slot,
       required this.index,
       required this.outputAmount,
       required this.fees,
@@ -50,12 +60,17 @@ class _$TxContent extends TxContent {
       this.invalidHereafter,
       required this.utxoCount,
       required this.withdrawalCount,
+      required this.mirCertCount,
       required this.delegationCount,
       required this.stakeCertCount,
       required this.poolUpdateCount,
-      required this.poolRetireCount})
+      required this.poolRetireCount,
+      required this.assetMintOrBurnCount})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(block, 'TxContent', 'block');
+    BuiltValueNullFieldError.checkNotNull(
+        blockHeight, 'TxContent', 'blockHeight');
+    BuiltValueNullFieldError.checkNotNull(slot, 'TxContent', 'slot');
     BuiltValueNullFieldError.checkNotNull(index, 'TxContent', 'index');
     BuiltValueNullFieldError.checkNotNull(
         outputAmount, 'TxContent', 'outputAmount');
@@ -66,6 +81,8 @@ class _$TxContent extends TxContent {
     BuiltValueNullFieldError.checkNotNull(
         withdrawalCount, 'TxContent', 'withdrawalCount');
     BuiltValueNullFieldError.checkNotNull(
+        mirCertCount, 'TxContent', 'mirCertCount');
+    BuiltValueNullFieldError.checkNotNull(
         delegationCount, 'TxContent', 'delegationCount');
     BuiltValueNullFieldError.checkNotNull(
         stakeCertCount, 'TxContent', 'stakeCertCount');
@@ -73,6 +90,8 @@ class _$TxContent extends TxContent {
         poolUpdateCount, 'TxContent', 'poolUpdateCount');
     BuiltValueNullFieldError.checkNotNull(
         poolRetireCount, 'TxContent', 'poolRetireCount');
+    BuiltValueNullFieldError.checkNotNull(
+        assetMintOrBurnCount, 'TxContent', 'assetMintOrBurnCount');
   }
 
   @override
@@ -87,6 +106,8 @@ class _$TxContent extends TxContent {
     if (identical(other, this)) return true;
     return other is TxContent &&
         block == other.block &&
+        blockHeight == other.blockHeight &&
+        slot == other.slot &&
         index == other.index &&
         outputAmount == other.outputAmount &&
         fees == other.fees &&
@@ -96,10 +117,12 @@ class _$TxContent extends TxContent {
         invalidHereafter == other.invalidHereafter &&
         utxoCount == other.utxoCount &&
         withdrawalCount == other.withdrawalCount &&
+        mirCertCount == other.mirCertCount &&
         delegationCount == other.delegationCount &&
         stakeCertCount == other.stakeCertCount &&
         poolUpdateCount == other.poolUpdateCount &&
-        poolRetireCount == other.poolRetireCount;
+        poolRetireCount == other.poolRetireCount &&
+        assetMintOrBurnCount == other.assetMintOrBurnCount;
   }
 
   @override
@@ -116,26 +139,43 @@ class _$TxContent extends TxContent {
                                         $jc(
                                             $jc(
                                                 $jc(
-                                                    $jc($jc(0, block.hashCode),
-                                                        index.hashCode),
-                                                    outputAmount.hashCode),
-                                                fees.hashCode),
-                                            deposit.hashCode),
-                                        size.hashCode),
-                                    invalidBefore.hashCode),
-                                invalidHereafter.hashCode),
-                            utxoCount.hashCode),
-                        withdrawalCount.hashCode),
-                    delegationCount.hashCode),
-                stakeCertCount.hashCode),
-            poolUpdateCount.hashCode),
-        poolRetireCount.hashCode));
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                $jc(
+                                                                    $jc(
+                                                                        $jc(
+                                                                            0,
+                                                                            block
+                                                                                .hashCode),
+                                                                        blockHeight
+                                                                            .hashCode),
+                                                                    slot
+                                                                        .hashCode),
+                                                                index.hashCode),
+                                                            outputAmount
+                                                                .hashCode),
+                                                        fees.hashCode),
+                                                    deposit.hashCode),
+                                                size.hashCode),
+                                            invalidBefore.hashCode),
+                                        invalidHereafter.hashCode),
+                                    utxoCount.hashCode),
+                                withdrawalCount.hashCode),
+                            mirCertCount.hashCode),
+                        delegationCount.hashCode),
+                    stakeCertCount.hashCode),
+                poolUpdateCount.hashCode),
+            poolRetireCount.hashCode),
+        assetMintOrBurnCount.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('TxContent')
           ..add('block', block)
+          ..add('blockHeight', blockHeight)
+          ..add('slot', slot)
           ..add('index', index)
           ..add('outputAmount', outputAmount)
           ..add('fees', fees)
@@ -145,10 +185,12 @@ class _$TxContent extends TxContent {
           ..add('invalidHereafter', invalidHereafter)
           ..add('utxoCount', utxoCount)
           ..add('withdrawalCount', withdrawalCount)
+          ..add('mirCertCount', mirCertCount)
           ..add('delegationCount', delegationCount)
           ..add('stakeCertCount', stakeCertCount)
           ..add('poolUpdateCount', poolUpdateCount)
-          ..add('poolRetireCount', poolRetireCount))
+          ..add('poolRetireCount', poolRetireCount)
+          ..add('assetMintOrBurnCount', assetMintOrBurnCount))
         .toString();
   }
 }
@@ -159,6 +201,14 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
   String? _block;
   String? get block => _$this._block;
   set block(String? block) => _$this._block = block;
+
+  int? _blockHeight;
+  int? get blockHeight => _$this._blockHeight;
+  set blockHeight(int? blockHeight) => _$this._blockHeight = blockHeight;
+
+  int? _slot;
+  int? get slot => _$this._slot;
+  set slot(int? slot) => _$this._slot = slot;
 
   int? _index;
   int? get index => _$this._index;
@@ -201,6 +251,10 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
   set withdrawalCount(int? withdrawalCount) =>
       _$this._withdrawalCount = withdrawalCount;
 
+  int? _mirCertCount;
+  int? get mirCertCount => _$this._mirCertCount;
+  set mirCertCount(int? mirCertCount) => _$this._mirCertCount = mirCertCount;
+
   int? _delegationCount;
   int? get delegationCount => _$this._delegationCount;
   set delegationCount(int? delegationCount) =>
@@ -221,6 +275,11 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
   set poolRetireCount(int? poolRetireCount) =>
       _$this._poolRetireCount = poolRetireCount;
 
+  int? _assetMintOrBurnCount;
+  int? get assetMintOrBurnCount => _$this._assetMintOrBurnCount;
+  set assetMintOrBurnCount(int? assetMintOrBurnCount) =>
+      _$this._assetMintOrBurnCount = assetMintOrBurnCount;
+
   TxContentBuilder() {
     TxContent._initializeBuilder(this);
   }
@@ -229,6 +288,8 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
     final $v = _$v;
     if ($v != null) {
       _block = $v.block;
+      _blockHeight = $v.blockHeight;
+      _slot = $v.slot;
       _index = $v.index;
       _outputAmount = $v.outputAmount.toBuilder();
       _fees = $v.fees;
@@ -238,10 +299,12 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
       _invalidHereafter = $v.invalidHereafter;
       _utxoCount = $v.utxoCount;
       _withdrawalCount = $v.withdrawalCount;
+      _mirCertCount = $v.mirCertCount;
       _delegationCount = $v.delegationCount;
       _stakeCertCount = $v.stakeCertCount;
       _poolUpdateCount = $v.poolUpdateCount;
       _poolRetireCount = $v.poolRetireCount;
+      _assetMintOrBurnCount = $v.assetMintOrBurnCount;
       _$v = null;
     }
     return this;
@@ -266,6 +329,10 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
           new _$TxContent._(
               block: BuiltValueNullFieldError.checkNotNull(
                   block, 'TxContent', 'block'),
+              blockHeight: BuiltValueNullFieldError.checkNotNull(
+                  blockHeight, 'TxContent', 'blockHeight'),
+              slot: BuiltValueNullFieldError.checkNotNull(
+                  slot, 'TxContent', 'slot'),
               index: BuiltValueNullFieldError.checkNotNull(
                   index, 'TxContent', 'index'),
               outputAmount: outputAmount.build(),
@@ -281,14 +348,15 @@ class TxContentBuilder implements Builder<TxContent, TxContentBuilder> {
                   utxoCount, 'TxContent', 'utxoCount'),
               withdrawalCount: BuiltValueNullFieldError.checkNotNull(
                   withdrawalCount, 'TxContent', 'withdrawalCount'),
+              mirCertCount: BuiltValueNullFieldError.checkNotNull(
+                  mirCertCount, 'TxContent', 'mirCertCount'),
               delegationCount: BuiltValueNullFieldError.checkNotNull(
                   delegationCount, 'TxContent', 'delegationCount'),
-              stakeCertCount: BuiltValueNullFieldError.checkNotNull(
-                  stakeCertCount, 'TxContent', 'stakeCertCount'),
-              poolUpdateCount: BuiltValueNullFieldError.checkNotNull(
-                  poolUpdateCount, 'TxContent', 'poolUpdateCount'),
-              poolRetireCount: BuiltValueNullFieldError.checkNotNull(
-                  poolRetireCount, 'TxContent', 'poolRetireCount'));
+              stakeCertCount:
+                  BuiltValueNullFieldError.checkNotNull(stakeCertCount, 'TxContent', 'stakeCertCount'),
+              poolUpdateCount: BuiltValueNullFieldError.checkNotNull(poolUpdateCount, 'TxContent', 'poolUpdateCount'),
+              poolRetireCount: BuiltValueNullFieldError.checkNotNull(poolRetireCount, 'TxContent', 'poolRetireCount'),
+              assetMintOrBurnCount: BuiltValueNullFieldError.checkNotNull(assetMintOrBurnCount, 'TxContent', 'assetMintOrBurnCount'));
     } catch (_) {
       late String _$failedField;
       try {

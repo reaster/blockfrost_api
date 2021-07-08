@@ -8,18 +8,25 @@ part of 'inline_response429.dart';
 
 class _$InlineResponse429 extends InlineResponse429 {
   @override
-  final int? statusCode;
+  final int statusCode;
   @override
-  final String? error;
+  final String error;
   @override
-  final String? message;
+  final String message;
 
   factory _$InlineResponse429(
           [void Function(InlineResponse429Builder)? updates]) =>
       (new InlineResponse429Builder()..update(updates)).build();
 
-  _$InlineResponse429._({this.statusCode, this.error, this.message})
-      : super._();
+  _$InlineResponse429._(
+      {required this.statusCode, required this.error, required this.message})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, 'InlineResponse429', 'statusCode');
+    BuiltValueNullFieldError.checkNotNull(error, 'InlineResponse429', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'InlineResponse429', 'message');
+  }
 
   @override
   InlineResponse429 rebuild(void Function(InlineResponse429Builder) updates) =>
@@ -100,7 +107,12 @@ class InlineResponse429Builder
   _$InlineResponse429 build() {
     final _$result = _$v ??
         new _$InlineResponse429._(
-            statusCode: statusCode, error: error, message: message);
+            statusCode: BuiltValueNullFieldError.checkNotNull(
+                statusCode, 'InlineResponse429', 'statusCode'),
+            error: BuiltValueNullFieldError.checkNotNull(
+                error, 'InlineResponse429', 'error'),
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'InlineResponse429', 'message'));
     replace(_$result);
     return _$result;
   }

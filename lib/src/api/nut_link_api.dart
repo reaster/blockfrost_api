@@ -7,31 +7,28 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:blockfrost/src/model/inline_response2004.dart';
-import 'package:blockfrost/src/model/inline_response2005.dart';
-import 'package:blockfrost/src/model/inline_response2006.dart';
-import 'package:blockfrost/src/model/inline_response2007.dart';
 import 'package:blockfrost/src/model/inline_response400.dart';
 import 'package:blockfrost/src/model/inline_response403.dart';
 import 'package:blockfrost/src/model/inline_response404.dart';
 import 'package:blockfrost/src/model/inline_response418.dart';
 import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
+import 'package:blockfrost/src/model/nutlink_address.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 
-class IPFSPinsApi {
-
+class NutLinkApi {
   final Dio _dio;
 
   final Serializers _serializers;
 
-  const IPFSPinsApi(this._dio, this._serializers);
+  const NutLinkApi(this._dio, this._serializers);
 
-  /// Pin an object
   ///
-  /// Pinned objects are counted in your user storage quota.
-  Future<Response<InlineResponse2004>> ipfsPinAddIPFSPathPost({ 
-    required String iPFSPath,
+  ///
+  /// List metadata about specific address
+  Future<Response<NutlinkAddress>> nutlinkAddressGet({
+    required String address,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -39,9 +36,9 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/add/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/nutlink/{address}'.replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
-      method: r'POST',
+      method: r'GET',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -62,8 +59,7 @@ class IPFSPinsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -74,15 +70,14 @@ class IPFSPinsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    InlineResponse2004 _responseData;
+    NutlinkAddress _responseData;
 
     try {
-      const _responseType = FullType(InlineResponse2004);
+      const _responseType = FullType(NutlinkAddress);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as InlineResponse2004;
-
+      ) as NutlinkAddress;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -92,7 +87,7 @@ class IPFSPinsApi {
       );
     }
 
-    return Response<InlineResponse2004>(
+    return Response<NutlinkAddress>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -104,10 +99,11 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
   ///
-  /// List objects pinned to local storage
-  Future<Response<BuiltList<InlineResponse2005>>> ipfsPinListGet({ 
+  ///
+  /// List tickers for a specific metadata oracle
+  Future<Response<BuiltList<JsonObject>>> nutlinkAddressTickersGet({
+    required String address,
     int? count,
     int? page,
     String? order,
@@ -118,7 +114,7 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/list/';
+    final _path = r'/nutlink/{address}/tickers'.replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -156,15 +152,14 @@ class IPFSPinsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<InlineResponse2005> _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(BuiltList, [FullType(InlineResponse2005)]);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as BuiltList<InlineResponse2005>;
-
+      ) as BuiltList<JsonObject>;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -174,7 +169,7 @@ class IPFSPinsApi {
       );
     }
 
-    return Response<BuiltList<InlineResponse2005>>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -186,11 +181,15 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
   ///
-  /// List objects pinned to local storage
-  Future<Response<InlineResponse2006>> ipfsPinListIPFSPathGet({ 
-    required String iPFSPath,
+  ///
+  /// List of records of a specific ticker
+  Future<Response<BuiltList<JsonObject>>> nutlinkAddressTickersTickerGet({
+    required String address,
+    required String ticker,
+    int? count,
+    int? page,
+    String? order,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -198,7 +197,9 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/list/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/nutlink/{address}/tickers/{ticker}'
+        .replaceAll('{' r'address' '}', address.toString())
+        .replaceAll('{' r'ticker' '}', ticker.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -222,6 +223,9 @@ class IPFSPinsApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (count != null) r'count': count,
+      if (page != null) r'page': page,
+      if (order != null) r'order': order,
     };
 
     final _response = await _dio.request<Object>(
@@ -233,15 +237,14 @@ class IPFSPinsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    InlineResponse2006 _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(InlineResponse2006);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as InlineResponse2006;
-
+      ) as BuiltList<JsonObject>;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -251,7 +254,7 @@ class IPFSPinsApi {
       );
     }
 
-    return Response<InlineResponse2006>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -263,11 +266,14 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
   ///
-  /// Remove pinned objects from local storage
-  Future<Response<InlineResponse2007>> ipfsPinRemoveIPFSPathPost({ 
-    required String iPFSPath,
+  ///
+  /// List of records of a specific ticker
+  Future<Response<BuiltList<JsonObject>>> nutlinkTickersTickerGet({
+    required String ticker,
+    int? count,
+    int? page,
+    String? order,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -275,9 +281,9 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/remove/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/nutlink/tickers/{ticker}'.replaceAll('{' r'ticker' '}', ticker.toString());
     final _options = Options(
-      method: r'POST',
+      method: r'GET',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -299,6 +305,9 @@ class IPFSPinsApi {
     );
 
     final _queryParameters = <String, dynamic>{
+      if (count != null) r'count': count,
+      if (page != null) r'page': page,
+      if (order != null) r'order': order,
     };
 
     final _response = await _dio.request<Object>(
@@ -310,15 +319,14 @@ class IPFSPinsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    InlineResponse2007 _responseData;
+    BuiltList<JsonObject> _responseData;
 
     try {
-      const _responseType = FullType(InlineResponse2007);
+      const _responseType = FullType(BuiltList, [FullType(JsonObject)]);
       _responseData = _serializers.deserialize(
         _response.data!,
         specifiedType: _responseType,
-      ) as InlineResponse2007;
-
+      ) as BuiltList<JsonObject>;
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -328,7 +336,7 @@ class IPFSPinsApi {
       );
     }
 
-    return Response<InlineResponse2007>(
+    return Response<BuiltList<JsonObject>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -339,5 +347,4 @@ class IPFSPinsApi {
       extra: _response.extra,
     );
   }
-
 }

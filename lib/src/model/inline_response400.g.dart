@@ -8,18 +8,25 @@ part of 'inline_response400.dart';
 
 class _$InlineResponse400 extends InlineResponse400 {
   @override
-  final int? statusCode;
+  final int statusCode;
   @override
-  final String? error;
+  final String error;
   @override
-  final String? message;
+  final String message;
 
   factory _$InlineResponse400(
           [void Function(InlineResponse400Builder)? updates]) =>
       (new InlineResponse400Builder()..update(updates)).build();
 
-  _$InlineResponse400._({this.statusCode, this.error, this.message})
-      : super._();
+  _$InlineResponse400._(
+      {required this.statusCode, required this.error, required this.message})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        statusCode, 'InlineResponse400', 'statusCode');
+    BuiltValueNullFieldError.checkNotNull(error, 'InlineResponse400', 'error');
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'InlineResponse400', 'message');
+  }
 
   @override
   InlineResponse400 rebuild(void Function(InlineResponse400Builder) updates) =>
@@ -100,7 +107,12 @@ class InlineResponse400Builder
   _$InlineResponse400 build() {
     final _$result = _$v ??
         new _$InlineResponse400._(
-            statusCode: statusCode, error: error, message: message);
+            statusCode: BuiltValueNullFieldError.checkNotNull(
+                statusCode, 'InlineResponse400', 'statusCode'),
+            error: BuiltValueNullFieldError.checkNotNull(
+                error, 'InlineResponse400', 'error'),
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'InlineResponse400', 'message'));
     replace(_$result);
     return _$result;
   }

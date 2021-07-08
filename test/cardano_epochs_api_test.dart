@@ -16,6 +16,15 @@ void main() {
       // TODO
     });
 
+    // Latest epoch protocol parameters
+    //
+    // Return the protocol parameters for the latest epoch.
+    //
+    //Future<EpochParamContent> epochsLatestParametersGet() async
+    test('test epochsLatestParametersGet', () async {
+      // TODO
+    });
+
     // Block distribution
     //
     // Return the blocks minted for the epoch specified.
@@ -38,7 +47,7 @@ void main() {
     //
     // Return the content of the requested epoch.
     //
-    //Future<EpochContent> epochsNumberGet(String number) async
+    //Future<EpochContent> epochsNumberGet(int number) async
     test('test epochsNumberGet', () async {
       // TODO
     });

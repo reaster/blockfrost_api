@@ -35,20 +35,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(InlineResponse418.serializer)
       ..add(InlineResponse429.serializer)
       ..add(InlineResponse500.serializer)
+      ..add(NutlinkAddress.serializer)
       ..add(Pool.serializer)
       ..add(PoolMetadata.serializer)
       ..add(TxContent.serializer)
-      ..add(TxContentDelegations.serializer)
       ..add(TxContentOutputAmount.serializer)
-      ..add(TxContentPoolCerts.serializer)
-      ..add(TxContentPoolCertsMetadata.serializer)
-      ..add(TxContentPoolCertsRelays.serializer)
-      ..add(TxContentPoolRetires.serializer)
-      ..add(TxContentStakeAddr.serializer)
       ..add(TxContentUtxo.serializer)
       ..add(TxContentUtxoInputs.serializer)
       ..add(TxContentUtxoOutputs.serializer)
-      ..add(TxContentWithdrawals.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
@@ -58,13 +52,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(TxContentPoolCertsRelays)]),
-          () => new ListBuilder<TxContentPoolCertsRelays>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(TxContentOutputAmount)]),
@@ -96,7 +83,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(TxContentUtxoOutputs)]),
-          () => new ListBuilder<TxContentUtxoOutputs>()))
+          () => new ListBuilder<TxContentUtxoOutputs>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(JsonObject)]),
+          () => new MapBuilder<String, JsonObject>())
+      ..addBuilderFactory(
+          const FullType(BuiltMap,
+              const [const FullType(String), const FullType(JsonObject)]),
+          () => new MapBuilder<String, JsonObject>()))
     .build();
 
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

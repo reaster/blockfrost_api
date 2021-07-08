@@ -14,10 +14,10 @@ part 'tx_content_utxo.g.dart';
 
 abstract class TxContentUtxo implements Built<TxContentUtxo, TxContentUtxoBuilder> {
     @BuiltValueField(wireName: r'inputs')
-    BuiltList<TxContentUtxoInputs>? get inputs;
+    BuiltList<TxContentUtxoInputs> get inputs;
 
     @BuiltValueField(wireName: r'outputs')
-    BuiltList<TxContentUtxoOutputs>? get outputs;
+    BuiltList<TxContentUtxoOutputs> get outputs;
 
     TxContentUtxo._();
 
@@ -40,18 +40,14 @@ class _$TxContentUtxoSerializer implements StructuredSerializer<TxContentUtxo> {
     Iterable<Object?> serialize(Serializers serializers, TxContentUtxo object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.inputs != null) {
-            result
-                ..add(r'inputs')
-                ..add(serializers.serialize(object.inputs,
-                    specifiedType: const FullType(BuiltList, [FullType(TxContentUtxoInputs)])));
-        }
-        if (object.outputs != null) {
-            result
-                ..add(r'outputs')
-                ..add(serializers.serialize(object.outputs,
-                    specifiedType: const FullType(BuiltList, [FullType(TxContentUtxoOutputs)])));
-        }
+        result
+            ..add(r'inputs')
+            ..add(serializers.serialize(object.inputs,
+                specifiedType: const FullType(BuiltList, [FullType(TxContentUtxoInputs)])));
+        result
+            ..add(r'outputs')
+            ..add(serializers.serialize(object.outputs,
+                specifiedType: const FullType(BuiltList, [FullType(TxContentUtxoOutputs)])));
         return result;
     }
 

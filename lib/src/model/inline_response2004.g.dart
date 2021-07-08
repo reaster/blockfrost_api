@@ -56,20 +56,25 @@ class _$InlineResponse2004StateEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       InlineResponse2004StateEnum.valueOf(
-          _fromWire[serialized] ?? serialized as String);
+          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 class _$InlineResponse2004 extends InlineResponse2004 {
   @override
-  final String? ipfsHash;
+  final String ipfsHash;
   @override
-  final InlineResponse2004StateEnum? state;
+  final InlineResponse2004StateEnum state;
 
   factory _$InlineResponse2004(
           [void Function(InlineResponse2004Builder)? updates]) =>
       (new InlineResponse2004Builder()..update(updates)).build();
 
-  _$InlineResponse2004._({this.ipfsHash, this.state}) : super._();
+  _$InlineResponse2004._({required this.ipfsHash, required this.state})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        ipfsHash, 'InlineResponse2004', 'ipfsHash');
+    BuiltValueNullFieldError.checkNotNull(state, 'InlineResponse2004', 'state');
+  }
 
   @override
   InlineResponse2004 rebuild(
@@ -141,8 +146,12 @@ class InlineResponse2004Builder
 
   @override
   _$InlineResponse2004 build() {
-    final _$result =
-        _$v ?? new _$InlineResponse2004._(ipfsHash: ipfsHash, state: state);
+    final _$result = _$v ??
+        new _$InlineResponse2004._(
+            ipfsHash: BuiltValueNullFieldError.checkNotNull(
+                ipfsHash, 'InlineResponse2004', 'ipfsHash'),
+            state: BuiltValueNullFieldError.checkNotNull(
+                state, 'InlineResponse2004', 'state'));
     replace(_$result);
     return _$result;
   }

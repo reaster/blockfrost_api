@@ -13,6 +13,18 @@ void main() {
       // TODO
     });
 
+    // Block number
+    // int blockHeight
+    test('to test the property `blockHeight`', () async {
+      // TODO
+    });
+
+    // Slot number
+    // int slot
+    test('to test the property `slot`', () async {
+      // TODO
+    });
+
     // Transaction index within the block
     // int index
     test('to test the property `index`', () async {
@@ -66,27 +78,39 @@ void main() {
       // TODO
     });
 
+    // Count of the MIR certificates within the transaction
+    // int mirCertCount
+    test('to test the property `mirCertCount`', () async {
+      // TODO
+    });
+
     // Count of the delegations within the transaction
     // int delegationCount
     test('to test the property `delegationCount`', () async {
       // TODO
     });
 
-    // Count of the stake keys (de)registrations and delegations within the transaction
+    // Count of the stake keys (de)registration and delegation certificates within the transaction
     // int stakeCertCount
     test('to test the property `stakeCertCount`', () async {
       // TODO
     });
 
-    // Count of the stake pool registrations and updates within the transaction
+    // Count of the stake pool registration and update certificates within the transaction
     // int poolUpdateCount
     test('to test the property `poolUpdateCount`', () async {
       // TODO
     });
 
-    // Count of the stake pool retirements within the transaction
+    // Count of the stake pool retirement certificates within the transaction
     // int poolRetireCount
     test('to test the property `poolRetireCount`', () async {
+      // TODO
+    });
+
+    // Count of asset mints and burns within the transaction
+    // int assetMintOrBurnCount
+    test('to test the property `assetMintOrBurnCount`', () async {
       // TODO
     });
 

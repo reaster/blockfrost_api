@@ -11,7 +11,7 @@ part 'inline_response2002.g.dart';
 
 abstract class InlineResponse2002 implements Built<InlineResponse2002, InlineResponse2002Builder> {
     @BuiltValueField(wireName: r'server_time')
-    int? get serverTime;
+    int get serverTime;
 
     InlineResponse2002._();
 
@@ -34,12 +34,10 @@ class _$InlineResponse2002Serializer implements StructuredSerializer<InlineRespo
     Iterable<Object?> serialize(Serializers serializers, InlineResponse2002 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.serverTime != null) {
-            result
-                ..add(r'server_time')
-                ..add(serializers.serialize(object.serverTime,
-                    specifiedType: const FullType(int)));
-        }
+        result
+            ..add(r'server_time')
+            ..add(serializers.serialize(object.serverTime,
+                specifiedType: const FullType(int)));
         return result;
     }
 

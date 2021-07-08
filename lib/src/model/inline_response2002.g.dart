@@ -8,13 +8,16 @@ part of 'inline_response2002.dart';
 
 class _$InlineResponse2002 extends InlineResponse2002 {
   @override
-  final int? serverTime;
+  final int serverTime;
 
   factory _$InlineResponse2002(
           [void Function(InlineResponse2002Builder)? updates]) =>
       (new InlineResponse2002Builder()..update(updates)).build();
 
-  _$InlineResponse2002._({this.serverTime}) : super._();
+  _$InlineResponse2002._({required this.serverTime}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        serverTime, 'InlineResponse2002', 'serverTime');
+  }
 
   @override
   InlineResponse2002 rebuild(
@@ -78,7 +81,10 @@ class InlineResponse2002Builder
 
   @override
   _$InlineResponse2002 build() {
-    final _$result = _$v ?? new _$InlineResponse2002._(serverTime: serverTime);
+    final _$result = _$v ??
+        new _$InlineResponse2002._(
+            serverTime: BuiltValueNullFieldError.checkNotNull(
+                serverTime, 'InlineResponse2002', 'serverTime'));
     replace(_$result);
     return _$result;
   }

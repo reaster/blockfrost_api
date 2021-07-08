@@ -7,11 +7,11 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:blockfrost/src/model/inline_response418.dart';
-import 'package:blockfrost/src/model/inline_response429.dart';
-import 'package:blockfrost/src/model/inline_response403.dart';
 import 'package:blockfrost/src/model/genesis_content.dart';
 import 'package:blockfrost/src/model/inline_response400.dart';
+import 'package:blockfrost/src/model/inline_response403.dart';
+import 'package:blockfrost/src/model/inline_response418.dart';
+import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
 
 class CardanoLedgerApi {

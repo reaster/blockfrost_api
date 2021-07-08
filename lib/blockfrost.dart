@@ -2,14 +2,12 @@
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
-library blockfrost;
-
 export 'package:blockfrost/src/api.dart';
 export 'package:blockfrost/src/auth/api_key_auth.dart';
-export 'package:blockfrost/src/auth/my_api_key_auth.dart';
 export 'package:blockfrost/src/auth/basic_auth.dart';
 export 'package:blockfrost/src/auth/oauth.dart';
 export 'package:blockfrost/src/serializers.dart';
+export 'package:blockfrost/src/model/date.dart';
 
 export 'package:blockfrost/src/api/cardano_accounts_api.dart';
 export 'package:blockfrost/src/api/cardano_addresses_api.dart';
@@ -25,6 +23,7 @@ export 'package:blockfrost/src/api/ipfs_add_api.dart';
 export 'package:blockfrost/src/api/ipfs_gateway_api.dart';
 export 'package:blockfrost/src/api/ipfs_pins_api.dart';
 export 'package:blockfrost/src/api/metrics_api.dart';
+export 'package:blockfrost/src/api/nut_link_api.dart';
 
 export 'package:blockfrost/src/model/account_content.dart';
 export 'package:blockfrost/src/model/address_content.dart';
@@ -49,17 +48,11 @@ export 'package:blockfrost/src/model/inline_response404.dart';
 export 'package:blockfrost/src/model/inline_response418.dart';
 export 'package:blockfrost/src/model/inline_response429.dart';
 export 'package:blockfrost/src/model/inline_response500.dart';
+export 'package:blockfrost/src/model/nutlink_address.dart';
 export 'package:blockfrost/src/model/pool.dart';
 export 'package:blockfrost/src/model/pool_metadata.dart';
 export 'package:blockfrost/src/model/tx_content.dart';
-export 'package:blockfrost/src/model/tx_content_delegations.dart';
 export 'package:blockfrost/src/model/tx_content_output_amount.dart';
-export 'package:blockfrost/src/model/tx_content_pool_certs.dart';
-export 'package:blockfrost/src/model/tx_content_pool_certs_metadata.dart';
-export 'package:blockfrost/src/model/tx_content_pool_certs_relays.dart';
-export 'package:blockfrost/src/model/tx_content_pool_retires.dart';
-export 'package:blockfrost/src/model/tx_content_stake_addr.dart';
 export 'package:blockfrost/src/model/tx_content_utxo.dart';
 export 'package:blockfrost/src/model/tx_content_utxo_inputs.dart';
 export 'package:blockfrost/src/model/tx_content_utxo_outputs.dart';
-export 'package:blockfrost/src/model/tx_content_withdrawals.dart';

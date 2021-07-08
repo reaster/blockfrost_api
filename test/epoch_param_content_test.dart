@@ -1,22 +1,12 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
-import 'package:dio/dio.dart';
-import 'package:blockfrost/src/auth/my_api_key_auth.dart';
-import 'package:built_value/json_object.dart';
-import 'package:built_collection/built_collection.dart';
 
 // tests for EpochParamContent
 void main() {
   final instance = EpochParamContentBuilder();
-  //   basePathOverride: "https://cardano-testnet.blockfrost.io/api/v0",
-  //   interceptors: [MyApiKeyAuthInterceptor()],
-  // ).getCardanoMetadataApi();
-  //final instance = EpochParamContentBuilder();
   // TODO add properties to the builder and call build()
 
   group(EpochParamContent, () {
-    // The linear factor for the minimum fee calculation for given epoch
-    // int minFeeA
     test('to test the property `minFeeA`', () async {
       print(instance.minFeeA);
     });

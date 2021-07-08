@@ -11,13 +11,13 @@ part 'inline_response429.g.dart';
 
 abstract class InlineResponse429 implements Built<InlineResponse429, InlineResponse429Builder> {
     @BuiltValueField(wireName: r'status_code')
-    int? get statusCode;
+    int get statusCode;
 
     @BuiltValueField(wireName: r'error')
-    String? get error;
+    String get error;
 
     @BuiltValueField(wireName: r'message')
-    String? get message;
+    String get message;
 
     InlineResponse429._();
 
@@ -40,24 +40,18 @@ class _$InlineResponse429Serializer implements StructuredSerializer<InlineRespon
     Iterable<Object?> serialize(Serializers serializers, InlineResponse429 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.statusCode != null) {
-            result
-                ..add(r'status_code')
-                ..add(serializers.serialize(object.statusCode,
-                    specifiedType: const FullType(int)));
-        }
-        if (object.error != null) {
-            result
-                ..add(r'error')
-                ..add(serializers.serialize(object.error,
-                    specifiedType: const FullType(String)));
-        }
-        if (object.message != null) {
-            result
-                ..add(r'message')
-                ..add(serializers.serialize(object.message,
-                    specifiedType: const FullType(String)));
-        }
+        result
+            ..add(r'status_code')
+            ..add(serializers.serialize(object.statusCode,
+                specifiedType: const FullType(int)));
+        result
+            ..add(r'error')
+            ..add(serializers.serialize(object.error,
+                specifiedType: const FullType(String)));
+        result
+            ..add(r'message')
+            ..add(serializers.serialize(object.message,
+                specifiedType: const FullType(String)));
         return result;
     }
 

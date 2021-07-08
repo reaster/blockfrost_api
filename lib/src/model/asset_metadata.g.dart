@@ -17,6 +17,8 @@ class _$AssetMetadata extends AssetMetadata {
   final String? url;
   @override
   final String? logo;
+  @override
+  final int? decimals;
 
   factory _$AssetMetadata([void Function(AssetMetadataBuilder)? updates]) =>
       (new AssetMetadataBuilder()..update(updates)).build();
@@ -26,7 +28,8 @@ class _$AssetMetadata extends AssetMetadata {
       required this.description,
       this.ticker,
       this.url,
-      this.logo})
+      this.logo,
+      this.decimals})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'AssetMetadata', 'name');
     BuiltValueNullFieldError.checkNotNull(
@@ -48,17 +51,20 @@ class _$AssetMetadata extends AssetMetadata {
         description == other.description &&
         ticker == other.ticker &&
         url == other.url &&
-        logo == other.logo;
+        logo == other.logo &&
+        decimals == other.decimals;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, name.hashCode), description.hashCode),
-                ticker.hashCode),
-            url.hashCode),
-        logo.hashCode));
+            $jc(
+                $jc($jc($jc(0, name.hashCode), description.hashCode),
+                    ticker.hashCode),
+                url.hashCode),
+            logo.hashCode),
+        decimals.hashCode));
   }
 
   @override
@@ -68,7 +74,8 @@ class _$AssetMetadata extends AssetMetadata {
           ..add('description', description)
           ..add('ticker', ticker)
           ..add('url', url)
-          ..add('logo', logo))
+          ..add('logo', logo)
+          ..add('decimals', decimals))
         .toString();
   }
 }
@@ -97,6 +104,10 @@ class AssetMetadataBuilder
   String? get logo => _$this._logo;
   set logo(String? logo) => _$this._logo = logo;
 
+  int? _decimals;
+  int? get decimals => _$this._decimals;
+  set decimals(int? decimals) => _$this._decimals = decimals;
+
   AssetMetadataBuilder() {
     AssetMetadata._initializeBuilder(this);
   }
@@ -109,6 +120,7 @@ class AssetMetadataBuilder
       _ticker = $v.ticker;
       _url = $v.url;
       _logo = $v.logo;
+      _decimals = $v.decimals;
       _$v = null;
     }
     return this;
@@ -135,7 +147,8 @@ class AssetMetadataBuilder
                 description, 'AssetMetadata', 'description'),
             ticker: ticker,
             url: url,
-            logo: logo);
+            logo: logo,
+            decimals: decimals);
     replace(_$result);
     return _$result;
   }

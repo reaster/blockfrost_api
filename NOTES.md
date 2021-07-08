@@ -4,7 +4,7 @@
 This package is for accessing the Cardano blockchain via BlockFrost service nodes. It is simply a [Dio 4.x](https://pub.dev/packages/dio) Dart wrapper around the 
 [BlockFrost REST API](https://docs.blockfrost.io) with a few tests to demonstrate usage. 
 
-As such, this package is largely a code generation artifact of the [swagger.json](swagger.json) specification file. The OpenAPI generator used was `dart-dio-next`.
+As such, this package is largely a code generation artifact of the [swagger.json](swagger-0-1-23.json) specification file. The OpenAPI generator used was `dart-dio-next`.
 
 ### Tests
 
@@ -28,34 +28,44 @@ echo "your-project-id" > ../blockfrost_project_id.txt
 
 ### Production
 
-To use this code in production, simply replace `MyApiKeyAuthInterceptor` with `ApiKeyAuthInterceptor`, passing your `project_id` key into the constructor:
+To use this code in production, simply replace `MyApiKeyAuthInterceptor` with `BlockfrostApiKeyAuthInterceptor`, passing your `project_id` key into the constructor:
 ```
-ApiKeyAuthInterceptor(projectId:'your-project-id')
+BlockfrostApiKeyAuthInterceptor(projectId:'your-project-id')
+```
+Here is an implemenation  - `blockfrost_api_key_auth.dart`:
+```
+import 'package:dio/dio.dart';
+import 'package:blockfrost/src/auth/auth.dart';
+
+class BlockfrostApiKeyAuthInterceptor extends AuthInterceptor {
+  final String projectId;
+  BlockfrostApiKeyAuthInterceptor({required this.projectId});
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.headers['project_id'] = projectId;
+    super.onRequest(options, handler);
+  }
+}
 ```
 
 # OpenAPI Generator
 
 ## TO RECREATE BUILD:
 ```
-java -jar ../openapi/openapi-generator-cli-5.1.0.jar generate -i ../openapi/swagger.json -g dart-dio-next --enable-post-process-file --additional-properties pubName=blockfrost
+HACK to fix API bug:
+remove `active_epoch` from required section of `account_content` from `swagger.json`
 
-IN pubspec.yaml CHANGE build_runner: any TO build_runner: ^1.12.2
+java -jar ../openapi/openapi-generator-cli-5.1.1.jar generate -i ./swagger-0-1-23.json -g dart-dio-next --enable-post-process-file --additional-properties pubName=blockfrost
 
 flutter packages pub run build_runner build
-
-ADD class AnyOfpoolMetadataobject {} to cardano_pools_api.dart
 ```
 ## PROBLEMS:
-- issue: AnyOfpoolMetadataobject not emitted by code generator
-- fix: TODO replace dummy class with functional one
 - issue: Could not find a file named "pubspec.yaml" in "/Applications/flutter/.pub-cache
 - fix: flutter clean && flutter pub get
 
 ## CHANGES:
-* added `lib/src/auth/my_api_key_auth.dart`
-* hacked `lib/src/auth/api_key_auth.dart`
+* added `test/my_api_key_auth.dart`
 * ongoing `test` implementations 
-* misc - see commits
 
 ## ARTICLES:
 * https://medium.com/@irinasouthwell_220/accelerate-flutter-development-with-openapi-and-dart-code-generation-1f16f8329a6a

@@ -11,7 +11,7 @@ part 'inline_response2001.g.dart';
 
 abstract class InlineResponse2001 implements Built<InlineResponse2001, InlineResponse2001Builder> {
     @BuiltValueField(wireName: r'is_healthy')
-    bool? get isHealthy;
+    bool get isHealthy;
 
     InlineResponse2001._();
 
@@ -34,12 +34,10 @@ class _$InlineResponse2001Serializer implements StructuredSerializer<InlineRespo
     Iterable<Object?> serialize(Serializers serializers, InlineResponse2001 object,
         {FullType specifiedType = FullType.unspecified}) {
         final result = <Object?>[];
-        if (object.isHealthy != null) {
-            result
-                ..add(r'is_healthy')
-                ..add(serializers.serialize(object.isHealthy,
-                    specifiedType: const FullType(bool)));
-        }
+        result
+            ..add(r'is_healthy')
+            ..add(serializers.serialize(object.isHealthy,
+                specifiedType: const FullType(bool)));
         return result;
     }
 

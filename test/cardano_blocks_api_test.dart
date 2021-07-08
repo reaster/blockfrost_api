@@ -1,8 +1,7 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
-import './const.dart';
 import 'package:dio/dio.dart';
-import 'package:blockfrost/src/auth/my_api_key_auth.dart';
+import './my_api_key_auth.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_collection/built_collection.dart';
 
