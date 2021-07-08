@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.1.9",
+    "version": "0.1.23",
     "title": "Blockfrost.io ~ API Documentation",
     "x-logo": {
       "url": "https://staging.blockfrost.io/images/logo.svg",
@@ -17,7 +17,7 @@
       "url": "https://opensource.org/licenses/MIT"
     },
     "termsOfService": "https://blockfrost.io/terms",
-    "description": "Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.\n\n## Authentication\n\nAfter signing up on https://blockfrost.io, a `project_id` token is automatically generated for each project.\nHTTP header of your request MUST include this `project_id` in order to authenticate against Blockfrost servers.\n\n## Available networks\n\nAt the moment, you can use the following networks. Please, note that each network has its own `project_id`.\n\n<table>\n  <tr><td><b>Network</b></td><td><b>Endpoint</b></td></tr>\n  <tr><td>Cardano mainnet</td><td><tt>https://cardano-mainnet.blockfrost.io/api/v0</td></tt></tr>\n  <tr><td>Cardano testnet</td><td><tt>https://cardano-testnet.blockfrost.io/api/v0</tt></td></tr>\n  <tr><td>InterPlanetary File System</td><td><tt>https://ipfs.blockfrost.io/api/v0</tt></td></tr>\n</table>\n\n## Concepts\n\n* All endpoints return either a JSON object or an array.\n* Data is returned in *ascending* (oldest first, newest last) order.\n  * You might use the `?order=desc` query parameter to reverse this order.\n* By default, we return 100 results at a time. You have to use `?page=2` to list through the results.\n* All time and timestamp related fields are in milliseconds of UNIX time.\n* All amounts are returned in Lovelaces, where 1 ADA = 1 000 000 Lovelaces.\n* Addresses, accounts and pool IDs are in Bech32 format.\n* All values are case sensitive.\n* All hex encoded values are lower case.\n* Examples are not based on real data. Any resemblance to actual events is purely coincidental.\n* We allow to upload files up to 100MB of size to IPFS. This might increase in the future.\n\n## Errors\n\n### HTTP Status codes\n\nThe following are HTTP status code your application might receive when reaching Blockfrost endpoints and\nit should handle all of these cases.\n\n* HTTP `400` return code is used when the request is not valid.\n* HTTP `402` return code is used when the projects exceed their daily request limit.\n* HTTP `403` return code is used when the request is not authenticated.\n* HTTP `404` return code is used when the resource doesn't exist.\n* HTTP `418` return code is used when the user has been auto-banned for flooding too much after previously receiving error code `402` or `429`.\n* HTTP `429` return code is used when the user has sent too many requests in a given amount of time and therefore has been rate-limited.\n* HTTP `500` return code is used when our endpoints are having a problem.\n\n### Error codes\n\nAn internal error code number is used for better indication of the error in question. It is passed using the following payload.\n\n```json\n{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}\n```\n## Limits\n\n There are two types of limits we are enforcing. The first depends on your plan and is the number of request we allow per day. We defined\n the day from midnight to midnight of UTC time. The second is rate limiting, where we limit an end user to 10 requests per second after a period\n of 5 second burst. We believe this should be sufficient for most of the use cases. If it is not and you have a specific use case, please get in touch with us, and\n we will make sure to take it into account as much as we can.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->"
+    "description": "Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.\n\n## Tokens\n\nAfter signing up on https://blockfrost.io, a `project_id` token is automatically generated for each project.\nHTTP header of your request MUST include this `project_id` in order to authenticate against Blockfrost servers.\n\n## Available networks\n\nAt the moment, you can use the following networks. Please, note that each network has its own `project_id`.\n\n<table>\n  <tr><td><b>Network</b></td><td><b>Endpoint</b></td></tr>\n  <tr><td>Cardano mainnet</td><td><tt>https://cardano-mainnet.blockfrost.io/api/v0</td></tt></tr>\n  <tr><td>Cardano testnet</td><td><tt>https://cardano-testnet.blockfrost.io/api/v0</tt></td></tr>\n  <tr><td>InterPlanetary File System</td><td><tt>https://ipfs.blockfrost.io/api/v0</tt></td></tr>\n</table>\n\n## Concepts\n\n* All endpoints return either a JSON object or an array.\n* Data is returned in *ascending* (oldest first, newest last) order.\n  * You might use the `?order=desc` query parameter to reverse this order.\n* By default, we return 100 results at a time. You have to use `?page=2` to list through the results.\n* All time and timestamp related fields are in milliseconds of UNIX time.\n* All amounts are returned in Lovelaces, where 1 ADA = 1 000 000 Lovelaces.\n* Addresses, accounts and pool IDs are in Bech32 format.\n* All values are case sensitive.\n* All hex encoded values are lower case.\n* Examples are not based on real data. Any resemblance to actual events is purely coincidental.\n* We allow to upload files up to 100MB of size to IPFS. This might increase in the future.\n\n## Errors\n\n### HTTP Status codes\n\nThe following are HTTP status code your application might receive when reaching Blockfrost endpoints and\nit should handle all of these cases.\n\n* HTTP `400` return code is used when the request is not valid.\n* HTTP `402` return code is used when the projects exceed their daily request limit.\n* HTTP `403` return code is used when the request is not authenticated.\n* HTTP `404` return code is used when the resource doesn't exist.\n* HTTP `418` return code is used when the user has been auto-banned for flooding too much after previously receiving error code `402` or `429`.\n* HTTP `429` return code is used when the user has sent too many requests in a given amount of time and therefore has been rate-limited.\n* HTTP `500` return code is used when our endpoints are having a problem.\n\n### Error codes\n\nAn internal error code number is used for better indication of the error in question. It is passed using the following payload.\n\n```json\n{\n  \"status_code\": 403,\n  \"error\": \"Forbidden\",\n  \"message\": \"Invalid project token.\"\n}\n```\n## Limits\n\n There are two types of limits we are enforcing:\n\n The first depends on your plan and is the number of request we allow per day. We defined the day from midnight to midnight of UTC time.\n\n The second is rate limiting. We limit an end user, distinguished by IP address, to 10 requests per second. On top of that, we allow\n each user to send burst of 500 requests, which cools off at rate of 10 requests per second. In essence, a user is allowed to make another\n whole burst after (currently) 500/10 = 50 seconds. E.g. if a user attemtps to make a call 3 seconds after whole burst, 30 requests will be processed.\n We believe this should be sufficient for most of the use cases. If it is not and you have a specific use case, please get in touch with us, and\n we will make sure to take it into account as much as we can.\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->"
   },
   "servers": [
     {
@@ -43,19 +43,7 @@
       "name": "Health"
     },
     {
-      "name": "Cardano » Blocks"
-    },
-    {
-      "name": "Cardano » Epochs"
-    },
-    {
-      "name": "Cardano » Transactions"
-    },
-    {
-      "name": "Cardano » Metadata"
-    },
-    {
-      "name": "Cardano » Pools"
+      "name": "Metrics"
     },
     {
       "name": "Cardano » Accounts"
@@ -67,7 +55,22 @@
       "name": "Cardano » Assets"
     },
     {
+      "name": "Cardano » Blocks"
+    },
+    {
+      "name": "Cardano » Epochs"
+    },
+    {
       "name": "Cardano » Ledger"
+    },
+    {
+      "name": "Cardano » Metadata"
+    },
+    {
+      "name": "Cardano » Pools"
+    },
+    {
+      "name": "Cardano » Transactions"
     },
     {
       "name": "IPFS » Add"
@@ -151,7 +154,10 @@
                       "type": "boolean",
                       "example": true
                     }
-                  }
+                  },
+                  "required": [
+                    "is_healthy"
+                  ]
                 }
               }
             }
@@ -194,7 +200,10 @@
                       "type": "integer",
                       "example": 1603400958947
                     }
-                  }
+                  },
+                  "required": [
+                    "server_time"
+                  ]
                 }
               }
             }
@@ -256,6 +265,82 @@
         }
       }
     },
+    "/blocks/latest/txs": {
+      "get": {
+        "tags": [
+          "Cardano » Blocks"
+        ],
+        "summary": "Latest block transactions",
+        "description": "Return the transactions within the latest block.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "Ordered by tx index in the block.\nThe ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the transactions within the block.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/block_content_txs"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
     "/blocks/{hash_or_number}": {
       "get": {
         "tags": [
@@ -274,6 +359,121 @@
             },
             "description": "Hash of the requested block.",
             "example": "4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the contents of the block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/block_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/blocks/slot/{slot_number}": {
+      "get": {
+        "tags": [
+          "Cardano » Blocks"
+        ],
+        "summary": "Specific block in a slot",
+        "description": "Return the content of a requested block for a specific slot.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slot_number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "slot number"
+            },
+            "description": "Slot position for requested block.",
+            "example": 30895909
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the contents of the block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/block_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/blocks/epoch/{epoch_number}/slot/{slot_number}": {
+      "get": {
+        "tags": [
+          "Cardano » Blocks"
+        ],
+        "summary": "Specific block in a slot in an epoch",
+        "description": "Return the content of a requested block for a specific slot in an epoch\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "epoch_number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "slot number"
+            },
+            "description": "Epoch for specific epoch slot.",
+            "example": 219
+          },
+          {
+            "in": "path",
+            "name": "slot_number",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "slot number"
+            },
+            "description": "Slot position for requested block.",
+            "example": 30895909
           }
         ],
         "responses": {
@@ -616,6 +816,45 @@
         }
       }
     },
+    "/epochs/latest/parameters": {
+      "get": {
+        "tags": [
+          "Cardano » Epochs"
+        ],
+        "summary": "Latest epoch protocol parameters",
+        "description": "Return the protocol parameters for the latest epoch.",
+        "responses": {
+          "200": {
+            "description": "Return the data about the epoch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/epoch_param_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
     "/epochs/{number}": {
       "get": {
         "tags": [
@@ -629,10 +868,10 @@
             "name": "number",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer"
             },
             "description": "Number of the epoch",
-            "example": "225"
+            "example": 225
           }
         ],
         "responses": {
@@ -1307,7 +1546,7 @@
         "tags": [
           "Cardano » Transactions"
         ],
-        "summary": "Trasanction stake addresses certificates",
+        "summary": "Transaction stake addresses certificates",
         "description": "Obtain information about (de)registration of stake addresses within a transaction.\n",
         "parameters": [
           {
@@ -1328,10 +1567,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/tx_content_stake_addr"
-                  }
+                  "$ref": "#/components/schemas/tx_content_stake_addr"
                 }
               }
             }
@@ -1383,10 +1619,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/tx_content_delegations"
-                  }
+                  "$ref": "#/components/schemas/tx_content_delegations"
                 }
               }
             }
@@ -1438,10 +1671,59 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/tx_content_withdrawals"
-                  }
+                  "$ref": "#/components/schemas/tx_content_withdrawals"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/txs/{hash}/mirs": {
+      "get": {
+        "tags": [
+          "Cardano » Transactions"
+        ],
+        "summary": "Transaction MIRs",
+        "description": "Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "hash",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "64-character case-sensitive hexadecimal string"
+            },
+            "description": "Hash of the requested transaction.",
+            "example": "6e5f825c82c1c6d6b77f2a14092f3b78c8f1b66db6f4cf8caec1555b6f967b3b"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tx_content_mirs"
                 }
               }
             }
@@ -1493,10 +1775,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/tx_content_pool_certs"
-                  }
+                  "$ref": "#/components/schemas/tx_content_pool_certs"
                 }
               }
             }
@@ -1548,10 +1827,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/tx_content_pool_retires"
-                  }
+                  "$ref": "#/components/schemas/tx_content_pool_retires"
                 }
               }
             }
@@ -1687,7 +1963,7 @@
           "Cardano » Transactions"
         ],
         "summary": "Submit a transaction",
-        "description": "Submit a base64 encoding serialized transaction to the network.",
+        "description": "Submit an already serialized transaction to the network.",
         "parameters": [
           {
             "in": "header",
@@ -1699,6 +1975,18 @@
                 "application/cbor"
               ]
             }
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell",
+            "label": "cURL",
+            "source": "# Assuming `data` is a serialized transaction on the file-system.\ncurl \"https://cardano-mainnet.blockfrost.io/api/v0/tx/submit\" \\\n  -X POST \\\n  -H \"Content-Type: application/cbor\" \\\n  -H \"project_id: $PROJECT_ID\" \\\n  --data-binary @./data\n"
+          },
+          {
+            "lang": "Shell",
+            "label": "cardano-cli",
+            "source": "# Assuming `tx.signed` is signed transaction constructed by cardano-cli\nxxd -r -p <<< $(jq .cborHex tx.signed) > tx.submit-api.raw\ncurl \"https://cardano-mainnet.blockfrost.io/api/v0/tx/submit\" \\\n  -X POST \\\n  -H \"Content-Type: application/cbor\" \\\n  -H \"project_id: $PROJECT_ID\" \\\n  --data-binary @./tx.submit-api.raw\n"
           }
         ],
         "responses": {
@@ -1752,7 +2040,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           }
         ],
@@ -1803,7 +2091,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           },
           {
@@ -1889,7 +2177,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           },
           {
@@ -1975,7 +2263,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           },
           {
@@ -2061,7 +2349,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           },
           {
@@ -2132,6 +2420,178 @@
         }
       }
     },
+    "/accounts/{stake_address}/withdrawals": {
+      "get": {
+        "tags": [
+          "Cardano » Accounts"
+        ],
+        "summary": "Account withdrawal history",
+        "description": "Obtain information about the withdrawals of a specific account.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stake_address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bech32 stake address.",
+            "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the account withdrawal content.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/account_withdrawal_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/accounts/{stake_address}/mirs": {
+      "get": {
+        "tags": [
+          "Cardano » Accounts"
+        ],
+        "summary": "Account MIR history",
+        "description": "Obtain information about the MIRs of a specific account.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stake_address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bech32 stake address.",
+            "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the account MIR content.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/account_mir_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
     "/accounts/{stake_address}/addresses": {
       "get": {
         "tags": [
@@ -2147,7 +2607,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 stake addresses",
+            "description": "Bech32 stake address.",
             "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
           },
           {
@@ -2193,6 +2653,92 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/account_addresses_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/accounts/{stake_address}/addresses/assets": {
+      "get": {
+        "tags": [
+          "Cardano » Accounts"
+        ],
+        "summary": "Assets associated with the account addresses",
+        "description": "Obtain information about assets associated with addresses of a specific account.\n\n<b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stake_address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bech32 stake address.",
+            "example": "stake1u9ylzsgxaa6xctf4juup682ar3juj85n8tx3hthnljg47zctvm3rc"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the account addresses content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/account_addresses_assets"
                 }
               }
             }
@@ -2481,7 +3027,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 addresses.",
+            "description": "Bech32 address.",
             "example": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
           }
         ],
@@ -2522,7 +3068,7 @@
         "tags": [
           "Cardano » Addresses"
         ],
-        "summary": "Address' details",
+        "summary": "Address details",
         "description": "Obtain details about an address.",
         "parameters": [
           {
@@ -2532,13 +3078,13 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 addresses.",
+            "description": "Bech32 address.",
             "example": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
           }
         ],
         "responses": {
           "200": {
-            "description": "Return the address' details.",
+            "description": "Return the Address details.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2573,7 +3119,7 @@
         "tags": [
           "Cardano » Addresses"
         ],
-        "summary": "Address' UTXOs",
+        "summary": "Address UTXOs",
         "description": "UTXOs of the address.",
         "parameters": [
           {
@@ -2583,7 +3129,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 addresses",
+            "description": "Bech32 address.",
             "example": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
           },
           {
@@ -2656,10 +3202,11 @@
     },
     "/addresses/{address}/txs": {
       "get": {
+        "deprecated": true,
         "tags": [
           "Cardano » Addresses"
         ],
-        "summary": "Address' transactions",
+        "summary": "Address transactions",
         "description": "Transactions on the address.",
         "parameters": [
           {
@@ -2669,7 +3216,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Bech32 addresses.",
+            "description": "Bech32 address.",
             "example": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
           },
           {
@@ -2740,7 +3287,113 @@
         }
       }
     },
-    "/pools/": {
+    "/addresses/{address}/transactions": {
+      "get": {
+        "tags": [
+          "Cardano » Addresses"
+        ],
+        "summary": "Address transactions",
+        "description": "Transactions on the address.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bech32 address.",
+            "example": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The numbers of pools per page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block number and optionally also index from which (inclusive) to start search for results, concatenated using colon.\nHas to be lower than or equal to `to` parameter.\n",
+            "example": "8929261"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The block number and optionally also index where (inclusive) to end the search for results, concatenated using colon.\nHas to be higher than or equal to `from` parameter.\n",
+            "example": "9999269:10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the address content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/address_transactions_content"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/pools": {
       "get": {
         "tags": [
           "Cardano » Pools"
@@ -3687,6 +4340,7 @@
     },
     "/assets/{asset}/txs": {
       "get": {
+        "deprecated": true,
         "tags": [
           "Cardano » Assets"
         ],
@@ -3746,6 +4400,92 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/asset_txs"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/assets/{asset}/transactions": {
+      "get": {
+        "tags": [
+          "Cardano » Assets"
+        ],
+        "summary": "Asset transactions",
+        "description": "List of a specific asset transactions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "asset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Concatenation of the policy_id and hex-encoded asset_name",
+            "example": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the information about the history of a specific asset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/asset_transactions"
                 }
               }
             }
@@ -3946,7 +4686,7 @@
     "/ipfs/add": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "post": {
@@ -4018,7 +4758,7 @@
     "/ipfs/gateway/{IPFS_path}": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "get": {
@@ -4066,7 +4806,7 @@
     "/ipfs/pin/add/{IPFS_path}": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "post": {
@@ -4107,7 +4847,11 @@
                       "example": "queued",
                       "description": "State of the pin action"
                     }
-                  }
+                  },
+                  "required": [
+                    "ipfs_hash",
+                    "state"
+                  ]
                 }
               }
             }
@@ -4136,7 +4880,7 @@
     "/ipfs/pin/list/": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "get": {
@@ -4219,7 +4963,14 @@
                         "description": "State of the pinned object, which is `queued` when we are retriving object. If this\nis successful the state is changed to `pinned` or `failed` if not. The state `gc` means the\npinned item has been garbage collected due to account being over storage quota or after it has\nbeen moved to `unpinned` state by removing the object pin.\n",
                         "example": "pinned"
                       }
-                    }
+                    },
+                    "required": [
+                      "time_created",
+                      "time_pinned",
+                      "ipfs_hash",
+                      "size",
+                      "state"
+                    ]
                   }
                 }
               }
@@ -4249,7 +5000,7 @@
     "/ipfs/pin/list/{IPFS_path}": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "get": {
@@ -4304,7 +5055,14 @@
                       "description": "State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.\nWhen the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.\nIf the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise.\nWhen object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.\nState `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.\n",
                       "example": "pinned"
                     }
-                  }
+                  },
+                  "required": [
+                    "time_created",
+                    "time_pinned",
+                    "ipfs_hash",
+                    "size",
+                    "state"
+                  ]
                 }
               }
             }
@@ -4333,7 +5091,7 @@
     "/ipfs/pin/remove/{IPFS_path}": {
       "servers": [
         {
-          "url": "https://ipfs.blockfrost.io/"
+          "url": "https://ipfs.blockfrost.io/api/v0"
         }
       ],
       "post": {
@@ -4373,7 +5131,11 @@
                       "example": "unpinned",
                       "description": "State of the pin action"
                     }
-                  }
+                  },
+                  "required": [
+                    "ipfs_hash",
+                    "state"
+                  ]
                 }
               }
             }
@@ -4476,6 +5238,316 @@
           }
         }
       }
+    },
+    "/nutlink/{address}": {
+      "get": {
+        "tags": [
+          "Nut.link"
+        ],
+        "description": "List metadata about specific address",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "address",
+            "schema": {
+              "type": "string",
+              "description": "Address of a metadata oracle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the metadata about metadata oracle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/nutlink_address"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/nutlink/{address}/tickers": {
+      "get": {
+        "tags": [
+          "Nut.link"
+        ],
+        "description": "List tickers for a specific metadata oracle",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "address",
+            "schema": {
+              "type": "string",
+              "description": "Address of a metadata oracle"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the tickers provided by the metadata oracle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/nutlink_address_tickers"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/nutlink/{address}/tickers/{ticker}": {
+      "get": {
+        "tags": [
+          "Nut.link"
+        ],
+        "description": "List of records of a specific ticker",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "address",
+            "schema": {
+              "type": "string",
+              "description": "Address of a metadata oracle"
+            }
+          },
+          {
+            "in": "path",
+            "required": true,
+            "name": "ticker",
+            "schema": {
+              "type": "string",
+              "description": "Ticker for the pool record"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the tickers provided by the metadata oracle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/nutlink_address_ticker"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
+    },
+    "/nutlink/tickers/{ticker}": {
+      "get": {
+        "tags": [
+          "Nut.link"
+        ],
+        "description": "List of records of a specific ticker",
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "ticker",
+            "schema": {
+              "type": "string",
+              "description": "Ticker for the pool record"
+            }
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "default": 100
+            },
+            "description": "The number of results displayed on one page."
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "The page number for listing the results."
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc"
+            },
+            "description": "The ordering of items from the point of view of the blockchain,\nnot the page listing itself. By default, we return oldest first, newest last.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return the tickers provided by the metadata oracle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/nutlink_tickers_ticker"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/bad_request"
+          },
+          "403": {
+            "$ref": "#/components/responses/unauthorized_error"
+          },
+          "404": {
+            "$ref": "#/components/responses/not_found"
+          },
+          "418": {
+            "$ref": "#/components/responses/autobanned"
+          },
+          "429": {
+            "$ref": "#/components/responses/overusage_limit"
+          },
+          "500": {
+            "$ref": "#/components/responses/internal_server_error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -4499,7 +5571,12 @@
                   "type": "string",
                   "example": "Usage is over limit."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4523,7 +5600,12 @@
                   "type": "string",
                   "example": "IP has been auto-banned for flooding."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4547,7 +5629,12 @@
                   "type": "string",
                   "example": "The requested component has not been found."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4571,7 +5658,12 @@
                   "type": "string",
                   "example": "An unexpected response was received from the backend."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4595,7 +5687,12 @@
                   "type": "string",
                   "example": "Invalid project token."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4619,7 +5716,12 @@
                   "type": "string",
                   "example": "Backend did not understand your request."
                 }
-              }
+              },
+              "required": [
+                "status_code",
+                "error",
+                "message"
+              ]
             }
           }
         }
@@ -4629,7 +5731,8 @@
       "ApiKeyAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "project_id"
+        "name": "project_id",
+        "description": "There are multiple token types available based on network you choose\nwhen creating a Blockfrost a project, for a list of token types\nsee [Available networks](#section/Available-networks)\n"
       }
     },
     "schemas": {
@@ -5091,6 +6194,16 @@
             "example": "356b7d7dbb696ccd12775c016941057a9dc70898d87a63fc752271bb46856940",
             "description": "Block hash"
           },
+          "block_height": {
+            "type": "integer",
+            "example": 123456,
+            "description": "Block number"
+          },
+          "slot": {
+            "type": "integer",
+            "example": 42000000,
+            "description": "Slot number"
+          },
           "index": {
             "type": "integer",
             "example": 1,
@@ -5111,7 +6224,11 @@
                   "type": "string",
                   "description": "The quantity of the unit"
                 }
-              }
+              },
+              "required": [
+                "unit",
+                "quantity"
+              ]
             },
             "example": [
               {
@@ -5161,6 +6278,11 @@
             "example": 0,
             "description": "Count of the withdrawal within the transaction"
           },
+          "mir_cert_count": {
+            "type": "integer",
+            "example": 0,
+            "description": "Count of the MIR certificates within the transaction"
+          },
           "delegation_count": {
             "type": "integer",
             "example": 0,
@@ -5169,21 +6291,28 @@
           "stake_cert_count": {
             "type": "integer",
             "example": 0,
-            "description": "Count of the stake keys (de)registrations and delegations within the transaction"
+            "description": "Count of the stake keys (de)registration and delegation certificates within the transaction"
           },
           "pool_update_count": {
             "type": "integer",
             "example": 0,
-            "description": "Count of the stake pool registrations and updates within the transaction"
+            "description": "Count of the stake pool registration and update certificates within the transaction"
           },
           "pool_retire_count": {
             "type": "integer",
             "example": 0,
-            "description": "Count of the stake pool retirements within the transaction"
+            "description": "Count of the stake pool retirement certificates within the transaction"
+          },
+          "asset_mint_or_burn_count": {
+            "type": "integer",
+            "example": 0,
+            "description": "Count of asset mints and burns within the transaction"
           }
         },
         "required": [
           "block",
+          "block_height",
+          "slot",
           "index",
           "output_amount",
           "fees",
@@ -5193,10 +6322,12 @@
           "invalid_hereafter",
           "utxo_count",
           "withdrawal_count",
+          "mir_cert_count",
           "delegation_count",
           "stake_cert_count",
           "pool_update_count",
-          "pool_retire_count"
+          "pool_retire_count",
+          "asset_mint_or_burn_count"
         ]
       },
       "tx_content_utxo": {
@@ -5227,7 +6358,11 @@
                         "type": "string",
                         "description": "The quantity of the unit"
                       }
-                    }
+                    },
+                    "required": [
+                      "unit",
+                      "quantity"
+                    ]
                   },
                   "example": [
                     {
@@ -5272,7 +6407,11 @@
                         "type": "string",
                         "description": "The quantity of the unit"
                       }
-                    }
+                    },
+                    "required": [
+                      "unit",
+                      "quantity"
+                    ]
                   },
                   "example": [
                     {
@@ -5292,251 +6431,333 @@
               ]
             }
           }
-        }
+        },
+        "required": [
+          "inputs",
+          "outputs"
+        ]
       },
       "tx_content_stake_addr": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "type": "string",
-            "example": "stake1u9t3a0tcwune5xrnfjg4q7cpvjlgx9lcv0cuqf5mhfjwrvcwrulda",
-            "description": "Delegation stake address"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cert_index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction"
+            },
+            "address": {
+              "type": "string",
+              "example": "stake1u9t3a0tcwune5xrnfjg4q7cpvjlgx9lcv0cuqf5mhfjwrvcwrulda",
+              "description": "Delegation stake address"
+            },
+            "registration": {
+              "type": "boolean",
+              "example": true,
+              "description": "Registration boolean, false if deregistration"
+            }
           },
-          "registration": {
-            "type": "boolean",
-            "example": true,
-            "description": "Registration boolean, false if deregistration"
-          }
-        },
-        "required": [
-          "address",
-          "registration"
-        ]
+          "required": [
+            "cert_index",
+            "address",
+            "registration"
+          ]
+        }
       },
       "tx_content_delegations": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "integer",
-            "example": 0,
-            "description": "Index of the certificate within the transaction"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction",
+              "deprecated": true
+            },
+            "cert_index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction"
+            },
+            "address": {
+              "type": "string",
+              "example": "stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc",
+              "description": "Bech32 delegation stake address"
+            },
+            "pool_id": {
+              "type": "string",
+              "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+              "description": "Bech32 ID of delegated stake pool"
+            },
+            "active_epoch": {
+              "type": "integer",
+              "example": 210,
+              "description": "Epoch in which the delegation becomes active"
+            }
           },
-          "address": {
-            "type": "string",
-            "example": "stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc",
-            "description": "Bech32 delegation stake address"
-          },
-          "pool_id": {
-            "type": "string",
-            "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
-            "description": "Bech32 ID of delegated stake pool"
-          },
-          "active_epoch": {
-            "type": "integer",
-            "example": 210,
-            "description": "Epoch in which the delegation becomes active"
-          }
-        },
-        "required": [
-          "index",
-          "address",
-          "pool_id",
-          "active_epoch"
-        ]
+          "required": [
+            "index",
+            "cert_index",
+            "address",
+            "pool_id",
+            "active_epoch"
+          ]
+        }
       },
       "tx_content_withdrawals": {
-        "type": "object",
-        "properties": {
-          "address": {
-            "type": "string",
-            "example": "stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc",
-            "description": "Bech32 withdrawal address"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "example": "stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc",
+              "description": "Bech32 withdrawal address"
+            },
+            "amount": {
+              "type": "string",
+              "example": "431833601",
+              "description": "Withdrawal amount in Lovelaces"
+            }
           },
-          "amount": {
-            "type": "string",
-            "example": "431833601",
-            "description": "Withdrawal amount in Lovelaces"
-          }
-        },
-        "required": [
-          "address",
-          "amount"
-        ]
+          "required": [
+            "address",
+            "amount"
+          ]
+        }
+      },
+      "tx_content_mirs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "pot": {
+              "type": "string",
+              "enum": [
+                "reserve",
+                "treasury"
+              ],
+              "example": "reserve",
+              "description": "Source of MIR funds"
+            },
+            "cert_index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction"
+            },
+            "address": {
+              "type": "string",
+              "example": "stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc",
+              "description": "Bech32 stake address"
+            },
+            "amount": {
+              "type": "string",
+              "example": "431833601",
+              "description": "MIR amount in Lovelaces"
+            }
+          },
+          "required": [
+            "pot",
+            "cert_index",
+            "address",
+            "amount"
+          ]
+        }
       },
       "tx_content_pool_certs": {
-        "type": "object",
-        "properties": {
-          "pool_id": {
-            "type": "string",
-            "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
-            "description": "Bech32 encoded pool ID"
-          },
-          "vrf_key": {
-            "type": "string",
-            "example": "0b5245f9934ec2151116fb8ec00f35fd00e0aa3b075c4ed12cce440f999d8233",
-            "description": "VRF key hash"
-          },
-          "pledge": {
-            "type": "string",
-            "example": "5000000000",
-            "description": "Stake pool certificate pledge in Lovelaces"
-          },
-          "margin_cost": {
-            "type": "number",
-            "example": 0.05,
-            "description": "Margin tax cost of the stake pool"
-          },
-          "fixed_cost": {
-            "type": "string",
-            "example": "340000000",
-            "description": "Fixed tax cost of the stake pool in Lovelaces"
-          },
-          "reward_account": {
-            "type": "string",
-            "example": "stake1uxkptsa4lkr55jleztw43t37vgdn88l6ghclfwuxld2eykgpgvg3f",
-            "description": "Bech32 reward account of the stake pool"
-          },
-          "owners": {
-            "type": "array",
-            "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cert_index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction"
+            },
+            "pool_id": {
               "type": "string",
-              "description": "Bech32 accounts of the pool owners"
+              "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+              "description": "Bech32 encoded pool ID"
             },
-            "example": [
-              "stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v"
-            ]
-          },
-          "metadata": {
-            "type": "object",
-            "nullable": true,
-            "properties": {
-              "url": {
-                "type": "string",
-                "nullable": true,
-                "example": "https://stakenuts.com/mainnet.json",
-                "description": "URL to the stake pool metadata"
-              },
-              "hash": {
-                "type": "string",
-                "nullable": true,
-                "example": "47c0c68cb57f4a5b4a87bad896fc274678e7aea98e200fa14a1cb40c0cab1d8c",
-                "description": "Hash of the metadata file"
-              },
-              "ticker": {
-                "type": "string",
-                "nullable": true,
-                "example": "NUTS",
-                "description": "Ticker of the stake pool"
-              },
-              "name": {
-                "type": "string",
-                "nullable": true,
-                "example": "Stake Nuts",
-                "description": "Name of the stake pool"
-              },
-              "description": {
-                "type": "string",
-                "nullable": true,
-                "example": "The best pool ever",
-                "description": "Description of the stake pool"
-              },
-              "homepage": {
-                "type": "string",
-                "nullable": true,
-                "example": "https://stakentus.com/",
-                "description": "Home page of the stake pool"
-              }
+            "vrf_key": {
+              "type": "string",
+              "example": "0b5245f9934ec2151116fb8ec00f35fd00e0aa3b075c4ed12cce440f999d8233",
+              "description": "VRF key hash"
             },
-            "required": [
-              "url",
-              "hash",
-              "ticker",
-              "name",
-              "description",
-              "homepage"
-            ]
-          },
-          "relays": {
-            "type": "array",
-            "items": {
+            "pledge": {
+              "type": "string",
+              "example": "5000000000",
+              "description": "Stake pool certificate pledge in Lovelaces"
+            },
+            "margin_cost": {
+              "type": "number",
+              "example": 0.05,
+              "description": "Margin tax cost of the stake pool"
+            },
+            "fixed_cost": {
+              "type": "string",
+              "example": "340000000",
+              "description": "Fixed tax cost of the stake pool in Lovelaces"
+            },
+            "reward_account": {
+              "type": "string",
+              "example": "stake1uxkptsa4lkr55jleztw43t37vgdn88l6ghclfwuxld2eykgpgvg3f",
+              "description": "Bech32 reward account of the stake pool"
+            },
+            "owners": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "description": "Bech32 accounts of the pool owners"
+              },
+              "example": [
+                "stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v"
+              ]
+            },
+            "metadata": {
               "type": "object",
+              "nullable": true,
               "properties": {
-                "ipv4": {
-                  "type": "string",
-                  "nullable": true,
-                  "example": "4.4.4.4",
-                  "description": "IPv4 address of the relay"
-                },
-                "ipv6": {
+                "url": {
                   "type": "string",
                   "nullable": true,
                   "example": "https://stakenuts.com/mainnet.json",
-                  "description": "IPv6 address of the relay"
+                  "description": "URL to the stake pool metadata"
                 },
-                "dns": {
+                "hash": {
                   "type": "string",
                   "nullable": true,
-                  "example": "relay1.stakenuts.com",
-                  "description": "DNS name of the relay"
+                  "example": "47c0c68cb57f4a5b4a87bad896fc274678e7aea98e200fa14a1cb40c0cab1d8c",
+                  "description": "Hash of the metadata file"
                 },
-                "dns_srv": {
+                "ticker": {
                   "type": "string",
                   "nullable": true,
-                  "example": "_relays._tcp.relays.stakenuts.com",
-                  "description": "DNS SRV entry of the relay"
+                  "example": "NUTS",
+                  "description": "Ticker of the stake pool"
                 },
-                "port": {
-                  "type": "integer",
-                  "example": 3001,
-                  "description": "Network port of the relay"
+                "name": {
+                  "type": "string",
+                  "nullable": true,
+                  "example": "Stake Nuts",
+                  "description": "Name of the stake pool"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "example": "The best pool ever",
+                  "description": "Description of the stake pool"
+                },
+                "homepage": {
+                  "type": "string",
+                  "nullable": true,
+                  "example": "https://stakentus.com/",
+                  "description": "Home page of the stake pool"
                 }
               },
               "required": [
-                "ipv4",
-                "ipv6",
-                "dns",
-                "dns_srv",
-                "port"
+                "url",
+                "hash",
+                "ticker",
+                "name",
+                "description",
+                "homepage"
               ]
+            },
+            "relays": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ipv4": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "4.4.4.4",
+                    "description": "IPv4 address of the relay"
+                  },
+                  "ipv6": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "https://stakenuts.com/mainnet.json",
+                    "description": "IPv6 address of the relay"
+                  },
+                  "dns": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "relay1.stakenuts.com",
+                    "description": "DNS name of the relay"
+                  },
+                  "dns_srv": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": "_relays._tcp.relays.stakenuts.com",
+                    "description": "DNS SRV entry of the relay"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "example": 3001,
+                    "description": "Network port of the relay"
+                  }
+                },
+                "required": [
+                  "ipv4",
+                  "ipv6",
+                  "dns",
+                  "dns_srv",
+                  "port"
+                ]
+              }
+            },
+            "active_epoch": {
+              "type": "integer",
+              "example": 210,
+              "description": "Epoch that the delegation becomes active"
             }
           },
-          "active_epoch": {
-            "type": "integer",
-            "example": 210,
-            "description": "Epoch that the delegation becomes active"
-          }
-        },
-        "required": [
-          "pool_id",
-          "vrf_key",
-          "pledge",
-          "margin_cost",
-          "fixed_cost",
-          "reward_account",
-          "owners",
-          "metadata",
-          "relays",
-          "active_epoch"
-        ]
+          "required": [
+            "cert_index",
+            "pool_id",
+            "vrf_key",
+            "pledge",
+            "margin_cost",
+            "fixed_cost",
+            "reward_account",
+            "owners",
+            "metadata",
+            "relays",
+            "active_epoch"
+          ]
+        }
       },
       "tx_content_pool_retires": {
-        "type": "object",
-        "properties": {
-          "pool_id": {
-            "type": "string",
-            "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
-            "description": "Bech32 stake pool ID"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cert_index": {
+              "type": "integer",
+              "example": 0,
+              "description": "Index of the certificate within the transaction"
+            },
+            "pool_id": {
+              "type": "string",
+              "example": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+              "description": "Bech32 stake pool ID"
+            },
+            "retiring_epoch": {
+              "type": "integer",
+              "example": 216,
+              "description": "Retiring epoch"
+            }
           },
-          "retiring_epoch": {
-            "type": "integer",
-            "example": 216,
-            "description": "Retiring epoch"
-          }
-        },
-        "required": [
-          "pool_id",
-          "retiring_epoch"
-        ]
+          "required": [
+            "cert_index",
+            "pool_id",
+            "retiring_epoch"
+          ]
+        }
       },
       "tx_content_metadata": {
         "type": "array",
@@ -5664,7 +6885,6 @@
         },
         "required": [
           "active",
-          "active_epoch",
           "controlled_amount",
           "rewards_sum",
           "withdrawals_sum",
@@ -5683,7 +6903,10 @@
               "type": "string",
               "description": "Address associated with the stake key"
             }
-          }
+          },
+          "required": [
+            "address"
+          ]
         },
         "example": [
           {
@@ -5700,6 +6923,38 @@
           }
         ]
       },
+      "account_addresses_assets": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "description": "The sum of all assets of all addresses associated with a given account",
+          "properties": {
+            "unit": {
+              "type": "string",
+              "format": "Concatenation of asset policy_id and hex-encoded asset_name",
+              "description": "The unit of the value"
+            },
+            "quantity": {
+              "type": "string",
+              "description": "The quantity of the unit"
+            }
+          },
+          "required": [
+            "unit",
+            "quantity"
+          ]
+        },
+        "example": [
+          {
+            "unit": "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc537061636542756433343132",
+            "quantity": "1"
+          },
+          {
+            "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+            "quantity": "125"
+          }
+        ]
+      },
       "account_reward_content": {
         "type": "array",
         "items": {
@@ -5711,7 +6966,6 @@
             },
             "amount": {
               "type": "string",
-              "nullable": true,
               "description": "Rewards for given epoch in Lovelaces"
             },
             "pool_id": {
@@ -5756,7 +7010,7 @@
             "active_epoch": {
               "type": "integer",
               "example": 210,
-              "description": "Epoch that the delegation becomes active"
+              "description": "Epoch in which the delegation becomes active"
             },
             "tx_hash": {
               "type": "string",
@@ -5764,7 +7018,6 @@
             },
             "amount": {
               "type": "string",
-              "nullable": true,
               "description": "Rewards for given epoch in Lovelaces"
             },
             "pool_id": {
@@ -5799,14 +7052,13 @@
         "items": {
           "type": "object",
           "properties": {
-            "epoch": {
+            "active_epoch": {
               "type": "integer",
               "example": 210,
-              "description": "Epoch that the stake is active"
+              "description": "Epoch in which the stake was active"
             },
             "amount": {
               "type": "string",
-              "nullable": true,
               "description": "Stake amount in Lovelaces"
             },
             "pool_id": {
@@ -5867,6 +7119,66 @@
           }
         ]
       },
+      "account_withdrawal_content": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction containing the withdrawal"
+            },
+            "amount": {
+              "type": "string",
+              "description": "Withdrawal amount in Lovelaces"
+            }
+          },
+          "required": [
+            "tx_hash",
+            "amount"
+          ]
+        },
+        "example": [
+          {
+            "tx_hash": "48a9625c841eea0dd2bb6cf551eabe6523b7290c9ce34be74eedef2dd8f7ecc5",
+            "amount": "454541212442"
+          },
+          {
+            "tx_hash": "4230b0cbccf6f449f0847d8ad1d634a7a49df60d8c142bb8cc2dbc8ca03d9e34",
+            "amount": "97846969"
+          }
+        ]
+      },
+      "account_mir_content": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction containing the MIR"
+            },
+            "amount": {
+              "type": "string",
+              "description": "MIR amount in Lovelaces"
+            }
+          },
+          "required": [
+            "tx_hash",
+            "amount"
+          ]
+        },
+        "example": [
+          {
+            "tx_hash": "69705bba1d687a816ff5a04ec0c358a1f1ef075ab7f9c6cc2763e792581cec6d",
+            "amount": "2193707473"
+          },
+          {
+            "tx_hash": "baaa77b63d4d7d2bb3ab02c9b85978c2092c336dede7f59e31ad65452d510c13",
+            "amount": "14520198574"
+          }
+        ]
+      },
       "address_content": {
         "type": "object",
         "properties": {
@@ -5885,7 +7197,11 @@
                   "type": "string",
                   "description": "The quantity of the unit"
                 }
-              }
+              },
+              "required": [
+                "unit",
+                "quantity"
+              ]
             },
             "example": [
               {
@@ -5938,7 +7254,11 @@
                   "type": "string",
                   "description": "The quantity of the unit"
                 }
-              }
+              },
+              "required": [
+                "unit",
+                "quantity"
+              ]
             },
             "example": [
               {
@@ -5966,7 +7286,11 @@
                   "type": "string",
                   "description": "The quantity of the unit"
                 }
-              }
+              },
+              "required": [
+                "unit",
+                "quantity"
+              ]
             },
             "example": [
               {
@@ -6024,14 +7348,25 @@
                     "type": "string",
                     "description": "The quantity of the unit"
                   }
-                }
+                },
+                "required": [
+                  "unit",
+                  "quantity"
+                ]
               }
             },
             "block": {
               "type": "string",
               "description": "Block number of the UTXO"
             }
-          }
+          },
+          "required": [
+            "tx_hash",
+            "tx_index",
+            "output_index",
+            "amount",
+            "block"
+          ]
         },
         "example": [
           {
@@ -6077,11 +7412,53 @@
         "type": "array",
         "items": {
           "type": "string",
-          "description": "Hash of the transaction containing the (de)registration certificate"
+          "description": "Hash of the transaction"
         },
         "example": [
           "2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531",
           "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dde628516157f0"
+        ]
+      },
+      "address_transactions_content": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction"
+            },
+            "tx_index": {
+              "type": "integer",
+              "description": "Transaction index within the block"
+            },
+            "block_height": {
+              "type": "integer",
+              "description": "Block height"
+            }
+          },
+          "required": [
+            "tx_hash",
+            "tx_index",
+            "block_height"
+          ]
+        },
+        "example": [
+          {
+            "tx_hash": "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+            "tx_index": 6,
+            "block_height": 69
+          },
+          {
+            "tx_hash": "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+            "tx_index": 9,
+            "block_height": 4547
+          },
+          {
+            "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+            "tx_index": 0,
+            "block_height": 564654
+          }
         ]
       },
       "tx_metadata_labels": {
@@ -6102,7 +7479,12 @@
               "type": "string",
               "description": "The count of metadata entries with a specific label"
             }
-          }
+          },
+          "required": [
+            "label",
+            "cip10",
+            "count"
+          ]
         },
         "example": [
           {
@@ -6253,7 +7635,11 @@
               "example": 242,
               "description": "Retirement epoch number"
             }
-          }
+          },
+          "required": [
+            "pool_id",
+            "epoch"
+          ]
         },
         "example": [
           {
@@ -6397,8 +7783,7 @@
           "registration": {
             "type": "array",
             "items": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             },
             "example": [
               "9f83e5484f543e05b52e99988272a31da373f3aab4c064c76db96643a355d9dc",
@@ -6410,7 +7795,6 @@
             "type": "array",
             "items": {
               "type": "string",
-              "nullable": true,
               "example": "252f622976d39e646815db75a77289cf16df4ad2b287dd8e3a889ce14c13d1a8"
             }
           }
@@ -6517,15 +7901,15 @@
               "example": 3001,
               "description": "Network port of the relay"
             }
-          }
-        },
-        "required": [
-          "ipv4",
-          "ipv6",
-          "dns",
-          "dns_srv",
-          "port"
-        ]
+          },
+          "required": [
+            "ipv4",
+            "ipv6",
+            "dns",
+            "dns_srv",
+            "port"
+          ]
+        }
       },
       "pool_delegations": {
         "type": "array",
@@ -6718,6 +8102,29 @@
             "example": "6804edf9712d2b619edb6ac86861fe93a730693183a262b165fcc1ba1bc99cad",
             "description": "ID of the initial minting transaction"
           },
+          "mint_or_burn_count": {
+            "type": "integer",
+            "example": 1,
+            "description": "Count of mint and burn transactions"
+          },
+          "onchain_metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "nullable": true,
+            "description": "On-chain metadata stored in the minting transaction under label 721,\ncommunity discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85\n",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the asset",
+                "example": "My NFT token"
+              },
+              "image": {
+                "type": "string",
+                "description": "URI of the associated asset",
+                "example": "ipfs://ipfs/QmfKyJ4tuvHowwKQCbCHj4L5T3fSj8cjs7Aau8V7BWv226"
+              }
+            }
+          },
           "metadata": {
             "type": "object",
             "nullable": true,
@@ -6748,20 +8155,34 @@
                 "nullable": true,
                 "example": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAoCAYAAAC4h3lxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH5QITCDUPjqwFHwAAB9xJREFUWMPVWXtsU9cZ/8499/r6dZ3E9rUdO7ZDEgglFWO8KaOsJW0pCLRKrN1AqqYVkqoqrYo0ja7bpElru1WairStFKY9WzaE1E1tx+jokKqwtqFNyhKahEJJyJNgJ37E9r1+3HvO/sFR4vhx7SBtfH/F3/l93/f7ne/4PBxEKYU72dj/ZfH772v1TU+HtqbTaX8wOO01GPQpRVH7JEm+vGHDuq6z7/8jUSoHKtaBKkEUFUXdajDy1hUrmrs6zn/wWS7m7pZVjMUirKGUTnzc+e9xLcTrPPVfZzDz06Sc2lyQGEIyAPzT7Xa+dvE/3e+XLaCxoflHsVj8MAAYs74aa/WHoenwvpkZKeFy2Z5NJlOPUkqXZccFwSSrKjlyffjLH+TL6XTUGTGL/6hklD3ldIrj2M5MRmkLBMcvaRLQ1Nj88sxM/HCBfMP+eu/OYGDqe6l0WmpoqJ/88upgrU7HrQNA/cFg6MlkKiLlBtVUO40cx54BgHvLIT/HJLvdeqh/4NKxogKWN7fsCoUi7xTLxLJ4vLq6ak//wKVOrdXtttrTDMPsqJA8AAAwDErdu3VL3alTf5ma9eWCpoKhn5dKpCiqJxicPucQPVu0FHaInn35yHMcKwPAa4SQ3QCwFgDWUko3qSr5vqqSgTypuEg4Mo/zvA74/Y0rZSnZU8akSHV17k2fXfy0txjI5224kEym1s/1EUI7LBbztweHrkzkizn49LP6U6feepFSeggAQK/n04SQZ8bGrxdeQjZrbRvGzLH5hcibRqOhPplMfS1fIY5jz4xPDBdcGggho2h3z9sOLRazdG3wqp9SMgUlzGZ17SSEPsRx7J8CwfGu3PF57WhqqjfN/VxVJUxKUrIdITAXKpDJKFscosdfaFy0u+/K9aXTmXe0kAcAmA5Nng5Hbj6Tj/wCAYFAcN7uEY3GXGazMSHLqVVFapgBoMPna9yqhRAAgCTJMa3YUjZPgNFkSlWYx5eUkx+0tKx83V3rF+cVYJjruWCe133DIXqMmrNrFSDabRcWkywYmG5XFOW6aHcfb9324CoAgMmbo9MIoXkneCajiAihV/c/8eSiBSw4BxyiZxQA6m7H7FBKT2CMn2MY5jFFUX6ZO+5w2j8aHZ7YH40FByrJD5DnHGAY5uTtIA8AgBDaR4F2Yxb3WizCgmtA4ObUPSazodduqz3Suu0hf0U1cjvgdNSJ1dWWveFwdDUAtAiC2Uopdcdi8c9Zlh3GmDGl05mtAKAvo47EcdwThJCjqqpWFxALlNITomg73tff21GRAJez7iVK4WGGYfoJIQduBsbm7UrLm1ueCoUiv65kpiilw1ZbzcFoZOYoIcRTAn6eYZgXJm+Oni+Vd3YJbdyweSch9HlK6SpVVfcyDDq7Yf3m2XPBIXraKyV/a4b9UkLawbLsZgB4rwR8CyGkw13r+5fX27BckwBAEJ47oKpk8+DgUIdod7fV1vqOAMDrlZLPmqKoB+rrvXIgOP6w0WjYy3Ls5RL4bUk52bVm9fqnCk7M3CXU2ND8+MxM7BcIIftiyRYyntcdHh0bmr0wfmXl6p2SJB2KRmP3l4j7zejYUFtRAQAAgslm1Bv4nyGEDpYiIwjmjw0G/RjP866JiclNqqqWfKLq9fyZkdHBBXcnl9O71GDgD8bj0ncRQqZ8sRgzL9yYHH2pqICsOUTPLgA4CXNeZFmzWIS/YhYfjUZmvqPjuceSckrz25pS2h2cmlhbaBwhzr6kfsnL8Xhif55YYFl23Y3Jkdl7EVMoUSA4/q6qqNsBIPd11e52u45FwtG3CSH7yiEPAGC1Vt9dXGBmanDoygFLlbAjtzZCCMyC6VeaOpA1l9N7l1kwtauKaozHE28YTQaQpeR7+TqjxXheR0fHhhgt2CX1S3clEtKC16HL5djYe+niBU0CcmYA2W21/Qih5ZqDcoxlMZ24MaJJAABA87IVJ8Lh6N65Pr1B/+LIyLUfAhRZQvnM6ah7ZDHkAQB0vK6/HHxNTc2ruT5Zkldn/y5LACFk+2LIAwAwCGl6yGSt88KHXbmrBCHkqEgAz+vWLFZALJb4qNwYhFDhCSknkSwnQ4sVgDFeWg7+gQe2r1tAmkGTFQlACHWVg89nhJA9ot3dphV/eeCLp/Pw6K5IQP0S39uLFXCLwDG7zf1cKZxD9LSlUunHc/12u/2t2Vzl/rzu8zb8PZlM7bwdQgDgPK/nX2nddt+53//ht3LW2dS0fF0iLj2vquojuQFmwXRucPBKa8UCmpe1iOFwpAsAfLdJBFBKwVIlXJ2JxqKCxbwyHkvoCkAlv9/71U+7Oq+UJWDZ0hViJBL1cRynbNq0sSeeiPl6ei4NqIqq6TSmlB7X6bjuTEY5pgWfzwxGPZhMpt39/b3vzvWXFGCzulZjjM/DrauDwcAr8bjcgzGjZUuVBMH8k2uDX7wCAFDr8n2LEPI7SqmhTP6SzVbz6MDlz0/nDpT8EmOM22HOvUeWU2wp8iyLgRL6hk7Hrc2SBwC4MTlykmXZRozxn00mbVcphNA5jJmV+chr6oDd5l6jN/A/TqfSuwEAGITGMIsvGo3GTwTB3Dc2NjGSxdZYq4VIOOoNBANnKE0XPXE3brjHOTQ08k2MmVZOxzVJCbkFIQSCYEphzPaFQuGzTpfjb319PZ8UFXin/5OvrHPg/9HueAH/BSUqOuNZm4fyAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTAyLTE5VDA4OjUyOjI1KzAwOjAwCmFGlgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wMi0xOVQwODo1MjoyMyswMDowMBjsyxAAAAAASUVORK5CYII=",
                 "description": "Base64 encoded logo of the asset"
+              },
+              "decimals": {
+                "type": "integer",
+                "maximum": 255,
+                "nullable": true,
+                "example": 6,
+                "description": "Number of decimal places of the asset unit"
               }
             },
             "required": [
               "name",
-              "description"
+              "description",
+              "ticker",
+              "url",
+              "logo",
+              "decimals"
             ]
           }
         },
         "required": [
           "policy_id",
           "asset_name",
+          "fingerprint",
           "quantity",
           "initial_mint_tx_hash",
-          "metadata"
+          "mint_or_burn_count",
+          "metadata",
+          "onchain_metadata"
         ]
       },
       "asset_history": {
@@ -6820,6 +8241,48 @@
           "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
           "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
           "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b"
+        ]
+      },
+      "asset_transactions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction"
+            },
+            "tx_index": {
+              "type": "integer",
+              "description": "Transaction index within the block"
+            },
+            "block_height": {
+              "type": "integer",
+              "description": "Block height"
+            }
+          },
+          "required": [
+            "tx_hash",
+            "tx_index",
+            "block_height"
+          ]
+        },
+        "example": [
+          {
+            "tx_hash": "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+            "tx_index": 6,
+            "block_height": 69
+          },
+          {
+            "tx_hash": "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+            "tx_index": 9,
+            "block_height": 4547
+          },
+          {
+            "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+            "tx_index": 0,
+            "block_height": 564654
+          }
         ]
       },
       "asset_addresses": {
@@ -6974,6 +8437,216 @@
               "endpoint": "block"
             }
           ]
+        ]
+      },
+      "nutlink_address": {
+        "type": "object",
+        "properties": {
+          "metadata_url": {
+            "type": "string",
+            "description": "URL do specific metadata file",
+            "example": "https://nut.link/metadata.json"
+          },
+          "metadata_hash": {
+            "type": "string",
+            "description": "Hash of the metadata file",
+            "example": "6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "The cached metadata of the `metadata_url` file.",
+            "additionalProperties": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "metadata_url",
+          "metadata_hash",
+          "metadata"
+        ]
+      },
+      "nutlink_address_ticker": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction"
+            },
+            "block_height": {
+              "type": "integer",
+              "description": "Block height of the record"
+            },
+            "tx_index": {
+              "type": "integer",
+              "description": "Transaction index within the block"
+            },
+            "payload": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "array",
+                  "items": {}
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ],
+              "additionalProperties": true,
+              "description": "Content of the ticker"
+            }
+          },
+          "required": [
+            "tx_hash",
+            "tx_index",
+            "block_height",
+            "payload"
+          ]
+        },
+        "example": [
+          {
+            "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+            "block_height": 2657092,
+            "tx_index": 8,
+            "payload": [
+              {
+                "source": "coinGecko",
+                "value": "1.29"
+              },
+              {
+                "source": "cryptoCompare",
+                "value": "1.283"
+              }
+            ]
+          }
+        ]
+      },
+      "nutlink_address_tickers": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the ticker"
+            },
+            "count": {
+              "type": "integer",
+              "description": "Number of ticker records"
+            },
+            "latest_block": {
+              "type": "integer",
+              "description": "Block height of the latest record"
+            }
+          },
+          "required": [
+            "name",
+            "count",
+            "latest_block"
+          ]
+        },
+        "example": [
+          {
+            "name": "ADAUSD",
+            "count": 1980038,
+            "latest_block": 2657092
+          },
+          {
+            "name": "ADAEUR",
+            "count": 1980038,
+            "latest_block": 2657092
+          },
+          {
+            "name": "ADABTC",
+            "count": 1980038,
+            "latest_block": 2657092
+          }
+        ]
+      },
+      "nutlink_tickers_ticker": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string",
+              "description": "Address of a metadata oracle"
+            },
+            "tx_hash": {
+              "type": "string",
+              "description": "Hash of the transaction"
+            },
+            "block_height": {
+              "type": "integer",
+              "description": "Block height of the record"
+            },
+            "tx_index": {
+              "type": "integer",
+              "description": "Transaction index within the block"
+            },
+            "payload": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object"
+                },
+                {
+                  "type": "array",
+                  "items": {}
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                }
+              ],
+              "additionalProperties": true,
+              "description": "Content of the ticker"
+            }
+          },
+          "required": [
+            "address",
+            "tx_hash",
+            "block_height",
+            "tx_index",
+            "payload"
+          ]
+        },
+        "example": [
+          {
+            "address": "addr_test1qpmtp5t0t5y6cqkaz7rfsyrx7mld77kpvksgkwm0p7en7qum7a589n30e80tclzrrnj8qr4qvzj6al0vpgtnmrkkksnqd8upj0",
+            "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+            "block_height": 2657092,
+            "tx_index": 8,
+            "payload": [
+              {
+                "source": "coinGecko",
+                "value": "1.29"
+              },
+              {
+                "source": "cryptoCompare",
+                "value": "1.283"
+              }
+            ]
+          }
         ]
       },
       "empty_object": {
