@@ -18,6 +18,7 @@ class MyApiKeyAuthInterceptor extends AuthInterceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    //print("MyApiKeyAuthInterceptor.onRequest - options.headers['project_id'] = $apiKey");
     options.headers['project_id'] = apiKey;
     super.onRequest(options, handler);
   }

@@ -17,6 +17,7 @@ import 'package:dio/dio.dart';
 import 'package:blockfrost/src/model/pool.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
+import 'package:blockfrost/src/model/any_ofpool_metadataobject.dart';
 
 class CardanoPoolsApi {
   final Dio _dio;
@@ -476,6 +477,7 @@ class CardanoPoolsApi {
     AnyOfpoolMetadataobject _responseData;
 
     try {
+      print("AnyOfpoolMetadataobject - ${_response.data!}");
       const _responseType = FullType(AnyOfpoolMetadataobject);
       _responseData = _serializers.deserialize(
         _response.data!,
@@ -821,5 +823,3 @@ class CardanoPoolsApi {
     );
   }
 }
-
-class AnyOfpoolMetadataobject {}

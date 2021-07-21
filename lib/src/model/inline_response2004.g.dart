@@ -56,7 +56,7 @@ class _$InlineResponse2004StateEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       InlineResponse2004StateEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+          _fromWire[serialized] ?? serialized as String);
 }
 
 class _$InlineResponse2004 extends InlineResponse2004 {

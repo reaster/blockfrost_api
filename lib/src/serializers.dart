@@ -43,6 +43,7 @@ import 'package:blockfrost/src/model/tx_content_output_amount.dart';
 import 'package:blockfrost/src/model/tx_content_utxo.dart';
 import 'package:blockfrost/src/model/tx_content_utxo_inputs.dart';
 import 'package:blockfrost/src/model/tx_content_utxo_outputs.dart';
+import 'package:blockfrost/src/model/any_ofpool_metadataobject.dart';
 
 part 'serializers.g.dart';
 
@@ -78,6 +79,7 @@ part 'serializers.g.dart';
   TxContentUtxo,
   TxContentUtxoInputs,
   TxContentUtxoOutputs,
+  AnyOfpoolMetadataobject,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
@@ -152,5 +154,4 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(Iso8601DateTimeSerializer()))
     .build();
 
-Serializers standardSerializers =
-    (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+Serializers standardSerializers = (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

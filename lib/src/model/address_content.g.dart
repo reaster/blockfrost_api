@@ -56,7 +56,7 @@ class _$AddressContentTypeEnumSerializer
   AddressContentTypeEnum deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       AddressContentTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
+          _fromWire[serialized] ?? serialized as String);
 }
 
 class _$AddressContent extends AddressContent {

@@ -51,6 +51,7 @@ export 'package:blockfrost/src/model/inline_response500.dart';
 export 'package:blockfrost/src/model/nutlink_address.dart';
 export 'package:blockfrost/src/model/pool.dart';
 export 'package:blockfrost/src/model/pool_metadata.dart';
+export 'package:blockfrost/src/model/any_ofpool_metadataobject.dart';
 export 'package:blockfrost/src/model/tx_content.dart';
 export 'package:blockfrost/src/model/tx_content_output_amount.dart';
 export 'package:blockfrost/src/model/tx_content_utxo.dart';

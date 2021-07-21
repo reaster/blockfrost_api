@@ -26,7 +26,8 @@ class _$AccountContent extends AccountContent {
   @override
   final String? poolId;
 
-  factory _$AccountContent([void Function(AccountContentBuilder)? updates]) => (new AccountContentBuilder()..update(updates)).build();
+  factory _$AccountContent([void Function(AccountContentBuilder)? updates]) =>
+      (new AccountContentBuilder()..update(updates)).build();
 
   _$AccountContent._(
       {required this.active,
@@ -40,19 +41,27 @@ class _$AccountContent extends AccountContent {
       this.poolId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(active, 'AccountContent', 'active');
-    BuiltValueNullFieldError.checkNotNull(controlledAmount, 'AccountContent', 'controlledAmount');
-    BuiltValueNullFieldError.checkNotNull(rewardsSum, 'AccountContent', 'rewardsSum');
-    BuiltValueNullFieldError.checkNotNull(withdrawalsSum, 'AccountContent', 'withdrawalsSum');
-    BuiltValueNullFieldError.checkNotNull(reservesSum, 'AccountContent', 'reservesSum');
-    BuiltValueNullFieldError.checkNotNull(treasurySum, 'AccountContent', 'treasurySum');
-    BuiltValueNullFieldError.checkNotNull(withdrawableAmount, 'AccountContent', 'withdrawableAmount');
+    BuiltValueNullFieldError.checkNotNull(
+        controlledAmount, 'AccountContent', 'controlledAmount');
+    BuiltValueNullFieldError.checkNotNull(
+        rewardsSum, 'AccountContent', 'rewardsSum');
+    BuiltValueNullFieldError.checkNotNull(
+        withdrawalsSum, 'AccountContent', 'withdrawalsSum');
+    BuiltValueNullFieldError.checkNotNull(
+        reservesSum, 'AccountContent', 'reservesSum');
+    BuiltValueNullFieldError.checkNotNull(
+        treasurySum, 'AccountContent', 'treasurySum');
+    BuiltValueNullFieldError.checkNotNull(
+        withdrawableAmount, 'AccountContent', 'withdrawableAmount');
   }
 
   @override
-  AccountContent rebuild(void Function(AccountContentBuilder) updates) => (toBuilder()..update(updates)).build();
+  AccountContent rebuild(void Function(AccountContentBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
 
   @override
-  AccountContentBuilder toBuilder() => new AccountContentBuilder()..replace(this);
+  AccountContentBuilder toBuilder() =>
+      new AccountContentBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -75,7 +84,13 @@ class _$AccountContent extends AccountContent {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc($jc($jc(0, active.hashCode), activeEpoch.hashCode), controlledAmount.hashCode), rewardsSum.hashCode),
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc($jc(0, active.hashCode),
+                                    activeEpoch.hashCode),
+                                controlledAmount.hashCode),
+                            rewardsSum.hashCode),
                         withdrawalsSum.hashCode),
                     reservesSum.hashCode),
                 treasurySum.hashCode),
@@ -99,7 +114,8 @@ class _$AccountContent extends AccountContent {
   }
 }
 
-class AccountContentBuilder implements Builder<AccountContent, AccountContentBuilder> {
+class AccountContentBuilder
+    implements Builder<AccountContent, AccountContentBuilder> {
   _$AccountContent? _$v;
 
   bool? _active;
@@ -112,7 +128,8 @@ class AccountContentBuilder implements Builder<AccountContent, AccountContentBui
 
   String? _controlledAmount;
   String? get controlledAmount => _$this._controlledAmount;
-  set controlledAmount(String? controlledAmount) => _$this._controlledAmount = controlledAmount;
+  set controlledAmount(String? controlledAmount) =>
+      _$this._controlledAmount = controlledAmount;
 
   String? _rewardsSum;
   String? get rewardsSum => _$this._rewardsSum;
@@ -120,7 +137,8 @@ class AccountContentBuilder implements Builder<AccountContent, AccountContentBui
 
   String? _withdrawalsSum;
   String? get withdrawalsSum => _$this._withdrawalsSum;
-  set withdrawalsSum(String? withdrawalsSum) => _$this._withdrawalsSum = withdrawalsSum;
+  set withdrawalsSum(String? withdrawalsSum) =>
+      _$this._withdrawalsSum = withdrawalsSum;
 
   String? _reservesSum;
   String? get reservesSum => _$this._reservesSum;
@@ -132,7 +150,8 @@ class AccountContentBuilder implements Builder<AccountContent, AccountContentBui
 
   String? _withdrawableAmount;
   String? get withdrawableAmount => _$this._withdrawableAmount;
-  set withdrawableAmount(String? withdrawableAmount) => _$this._withdrawableAmount = withdrawableAmount;
+  set withdrawableAmount(String? withdrawableAmount) =>
+      _$this._withdrawableAmount = withdrawableAmount;
 
   String? _poolId;
   String? get poolId => _$this._poolId;
@@ -174,14 +193,21 @@ class AccountContentBuilder implements Builder<AccountContent, AccountContentBui
   _$AccountContent build() {
     final _$result = _$v ??
         new _$AccountContent._(
-            active: BuiltValueNullFieldError.checkNotNull(active, 'AccountContent', 'active'),
+            active: BuiltValueNullFieldError.checkNotNull(
+                active, 'AccountContent', 'active'),
             activeEpoch: activeEpoch,
-            controlledAmount: BuiltValueNullFieldError.checkNotNull(controlledAmount, 'AccountContent', 'controlledAmount'),
-            rewardsSum: BuiltValueNullFieldError.checkNotNull(rewardsSum, 'AccountContent', 'rewardsSum'),
-            withdrawalsSum: BuiltValueNullFieldError.checkNotNull(withdrawalsSum, 'AccountContent', 'withdrawalsSum'),
-            reservesSum: BuiltValueNullFieldError.checkNotNull(reservesSum, 'AccountContent', 'reservesSum'),
-            treasurySum: BuiltValueNullFieldError.checkNotNull(treasurySum, 'AccountContent', 'treasurySum'),
-            withdrawableAmount: BuiltValueNullFieldError.checkNotNull(withdrawableAmount, 'AccountContent', 'withdrawableAmount'),
+            controlledAmount: BuiltValueNullFieldError.checkNotNull(
+                controlledAmount, 'AccountContent', 'controlledAmount'),
+            rewardsSum: BuiltValueNullFieldError.checkNotNull(
+                rewardsSum, 'AccountContent', 'rewardsSum'),
+            withdrawalsSum: BuiltValueNullFieldError.checkNotNull(
+                withdrawalsSum, 'AccountContent', 'withdrawalsSum'),
+            reservesSum: BuiltValueNullFieldError.checkNotNull(
+                reservesSum, 'AccountContent', 'reservesSum'),
+            treasurySum: BuiltValueNullFieldError.checkNotNull(
+                treasurySum, 'AccountContent', 'treasurySum'),
+            withdrawableAmount: BuiltValueNullFieldError.checkNotNull(
+                withdrawableAmount, 'AccountContent', 'withdrawableAmount'),
             poolId: poolId);
     replace(_$result);
     return _$result;
