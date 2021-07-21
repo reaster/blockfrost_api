@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0-dev.3] - 2021-07-20
+
+### Changed
+
+- hand-code AnyOfpoolMetadataobject
+- implement tests in cardano_pools_api.test.dart
+- add mainnet test, but failing
+
 ## [1.0.0-dev.2] - 2021-07-03
 
 ### Changed
