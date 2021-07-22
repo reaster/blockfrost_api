@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.23-dev.4] - 2021-07-22
+
+### Changed
+
+- sync version with BlockFrost API
+- implement tests in cardano_accounts_api_test.test.dart
+
 ## [1.0.0-dev.3] - 2021-07-20
 
 ### Changed
