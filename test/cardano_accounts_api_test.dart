@@ -83,12 +83,16 @@ void main() {
     // Obtain information about the history of a specific account.
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressRewardsGet(String stakeAddress, { int count, int page, String order }) async
+    // [
+    //   {epoch: 142, amount: 24689, pool_id: pool18ftcshq7394f88qtw8ywqu827ap0hndjznmzem0gk7d3qnzxvkk},
+    //   {epoch: 143, amount: 23715, pool_id: pool18ftcshq7394f88qtw8ywqu827ap0hndjznmzem0gk7d3qnzxvkk}
+    // ]
     test('test accountsStakeAddressRewardsGet', () async {
       Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressRewardsGet(stakeAddress: stakeAddressAcct1, count: 20);
-      // result.data?.forEach((addr) {
-      //   if (addr.isMap) print(addr.asMap['address']);
-      // });
-      print(result);
+      result.data?.forEach((reward) {
+        if (reward.isMap) print("amount: ${reward.asMap['amount']}, epoch: ${reward.asMap['epoch']}, pool_id: ${reward.asMap['pool_id']}");
+      });
+      //print(result);
     });
   });
 }
