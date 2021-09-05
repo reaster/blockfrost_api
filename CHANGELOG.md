@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.23-dev.5] - 2021-09-05
+
+### Changed
+
+- remove blockfrost email
+- update documentation
+
 ## [0.1.23-dev.4] - 2021-07-22
 
 ### Changed

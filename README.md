@@ -1,9 +1,73 @@
-# blockfrost (EXPERIMENTAL)
+# BlockFrost Service API 
+
+## INTRODUCTION
+This library is for accessing the Cardano blockchain via BlockFrost service nodes. BlockFrost allows access to the blockchain for light clients that do not wish to run a dedicated, resource intensive, Cardano node locally. 
+
+This package is simply a [Dio 4.x](https://pub.dev/packages/dio) Dart wrapper around the 
+[BlockFrost REST API](https://docs.blockfrost.io) with a few tests to demonstrate usage. 
+As such, this package is largely a code generation artifact of the [swagger.json](swagger-0-1-23.json) specification file. The OpenAPI generator used was `dart-dio-next`.
+
+This code is available as a package on pub.dev: [https://pub.dev/packages/blockfrost](https://pub.dev/packages/blockfrost)
+
+## Tests
+
+To run the tests, you must download a free apiKey from 
+https://blockfrost.io, then place the key in the parent directory of your project in a file with the name:
+```
+    blockfrost_project_id.txt
+```
+i.e. 
+```
+echo "your-project-id" > ../blockfrost_project_id.txt
+```
+`MyApiKeyAuthInterceptor` will read the key on startup and insert it into the REST header requests.
+```
+  final instance = Blockfrost(
+    basePathOverride: testnet,
+    interceptors: [MyApiKeyAuthInterceptor()],
+  );
+```
+
+
+## Production
+
+To use this code in production, simply replace `MyApiKeyAuthInterceptor` with `BlockfrostApiKeyAuthInterceptor`, passing your `project_id` key into the constructor:
+```
+BlockfrostApiKeyAuthInterceptor(projectId:'your-project-id')
+```
+Here is an implemenation  - `blockfrost_api_key_auth.dart`:
+```
+import 'package:dio/dio.dart';
+import 'package:blockfrost/src/auth/auth.dart';
+
+class BlockfrostApiKeyAuthInterceptor extends AuthInterceptor {
+  final String projectId;
+  BlockfrostApiKeyAuthInterceptor({required this.projectId});
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    options.headers['project_id'] = projectId;
+    super.onRequest(options, handler);
+  }
+}
+```
+
+## Usage
+
+Refer to the generated documentation below and tests for example usage. Be aware, this is very low-level, blockchain-specific code. If you wish to send transactions or work with smart contracts, you'll need a higher level API. The [cardano_wallet_sdk](https://pub.dev/packages/cardano_wallet_sdk) (by the same author) is a good resource for code and tests that demonstrate how to use this API to build higher level services.
+
+## Status
+
+Blockfrost has indicated they intend to publish an official BlockFrost API in Dart, at which time I'll hand-over ownership or discontinue this project as appropriate.
+
+The OpenAPI generator used, dart-dio-next, is still labled expiramental, however the generated code is high quality and in my experience has proven reliable. There are several otther OpenAPI dart generators available, but dart-dio-next was chosen because it supports null safety and the highly popular Dio 4.x web client library.
+
+## Support
+
+This is not an official blockfrost package so please do not contract BlockFrost with issues specific to this code. 
+
+
+# GENERATED DOCUMENTATION - blockfrost (EXPERIMENTAL)
 Blockfrost is an API as a service that allows users to interact with the Cardano blockchain and parts of its ecosystem.
-
-## Author Notes
-
-This document is a code generation artifact, refer to [NOTES](NOTES.md) for usage tips, issues and implementation notes.
 
 ## Tokens
 
@@ -269,7 +333,3 @@ Class | Method | HTTP request | Description
 - **API key parameter name**: project_id
 - **Location**: HTTP header
 
-
-## Author
-
-contact@blockfrost.io
