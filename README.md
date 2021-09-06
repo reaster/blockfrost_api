@@ -59,7 +59,7 @@ Refer to the generated documentation below and tests for example usage. Be aware
 
 Blockfrost has indicated they intend to publish an official BlockFrost API in Dart, at which time I'll hand-over ownership or discontinue this project as appropriate.
 
-The OpenAPI generator used, dart-dio-next, is still labled expiramental, however the generated code is high quality and in my experience has proven reliable. There are several otther OpenAPI dart generators available, but dart-dio-next was chosen because it supports null safety and the highly popular Dio 4.x web client library.
+The OpenAPI generator used, dart-dio-next, is still labeled experimental, however the generated code is high quality and in my experience has proven reliable. There are several other OpenAPI dart generators available, but dart-dio-next was chosen because it supports null safety and the highly popular Dio 4.x web client library.
 
 ## Support
 
