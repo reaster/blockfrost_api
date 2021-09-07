@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0-dev.6] - 2021-09-06
+
+### Changed
+
+- back to v1.0.0 so pub.dev shows proper latest release
+
 ## [0.1.23-dev.5] - 2021-09-05
 
 ### Changed
