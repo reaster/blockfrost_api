@@ -1,10 +1,16 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
-
+import 'package:dio/dio.dart';
+import './my_api_key_auth.dart';
+import 'package:built_value/json_object.dart';
+import 'package:built_collection/built_collection.dart';
 
 /// tests for CardanoEpochsApi
 void main() {
-  final instance = Blockfrost().getCardanoEpochsApi();
+  final instance = Blockfrost(
+    basePathOverride: testnet,
+    interceptors: [MyApiKeyAuthInterceptor()],
+  ).getCardanoEpochsApi();
 
   group(CardanoEpochsApi, () {
     // Latest epoch
@@ -13,7 +19,15 @@ void main() {
     //
     //Future<EpochContent> epochsLatestGet() async
     test('test epochsLatestGet', () async {
-      // TODO
+      Response<EpochContent> result = await instance.epochsLatestGet();
+      if (result.statusCode == 200 && result.data != null) {
+        var startTimeMs = result.data!.startTime;
+        var startTimeDateTime = DateTime.fromMillisecondsSinceEpoch(startTimeMs * 1000, isUtc: true);
+        var lastBlockTimeMs = result.data!.lastBlockTime;
+        var lastBlockTimeDateTime = DateTime.fromMillisecondsSinceEpoch(lastBlockTimeMs * 1000, isUtc: true);
+        print("start: ${startTimeMs}ms -> $startTimeDateTime : last: ${lastBlockTimeMs}ms -> $lastBlockTimeDateTime");
+      }
+      print(result);
     });
 
     // Latest epoch protocol parameters
@@ -22,7 +36,8 @@ void main() {
     //
     //Future<EpochParamContent> epochsLatestParametersGet() async
     test('test epochsLatestParametersGet', () async {
-      // TODO
+      Response<EpochParamContent> result = await instance.epochsLatestParametersGet();
+      print(result);
     });
 
     // Block distribution
@@ -96,6 +111,5 @@ void main() {
     test('test epochsNumberStakesPoolIdGet', () async {
       // TODO
     });
-
   });
 }
