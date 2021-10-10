@@ -63,7 +63,13 @@ void main() {
     //
     //Future<BlockContent> blocksLatestGet() async
     test('test blocksLatestGet', () async {
-      // TODO
+      Response<BlockContent> result = await instance.blocksLatestGet();
+      if (result.statusCode == 200 && result.data != null) {
+        var millisecondsSinceEpoch = result.data!.time;
+        var dateTime = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch * 1000, isUtc: true);
+        print("millisecondsSinceEpoch: $millisecondsSinceEpoch -> $dateTime");
+      }
+      print(result);
     });
   });
 }
