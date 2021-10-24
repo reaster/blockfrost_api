@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.0-dev.7] - 2021-10-24
+
+### Changed
+
+- add tx_hash to TxContentUtxoInputs
+- fix page 0 errors
+
 ## [1.0.0-dev.6] - 2021-09-06
 
 ### Changed
