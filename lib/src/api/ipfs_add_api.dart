@@ -16,7 +16,6 @@ import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
 
 class IPFSAddApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,8 +24,8 @@ class IPFSAddApi {
 
   /// Add a file or directory to IPFS
   ///
-  /// You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage is being counted in your user account quota. 
-  Future<Response<InlineResponse2003>> ipfsAddPost({ 
+  /// You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage is being counted in your user account quota.
+  Future<Response<InlineResponse2003>> ipfsAddPost({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -57,8 +56,7 @@ class IPFSAddApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -77,7 +75,6 @@ class IPFSAddApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2003;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -98,5 +95,4 @@ class IPFSAddApi {
       extra: _response.extra,
     );
   }
-
 }

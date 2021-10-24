@@ -11,7 +11,8 @@ void main() {
     basePathOverride: testnet,
     interceptors: [MyApiKeyAuthInterceptor()],
   ).getCardanoAddressesApi();
-  final addr1 = 'addr_test1qqltwrdj339cx6l98ze8zveldczmrg0cr0u7k7f6gyadae3xngwdkqgqcvjtzmz624d6efz67ysf3597k24uyzqg5ctsh243r9'; // Account-1
+  final addr1 =
+      'addr_test1qqltwrdj339cx6l98ze8zveldczmrg0cr0u7k7f6gyadae3xngwdkqgqcvjtzmz624d6efz67ysf3597k24uyzqg5ctsh243r9'; // Account-1
   final stakeAddress = 'stake_test1uqnf58xmqyqvxf93d3d92kav53d0zgyc6zlt927zpqy2v9cyvwl7a'; // Account-1
   final addr2 =
       'addr_test1qzxs6rwvj65sgylxh27y6ljdys8vr22z46s27k3m7fsaqcpxngwdkqgqcvjtzmz624d6efz67ysf3597k24uyzqg5ctsh478e0'; // String | Bech32

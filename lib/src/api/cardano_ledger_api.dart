@@ -15,7 +15,6 @@ import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
 
 class CardanoLedgerApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,7 +24,7 @@ class CardanoLedgerApi {
   /// Blockchain genesis
   ///
   /// Return the information about blockchain genesis.
-  Future<Response<GenesisContent>> genesisGet({ 
+  Future<Response<GenesisContent>> genesisGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -56,8 +55,7 @@ class CardanoLedgerApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -76,7 +74,6 @@ class CardanoLedgerApi {
         _response.data!,
         specifiedType: _responseType,
       ) as GenesisContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -97,5 +94,4 @@ class CardanoLedgerApi {
       extra: _response.extra,
     );
   }
-
 }

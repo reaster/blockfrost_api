@@ -17,7 +17,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class MetricsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -26,8 +25,8 @@ class MetricsApi {
 
   /// Blockfrost endpoint usage metrics
   ///
-  /// History of your Blockfrost usage metrics per endpoint in the past 30 days. 
-  Future<Response<BuiltList<JsonObject>>> metricsEndpointsGet({ 
+  /// History of your Blockfrost usage metrics per endpoint in the past 30 days.
+  Future<Response<BuiltList<JsonObject>>> metricsEndpointsGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -58,8 +57,7 @@ class MetricsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -78,7 +76,6 @@ class MetricsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -103,7 +100,7 @@ class MetricsApi {
   /// Blockfrost usage metrics
   ///
   /// History of your Blockfrost usage metrics in the past 30 days.
-  Future<Response<BuiltList<JsonObject>>> metricsGet({ 
+  Future<Response<BuiltList<JsonObject>>> metricsGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -134,8 +131,7 @@ class MetricsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -154,7 +150,6 @@ class MetricsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -175,5 +170,4 @@ class MetricsApi {
       extra: _response.extra,
     );
   }
-
 }

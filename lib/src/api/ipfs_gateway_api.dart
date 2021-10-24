@@ -15,7 +15,6 @@ import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
 
 class IPFSGatewayApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,7 +24,7 @@ class IPFSGatewayApi {
   /// Relay to an IPFS gateway
   ///
   /// Retrieve an object from the IFPS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`).
-  Future<Response<void>> ipfsGatewayIPFSPathGet({ 
+  Future<Response<void>> ipfsGatewayIPFSPathGet({
     required String iPFSPath,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -57,8 +56,7 @@ class IPFSGatewayApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -71,5 +69,4 @@ class IPFSGatewayApi {
 
     return _response;
   }
-
 }

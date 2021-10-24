@@ -21,7 +21,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressAddressesGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressAddressesGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressAddressesGet(stakeAddress: stakeAddressAcct1, count: 20);
+      Response<BuiltList<JsonObject>> result =
+          await instance.accountsStakeAddressAddressesGet(stakeAddress: stakeAddressAcct1, count: 20);
       result.data?.forEach((addr) {
         if (addr.isMap) print(addr.asMap['address']);
       });
@@ -34,7 +35,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressDelegationsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressDelegationsGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressDelegationsGet(stakeAddress: stakeAddressAcct1);
+      Response<BuiltList<JsonObject>> result =
+          await instance.accountsStakeAddressDelegationsGet(stakeAddress: stakeAddressAcct1);
       // result.data?.forEach((addr) {
       //   if (addr.isMap) print(addr.asMap['address']);
       // });
@@ -57,7 +59,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressHistoryGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressHistoryGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressHistoryGet(stakeAddress: stakeAddressAcct1, count: 20);
+      Response<BuiltList<JsonObject>> result =
+          await instance.accountsStakeAddressHistoryGet(stakeAddress: stakeAddressAcct1, count: 20);
       // result.data?.forEach((addr) {
       //   if (addr.isMap) print(addr.asMap['address']);
       // });
@@ -88,9 +91,12 @@ void main() {
     //   {epoch: 143, amount: 23715, pool_id: pool18ftcshq7394f88qtw8ywqu827ap0hndjznmzem0gk7d3qnzxvkk}
     // ]
     test('test accountsStakeAddressRewardsGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.accountsStakeAddressRewardsGet(stakeAddress: stakeAddressAcct1, count: 20);
+      Response<BuiltList<JsonObject>> result =
+          await instance.accountsStakeAddressRewardsGet(stakeAddress: stakeAddressAcct1, count: 20);
       result.data?.forEach((reward) {
-        if (reward.isMap) print("amount: ${reward.asMap['amount']}, epoch: ${reward.asMap['epoch']}, pool_id: ${reward.asMap['pool_id']}");
+        if (reward.isMap)
+          print(
+              "amount: ${reward.asMap['amount']}, epoch: ${reward.asMap['epoch']}, pool_id: ${reward.asMap['pool_id']}");
       });
       //print(result);
     });

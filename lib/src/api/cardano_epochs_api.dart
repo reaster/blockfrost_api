@@ -19,7 +19,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoEpochsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -29,7 +28,7 @@ class CardanoEpochsApi {
   /// Latest epoch
   ///
   /// Return the information about the latest, therefore current, epoch.
-  Future<Response<EpochContent>> epochsLatestGet({ 
+  Future<Response<EpochContent>> epochsLatestGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -60,8 +59,7 @@ class CardanoEpochsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -80,7 +78,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as EpochContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -105,7 +102,7 @@ class CardanoEpochsApi {
   /// Latest epoch protocol parameters
   ///
   /// Return the protocol parameters for the latest epoch.
-  Future<Response<EpochParamContent>> epochsLatestParametersGet({ 
+  Future<Response<EpochParamContent>> epochsLatestParametersGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -136,8 +133,7 @@ class CardanoEpochsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -156,7 +152,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as EpochParamContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -181,7 +176,7 @@ class CardanoEpochsApi {
   /// Block distribution
   ///
   /// Return the blocks minted for the epoch specified.
-  Future<Response<BuiltList<String>>> epochsNumberBlocksGet({ 
+  Future<Response<BuiltList<String>>> epochsNumberBlocksGet({
     required int number,
     int? count,
     int? page,
@@ -239,7 +234,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -264,7 +258,7 @@ class CardanoEpochsApi {
   /// Block distribution
   ///
   /// Return the block minted for the epoch specified by stake pool.
-  Future<Response<BuiltList<String>>> epochsNumberBlocksPoolIdGet({ 
+  Future<Response<BuiltList<String>>> epochsNumberBlocksPoolIdGet({
     required int number,
     required String poolId,
     int? count,
@@ -277,7 +271,9 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/blocks/{pool_id}'.replaceAll('{' r'number' '}', number.toString()).replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/epochs/{number}/blocks/{pool_id}'
+        .replaceAll('{' r'number' '}', number.toString())
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -323,7 +319,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -348,7 +343,7 @@ class CardanoEpochsApi {
   /// Specific epoch
   ///
   /// Return the content of the requested epoch.
-  Future<Response<EpochContent>> epochsNumberGet({ 
+  Future<Response<EpochContent>> epochsNumberGet({
     required int number,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -380,8 +375,7 @@ class CardanoEpochsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -400,7 +394,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as EpochContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -425,7 +418,7 @@ class CardanoEpochsApi {
   /// Listing of next epochs
   ///
   /// Return the list of epochs following a specific epoch.
-  Future<Response<BuiltList<EpochContent>>> epochsNumberNextGet({ 
+  Future<Response<BuiltList<EpochContent>>> epochsNumberNextGet({
     required int number,
     int? count,
     int? page,
@@ -481,7 +474,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<EpochContent>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -506,7 +498,7 @@ class CardanoEpochsApi {
   /// Protocol parameters
   ///
   /// Return the protocol parameters for the epoch specified.
-  Future<Response<EpochParamContent>> epochsNumberParametersGet({ 
+  Future<Response<EpochParamContent>> epochsNumberParametersGet({
     required int number,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -538,8 +530,7 @@ class CardanoEpochsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -558,7 +549,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as EpochParamContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -583,7 +573,7 @@ class CardanoEpochsApi {
   /// Listing of previous epochs
   ///
   /// Return the list of epochs preceding a specific epoch.
-  Future<Response<BuiltList<EpochContent>>> epochsNumberPreviousGet({ 
+  Future<Response<BuiltList<EpochContent>>> epochsNumberPreviousGet({
     required int number,
     int? count,
     int? page,
@@ -639,7 +629,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<EpochContent>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -664,7 +653,7 @@ class CardanoEpochsApi {
   /// Stake distribution
   ///
   /// Return the active stake distribution for the epoch specified.
-  Future<Response<BuiltList<JsonObject>>> epochsNumberStakesGet({ 
+  Future<Response<BuiltList<JsonObject>>> epochsNumberStakesGet({
     required int number,
     int? count,
     int? page,
@@ -720,7 +709,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -745,7 +733,7 @@ class CardanoEpochsApi {
   /// Stake distribution by pool
   ///
   /// Return the active stake distribution for the epoch specified by stake pool.
-  Future<Response<BuiltList<JsonObject>>> epochsNumberStakesPoolIdGet({ 
+  Future<Response<BuiltList<JsonObject>>> epochsNumberStakesPoolIdGet({
     required int number,
     required String poolId,
     int? count,
@@ -757,7 +745,9 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/stakes/{pool_id}'.replaceAll('{' r'number' '}', number.toString()).replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/epochs/{number}/stakes/{pool_id}'
+        .replaceAll('{' r'number' '}', number.toString())
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -802,7 +792,6 @@ class CardanoEpochsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -823,5 +812,4 @@ class CardanoEpochsApi {
       extra: _response.extra,
     );
   }
-
 }

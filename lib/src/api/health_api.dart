@@ -17,7 +17,6 @@ import 'package:blockfrost/src/model/inline_response429.dart';
 import 'package:blockfrost/src/model/inline_response500.dart';
 
 class HealthApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -26,8 +25,8 @@ class HealthApi {
 
   /// Current backend time
   ///
-  /// This endpoint provides the current UNIX time. Your application might use this to verify if the client clock is not out of sync. 
-  Future<Response<InlineResponse2002>> healthClockGet({ 
+  /// This endpoint provides the current UNIX time. Your application might use this to verify if the client clock is not out of sync.
+  Future<Response<InlineResponse2002>> healthClockGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -51,8 +50,7 @@ class HealthApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -71,7 +69,6 @@ class HealthApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2002;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -95,8 +92,8 @@ class HealthApi {
 
   /// Backend health status
   ///
-  /// Return backend status as a boolean. Your application     should handle situations when backend for the given chain is unavailable. 
-  Future<Response<InlineResponse2001>> healthGet({ 
+  /// Return backend status as a boolean. Your application     should handle situations when backend for the given chain is unavailable.
+  Future<Response<InlineResponse2001>> healthGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -120,8 +117,7 @@ class HealthApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -140,7 +136,6 @@ class HealthApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2001;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -164,8 +159,8 @@ class HealthApi {
 
   /// Root endpoint
   ///
-  /// Root endpoint has no other function than to point end users to documentation. 
-  Future<Response<InlineResponse200>> rootGet({ 
+  /// Root endpoint has no other function than to point end users to documentation.
+  Future<Response<InlineResponse200>> rootGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -189,8 +184,7 @@ class HealthApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -209,7 +203,6 @@ class HealthApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse200;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -230,5 +223,4 @@ class HealthApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -18,7 +18,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoAccountsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -27,8 +26,8 @@ class CardanoAccountsApi {
 
   /// Assets associated with the account addresses
   ///
-  /// Obtain information about assets associated with addresses of a specific account.  <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressAddressesAssetsGet({ 
+  /// Obtain information about assets associated with addresses of a specific account.  <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressAddressesAssetsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -40,7 +39,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/addresses/assets'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path =
+        r'/accounts/{stake_address}/addresses/assets'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -86,7 +86,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -111,7 +110,7 @@ class CardanoAccountsApi {
   /// Account associated addresses
   ///
   /// Obtain information about the addresses of a specific account.
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressAddressesGet({ 
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressAddressesGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -169,7 +168,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -194,7 +192,7 @@ class CardanoAccountsApi {
   /// Account delegation history
   ///
   /// Obtain information about the delegation of a specific account.
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressDelegationsGet({ 
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressDelegationsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -206,7 +204,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/delegations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path =
+        r'/accounts/{stake_address}/delegations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -252,7 +251,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -276,8 +274,8 @@ class CardanoAccountsApi {
 
   /// Specific account address
   ///
-  /// Obtain information about a specific stake account. 
-  Future<Response<AccountContent>> accountsStakeAddressGet({ 
+  /// Obtain information about a specific stake account.
+  Future<Response<AccountContent>> accountsStakeAddressGet({
     required String stakeAddress,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -309,8 +307,7 @@ class CardanoAccountsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -329,7 +326,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as AccountContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -353,8 +349,8 @@ class CardanoAccountsApi {
 
   /// Account history
   ///
-  /// Obtain information about the history of a specific account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressHistoryGet({ 
+  /// Obtain information about the history of a specific account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressHistoryGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -412,7 +408,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -436,8 +431,8 @@ class CardanoAccountsApi {
 
   /// Account MIR history
   ///
-  /// Obtain information about the MIRs of a specific account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressMirsGet({ 
+  /// Obtain information about the MIRs of a specific account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressMirsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -495,7 +490,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -519,8 +513,8 @@ class CardanoAccountsApi {
 
   /// Account registration history
   ///
-  /// Obtain information about the registrations and deregistrations of a specific account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressRegistrationsGet({ 
+  /// Obtain information about the registrations and deregistrations of a specific account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressRegistrationsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -532,7 +526,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/registrations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path =
+        r'/accounts/{stake_address}/registrations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -578,7 +573,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -602,8 +596,8 @@ class CardanoAccountsApi {
 
   /// Account reward history
   ///
-  /// Obtain information about the history of a specific account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressRewardsGet({ 
+  /// Obtain information about the history of a specific account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressRewardsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -661,7 +655,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -685,8 +678,8 @@ class CardanoAccountsApi {
 
   /// Account withdrawal history
   ///
-  /// Obtain information about the withdrawals of a specific account. 
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressWithdrawalsGet({ 
+  /// Obtain information about the withdrawals of a specific account.
+  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressWithdrawalsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -698,7 +691,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/withdrawals'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path =
+        r'/accounts/{stake_address}/withdrawals'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -744,7 +738,6 @@ class CardanoAccountsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -765,5 +758,4 @@ class CardanoAccountsApi {
       extra: _response.extra,
     );
   }
-
 }

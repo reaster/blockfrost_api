@@ -21,7 +21,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsAssetAddressesGet(String asset, { int count, int page, String order }) async
     test('test assetsAssetAddressesGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.assetsAssetAddressesGet(asset: testcoinPolicyId, count: 2);
+      Response<BuiltList<JsonObject>> result =
+          await instance.assetsAssetAddressesGet(asset: testcoinPolicyId, count: 2);
       print(result);
     });
 
@@ -73,7 +74,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsPolicyPolicyIdGet(String policyId, { int count, int page, String order }) async
     test('test assetsPolicyPolicyIdGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.assetsPolicyPolicyIdGet(policyId: testcoinPolicyId, count: 10);
+      Response<BuiltList<JsonObject>> result =
+          await instance.assetsPolicyPolicyIdGet(policyId: testcoinPolicyId, count: 10);
       print(result);
     });
   });

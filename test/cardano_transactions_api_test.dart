@@ -33,7 +33,8 @@ void main() {
     //Future<BuiltList<JsonObject>> txsHashDelegationsGet(String hash) async
     test('test txsHashDelegationsGet', () async {
       //Response<BuiltList<TxContentDelegations>> result = await instance.txsHashDelegationsGet(hash: txEpoch131Block2582075);
-      Response<BuiltList<JsonObject>> result = await instance.txsHashDelegationsGet(hash: txEpoch131Block2582075);
+      Response<BuiltList<JsonObject>> result = await instance.txsHashDelegationsGet(
+          hash: '339581327a0da0b3397adf41c56fd56b4737f5afd4c9bb8c41744cc85e221538');
       print(result);
     });
 

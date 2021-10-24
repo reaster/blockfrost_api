@@ -17,7 +17,6 @@ import 'package:blockfrost/src/model/inline_response500.dart';
 import 'package:built_collection/built_collection.dart';
 
 class CardanoBlocksApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -26,8 +25,8 @@ class CardanoBlocksApi {
 
   /// Specific block in a slot in an epoch
   ///
-  /// Return the content of a requested block for a specific slot in an epoch 
-  Future<Response<BlockContent>> blocksEpochEpochNumberSlotSlotNumberGet({ 
+  /// Return the content of a requested block for a specific slot in an epoch
+  Future<Response<BlockContent>> blocksEpochEpochNumberSlotSlotNumberGet({
     required int epochNumber,
     required int slotNumber,
     CancelToken? cancelToken,
@@ -37,7 +36,9 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/epoch/{epoch_number}/slot/{slot_number}'.replaceAll('{' r'epoch_number' '}', epochNumber.toString()).replaceAll('{' r'slot_number' '}', slotNumber.toString());
+    final _path = r'/blocks/epoch/{epoch_number}/slot/{slot_number}'
+        .replaceAll('{' r'epoch_number' '}', epochNumber.toString())
+        .replaceAll('{' r'slot_number' '}', slotNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -60,8 +61,7 @@ class CardanoBlocksApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -80,7 +80,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BlockContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -104,8 +103,8 @@ class CardanoBlocksApi {
 
   /// Specific block
   ///
-  /// Return the content of a requested block. 
-  Future<Response<BlockContent>> blocksHashOrNumberGet({ 
+  /// Return the content of a requested block.
+  Future<Response<BlockContent>> blocksHashOrNumberGet({
     required String hashOrNumber,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -137,8 +136,7 @@ class CardanoBlocksApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -157,7 +155,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BlockContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -181,8 +178,8 @@ class CardanoBlocksApi {
 
   /// Listing of next blocks
   ///
-  /// Return the list of blocks following a specific block. 
-  Future<Response<BuiltList<BlockContent>>> blocksHashOrNumberNextGet({ 
+  /// Return the list of blocks following a specific block.
+  Future<Response<BuiltList<BlockContent>>> blocksHashOrNumberNextGet({
     required String hashOrNumber,
     int? count,
     int? page,
@@ -238,7 +235,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<BlockContent>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -262,8 +258,8 @@ class CardanoBlocksApi {
 
   /// Listing of previous blocks
   ///
-  /// Return the list of blocks preceding a specific block. 
-  Future<Response<BuiltList<BlockContent>>> blocksHashOrNumberPreviousGet({ 
+  /// Return the list of blocks preceding a specific block.
+  Future<Response<BuiltList<BlockContent>>> blocksHashOrNumberPreviousGet({
     required String hashOrNumber,
     int? count,
     int? page,
@@ -319,7 +315,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<BlockContent>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -344,7 +339,7 @@ class CardanoBlocksApi {
   /// Block transactions
   ///
   /// Return the transactions within the block.
-  Future<Response<BuiltList<String>>> blocksHashOrNumberTxsGet({ 
+  Future<Response<BuiltList<String>>> blocksHashOrNumberTxsGet({
     required String hashOrNumber,
     int? count,
     int? page,
@@ -402,7 +397,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -426,8 +420,8 @@ class CardanoBlocksApi {
 
   /// Latest block
   ///
-  /// Return the latest block available to the backends, also known as the tip of the blockchain. 
-  Future<Response<BlockContent>> blocksLatestGet({ 
+  /// Return the latest block available to the backends, also known as the tip of the blockchain.
+  Future<Response<BlockContent>> blocksLatestGet({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -458,8 +452,7 @@ class CardanoBlocksApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -478,7 +471,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BlockContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -503,7 +495,7 @@ class CardanoBlocksApi {
   /// Latest block transactions
   ///
   /// Return the transactions within the latest block.
-  Future<Response<BuiltList<String>>> blocksLatestTxsGet({ 
+  Future<Response<BuiltList<String>>> blocksLatestTxsGet({
     int? count,
     int? page,
     String? order,
@@ -560,7 +552,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -584,8 +575,8 @@ class CardanoBlocksApi {
 
   /// Specific block in a slot
   ///
-  /// Return the content of a requested block for a specific slot. 
-  Future<Response<BlockContent>> blocksSlotSlotNumberGet({ 
+  /// Return the content of a requested block for a specific slot.
+  Future<Response<BlockContent>> blocksSlotSlotNumberGet({
     required int slotNumber,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -617,8 +608,7 @@ class CardanoBlocksApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -637,7 +627,6 @@ class CardanoBlocksApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BlockContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -658,5 +647,4 @@ class CardanoBlocksApi {
       extra: _response.extra,
     );
   }
-
 }

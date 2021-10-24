@@ -19,7 +19,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoAddressesApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -29,7 +28,7 @@ class CardanoAddressesApi {
   /// Specific address
   ///
   /// Obtain information about a specific address.
-  Future<Response<AddressContent>> addressesAddressGet({ 
+  Future<Response<AddressContent>> addressesAddressGet({
     required String address,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -61,8 +60,7 @@ class CardanoAddressesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -81,7 +79,6 @@ class CardanoAddressesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as AddressContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -106,7 +103,7 @@ class CardanoAddressesApi {
   /// Address details
   ///
   /// Obtain details about an address.
-  Future<Response<AddressContentTotal>> addressesAddressTotalGet({ 
+  Future<Response<AddressContentTotal>> addressesAddressTotalGet({
     required String address,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -138,8 +135,7 @@ class CardanoAddressesApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -158,7 +154,6 @@ class CardanoAddressesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as AddressContentTotal;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -183,7 +178,7 @@ class CardanoAddressesApi {
   /// Address transactions
   ///
   /// Transactions on the address.
-  Future<Response<BuiltList<JsonObject>>> addressesAddressTransactionsGet({ 
+  Future<Response<BuiltList<JsonObject>>> addressesAddressTransactionsGet({
     required String address,
     int? count,
     int? page,
@@ -245,7 +240,6 @@ class CardanoAddressesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -270,7 +264,7 @@ class CardanoAddressesApi {
   /// Address transactions
   ///
   /// Transactions on the address.
-  Future<Response<BuiltList<String>>> addressesAddressTxsGet({ 
+  Future<Response<BuiltList<String>>> addressesAddressTxsGet({
     required String address,
     int? count,
     int? page,
@@ -328,7 +322,6 @@ class CardanoAddressesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -353,7 +346,7 @@ class CardanoAddressesApi {
   /// Address UTXOs
   ///
   /// UTXOs of the address.
-  Future<Response<BuiltList<JsonObject>>> addressesAddressUtxosGet({ 
+  Future<Response<BuiltList<JsonObject>>> addressesAddressUtxosGet({
     required String address,
     int? count,
     int? page,
@@ -411,7 +404,6 @@ class CardanoAddressesApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -432,5 +424,4 @@ class CardanoAddressesApi {
       extra: _response.extra,
     );
   }
-
 }

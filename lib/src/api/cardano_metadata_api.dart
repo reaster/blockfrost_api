@@ -17,7 +17,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoMetadataApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -26,8 +25,8 @@ class CardanoMetadataApi {
 
   /// Transaction metadata labels
   ///
-  /// List of all used transaction metadata labels. 
-  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsGet({ 
+  /// List of all used transaction metadata labels.
+  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsGet({
     int? count,
     int? page,
     String? order,
@@ -84,7 +83,6 @@ class CardanoMetadataApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -109,7 +107,7 @@ class CardanoMetadataApi {
   /// Transaction metadata content in CBOR
   ///
   /// Transaction metadata per label.
-  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsLabelCborGet({ 
+  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsLabelCborGet({
     required String label,
     int? count,
     int? page,
@@ -167,7 +165,6 @@ class CardanoMetadataApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -192,7 +189,7 @@ class CardanoMetadataApi {
   /// Transaction metadata content in JSON
   ///
   /// Transaction metadata per label.
-  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsLabelGet({ 
+  Future<Response<BuiltList<JsonObject>>> metadataTxsLabelsLabelGet({
     required String label,
     int? count,
     int? page,
@@ -250,7 +247,6 @@ class CardanoMetadataApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -271,5 +267,4 @@ class CardanoMetadataApi {
       extra: _response.extra,
     );
   }
-
 }

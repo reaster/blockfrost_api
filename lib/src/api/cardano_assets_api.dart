@@ -18,7 +18,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoAssetsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -28,7 +27,7 @@ class CardanoAssetsApi {
   /// Asset addresses
   ///
   /// List of a addresses containing a specific asset
-  Future<Response<BuiltList<JsonObject>>> assetsAssetAddressesGet({ 
+  Future<Response<BuiltList<JsonObject>>> assetsAssetAddressesGet({
     required String asset,
     int? count,
     int? page,
@@ -86,7 +85,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -111,7 +109,7 @@ class CardanoAssetsApi {
   /// Specific asset
   ///
   /// Information about a specific asset
-  Future<Response<Asset>> assetsAssetGet({ 
+  Future<Response<Asset>> assetsAssetGet({
     required String asset,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -143,8 +141,7 @@ class CardanoAssetsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -163,7 +160,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as Asset;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -188,7 +184,7 @@ class CardanoAssetsApi {
   /// Asset history
   ///
   /// History of a specific asset
-  Future<Response<BuiltList<JsonObject>>> assetsAssetHistoryGet({ 
+  Future<Response<BuiltList<JsonObject>>> assetsAssetHistoryGet({
     required String asset,
     int? count,
     int? page,
@@ -246,7 +242,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -271,7 +266,7 @@ class CardanoAssetsApi {
   /// Asset transactions
   ///
   /// List of a specific asset transactions
-  Future<Response<BuiltList<JsonObject>>> assetsAssetTransactionsGet({ 
+  Future<Response<BuiltList<JsonObject>>> assetsAssetTransactionsGet({
     required String asset,
     int? count,
     int? page,
@@ -329,7 +324,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -354,7 +348,7 @@ class CardanoAssetsApi {
   /// Asset transactions
   ///
   /// List of a specific asset transactions
-  Future<Response<BuiltList<String>>> assetsAssetTxsGet({ 
+  Future<Response<BuiltList<String>>> assetsAssetTxsGet({
     required String asset,
     int? count,
     int? page,
@@ -412,7 +406,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<String>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -437,7 +430,7 @@ class CardanoAssetsApi {
   /// Assets
   ///
   /// List of assets.
-  Future<Response<BuiltList<JsonObject>>> assetsGet({ 
+  Future<Response<BuiltList<JsonObject>>> assetsGet({
     int? count,
     int? page,
     String? order,
@@ -494,7 +487,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -519,7 +511,7 @@ class CardanoAssetsApi {
   /// Assets of a specific policy
   ///
   /// List of asset minted under a specific policy
-  Future<Response<BuiltList<JsonObject>>> assetsPolicyPolicyIdGet({ 
+  Future<Response<BuiltList<JsonObject>>> assetsPolicyPolicyIdGet({
     required String policyId,
     int? count,
     int? page,
@@ -577,7 +569,6 @@ class CardanoAssetsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -598,5 +589,4 @@ class CardanoAssetsApi {
       extra: _response.extra,
     );
   }
-
 }

@@ -20,7 +20,6 @@ import 'package:blockfrost/src/model/inline_response500.dart';
 import 'package:built_collection/built_collection.dart';
 
 class IPFSPinsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -30,7 +29,7 @@ class IPFSPinsApi {
   /// Pin an object
   ///
   /// Pinned objects are counted in your user storage quota.
-  Future<Response<InlineResponse2004>> ipfsPinAddIPFSPathPost({ 
+  Future<Response<InlineResponse2004>> ipfsPinAddIPFSPathPost({
     required String iPFSPath,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -62,8 +61,7 @@ class IPFSPinsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -82,7 +80,6 @@ class IPFSPinsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2004;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -104,10 +101,10 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
+  ///
   ///
   /// List objects pinned to local storage
-  Future<Response<BuiltList<InlineResponse2005>>> ipfsPinListGet({ 
+  Future<Response<BuiltList<InlineResponse2005>>> ipfsPinListGet({
     int? count,
     int? page,
     String? order,
@@ -164,7 +161,6 @@ class IPFSPinsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<InlineResponse2005>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -186,10 +182,10 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
+  ///
   ///
   /// List objects pinned to local storage
-  Future<Response<InlineResponse2006>> ipfsPinListIPFSPathGet({ 
+  Future<Response<InlineResponse2006>> ipfsPinListIPFSPathGet({
     required String iPFSPath,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -221,8 +217,7 @@ class IPFSPinsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -241,7 +236,6 @@ class IPFSPinsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2006;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -263,10 +257,10 @@ class IPFSPinsApi {
     );
   }
 
-  /// 
+  ///
   ///
   /// Remove pinned objects from local storage
-  Future<Response<InlineResponse2007>> ipfsPinRemoveIPFSPathPost({ 
+  Future<Response<InlineResponse2007>> ipfsPinRemoveIPFSPathPost({
     required String iPFSPath,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -298,8 +292,7 @@ class IPFSPinsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -318,7 +311,6 @@ class IPFSPinsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as InlineResponse2007;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -339,5 +331,4 @@ class IPFSPinsApi {
       extra: _response.extra,
     );
   }
-
 }
