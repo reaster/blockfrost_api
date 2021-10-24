@@ -11,17 +11,29 @@ class _$TxContentUtxoInputs extends TxContentUtxoInputs {
   final String address;
   @override
   final BuiltList<TxContentOutputAmount> amount;
+  @override
+  final String txHash;
+  @override
+  final int outputIndex;
 
   factory _$TxContentUtxoInputs(
           [void Function(TxContentUtxoInputsBuilder)? updates]) =>
       (new TxContentUtxoInputsBuilder()..update(updates)).build();
 
-  _$TxContentUtxoInputs._({required this.address, required this.amount})
+  _$TxContentUtxoInputs._(
+      {required this.address,
+      required this.amount,
+      required this.txHash,
+      required this.outputIndex})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         address, 'TxContentUtxoInputs', 'address');
     BuiltValueNullFieldError.checkNotNull(
         amount, 'TxContentUtxoInputs', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        txHash, 'TxContentUtxoInputs', 'txHash');
+    BuiltValueNullFieldError.checkNotNull(
+        outputIndex, 'TxContentUtxoInputs', 'outputIndex');
   }
 
   @override
@@ -38,19 +50,25 @@ class _$TxContentUtxoInputs extends TxContentUtxoInputs {
     if (identical(other, this)) return true;
     return other is TxContentUtxoInputs &&
         address == other.address &&
-        amount == other.amount;
+        amount == other.amount &&
+        txHash == other.txHash &&
+        outputIndex == other.outputIndex;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, address.hashCode), amount.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, address.hashCode), amount.hashCode), txHash.hashCode),
+        outputIndex.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('TxContentUtxoInputs')
           ..add('address', address)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('txHash', txHash)
+          ..add('outputIndex', outputIndex))
         .toString();
   }
 }
@@ -69,6 +87,14 @@ class TxContentUtxoInputsBuilder
   set amount(ListBuilder<TxContentOutputAmount>? amount) =>
       _$this._amount = amount;
 
+  String? _txHash;
+  String? get txHash => _$this._txHash;
+  set txHash(String? txHash) => _$this._txHash = txHash;
+
+  int? _outputIndex;
+  int? get outputIndex => _$this._outputIndex;
+  set outputIndex(int? outputIndex) => _$this._outputIndex = outputIndex;
+
   TxContentUtxoInputsBuilder() {
     TxContentUtxoInputs._initializeBuilder(this);
   }
@@ -78,6 +104,8 @@ class TxContentUtxoInputsBuilder
     if ($v != null) {
       _address = $v.address;
       _amount = $v.amount.toBuilder();
+      _txHash = $v.txHash;
+      _outputIndex = $v.outputIndex;
       _$v = null;
     }
     return this;
@@ -102,7 +130,11 @@ class TxContentUtxoInputsBuilder
           new _$TxContentUtxoInputs._(
               address: BuiltValueNullFieldError.checkNotNull(
                   address, 'TxContentUtxoInputs', 'address'),
-              amount: amount.build());
+              amount: amount.build(),
+              txHash: BuiltValueNullFieldError.checkNotNull(
+                  txHash, 'TxContentUtxoInputs', 'txHash'),
+              outputIndex: BuiltValueNullFieldError.checkNotNull(
+                  outputIndex, 'TxContentUtxoInputs', 'outputIndex'));
     } catch (_) {
       late String _$failedField;
       try {
