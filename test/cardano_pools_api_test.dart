@@ -19,7 +19,7 @@ void main() {
     //
     //Future<BuiltList<String>> poolsGet({ int count, int page, String order }) async
     test('test poolsGet', () async {
-      final Response<BuiltList<String>> response = await testnet.poolsGet(count: 100, page: 0, order: 'asc');
+      final Response<BuiltList<String>> response = await testnet.poolsGet(count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -33,7 +33,8 @@ void main() {
     test('test poolsPoolIdBlocksGet', () async {
       // final poolId1 = 'pool1adur9jcn0dkjpm3v8ayf94yn3fe5xfk2rqfz7rfpuh6cw6evd7w';
       final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
-      final Response<BuiltList<String>> response = await testnet.poolsPoolIdBlocksGet(poolId: poolId1, count: 100, page: 0, order: 'asc');
+      final Response<BuiltList<String>> response =
+          await testnet.poolsPoolIdBlocksGet(poolId: poolId1, count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data?.forEach((s) => print(s));
       }
@@ -47,7 +48,7 @@ void main() {
     test('test poolsPoolIdDelegatorsGet', () async {
       final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
       final Response<BuiltList<JsonObject>> response =
-          await testnet.poolsPoolIdDelegatorsGet(poolId: poolId1, count: 100, page: 0, order: 'asc');
+          await testnet.poolsPoolIdDelegatorsGet(poolId: poolId1, count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -116,7 +117,7 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> poolsRetiredGet({ int count, int page, String order }) async
     test('test poolsRetiredGet', () async {
-      final Response<BuiltList<JsonObject>> response = await testnet.poolsRetiredGet(count: 100, page: 0, order: 'asc');
+      final Response<BuiltList<JsonObject>> response = await testnet.poolsRetiredGet(count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -128,7 +129,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> poolsRetiringGet({ int count, int page, String order }) async
     test('test poolsRetiringGet', () async {
-      final Response<BuiltList<JsonObject>> response = await testnet.poolsRetiringGet(count: 100, page: 0, order: 'asc');
+      final Response<BuiltList<JsonObject>> response =
+          await testnet.poolsRetiringGet(count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
