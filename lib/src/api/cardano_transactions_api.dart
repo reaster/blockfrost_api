@@ -19,7 +19,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 
 class CardanoTransactionsApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -29,8 +28,9 @@ class CardanoTransactionsApi {
   /// Submit a transaction
   ///
   /// Submit an already serialized transaction to the network.
-  Future<Response<String>> txSubmitPost({ 
+  Future<Response<String>> txSubmitPost({
     required String contentType,
+    required List<int> data,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -62,11 +62,11 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
+      data: data,
       options: _options,
       queryParameters: _queryParameters,
       cancelToken: cancelToken,
@@ -78,7 +78,6 @@ class CardanoTransactionsApi {
 
     try {
       _responseData = _response.data as String;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -102,8 +101,8 @@ class CardanoTransactionsApi {
 
   /// Transaction delegation certificates
   ///
-  /// Obtain information about delegation certificates of a specific transaction. 
-  Future<Response<BuiltList<JsonObject>>> txsHashDelegationsGet({ 
+  /// Obtain information about delegation certificates of a specific transaction.
+  Future<Response<BuiltList<JsonObject>>> txsHashDelegationsGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -135,8 +134,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -155,7 +153,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -180,7 +177,7 @@ class CardanoTransactionsApi {
   /// Specific transaction
   ///
   /// Return content of the requested transaction.
-  Future<Response<TxContent>> txsHashGet({ 
+  Future<Response<TxContent>> txsHashGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -212,8 +209,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -232,7 +228,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as TxContent;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -257,7 +252,7 @@ class CardanoTransactionsApi {
   /// Transaction metadata in CBOR
   ///
   /// Obtain the transaction metadata in CBOR.
-  Future<Response<BuiltList<JsonObject>>> txsHashMetadataCborGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashMetadataCborGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -289,8 +284,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -309,7 +303,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -334,7 +327,7 @@ class CardanoTransactionsApi {
   /// Transaction metadata
   ///
   /// Obtain the transaction metadata.
-  Future<Response<BuiltList<JsonObject>>> txsHashMetadataGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashMetadataGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -366,8 +359,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -386,7 +378,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -411,7 +402,7 @@ class CardanoTransactionsApi {
   /// Transaction MIRs
   ///
   /// Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction.
-  Future<Response<BuiltList<JsonObject>>> txsHashMirsGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashMirsGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -443,8 +434,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -463,7 +453,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -487,8 +476,8 @@ class CardanoTransactionsApi {
 
   /// Transaction stake pool retirement certificates
   ///
-  /// Obtain information about stake pool retirements within a specific transaction. 
-  Future<Response<BuiltList<JsonObject>>> txsHashPoolRetiresGet({ 
+  /// Obtain information about stake pool retirements within a specific transaction.
+  Future<Response<BuiltList<JsonObject>>> txsHashPoolRetiresGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -520,8 +509,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -540,7 +528,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -564,8 +551,8 @@ class CardanoTransactionsApi {
 
   /// Transaction stake pool registration and update certificates
   ///
-  /// Obtain information about stake pool registration and update certificates of a specific transaction. 
-  Future<Response<BuiltList<JsonObject>>> txsHashPoolUpdatesGet({ 
+  /// Obtain information about stake pool registration and update certificates of a specific transaction.
+  Future<Response<BuiltList<JsonObject>>> txsHashPoolUpdatesGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -597,8 +584,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -617,7 +603,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -641,8 +626,8 @@ class CardanoTransactionsApi {
 
   /// Transaction stake addresses certificates
   ///
-  /// Obtain information about (de)registration of stake addresses within a transaction. 
-  Future<Response<BuiltList<JsonObject>>> txsHashStakesGet({ 
+  /// Obtain information about (de)registration of stake addresses within a transaction.
+  Future<Response<BuiltList<JsonObject>>> txsHashStakesGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -674,8 +659,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -694,7 +678,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -719,7 +702,7 @@ class CardanoTransactionsApi {
   /// Transaction UTXOs
   ///
   /// Return the inputs and UTXOs of the specific transaction.
-  Future<Response<TxContentUtxo>> txsHashUtxosGet({ 
+  Future<Response<TxContentUtxo>> txsHashUtxosGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -751,8 +734,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -771,7 +753,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as TxContentUtxo;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -780,7 +761,7 @@ class CardanoTransactionsApi {
         error: error,
       );
     }
-
+    print("txsHashUtxosGet -> ${_response.data!}");
     return Response<TxContentUtxo>(
       data: _responseData,
       headers: _response.headers,
@@ -796,7 +777,7 @@ class CardanoTransactionsApi {
   /// Transaction withdrawal
   ///
   /// Obtain information about withdrawals of a specific transaction.
-  Future<Response<BuiltList<JsonObject>>> txsHashWithdrawalsGet({ 
+  Future<Response<BuiltList<JsonObject>>> txsHashWithdrawalsGet({
     required String hash,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -828,8 +809,7 @@ class CardanoTransactionsApi {
       validateStatus: validateStatus,
     );
 
-    final _queryParameters = <String, dynamic>{
-    };
+    final _queryParameters = <String, dynamic>{};
 
     final _response = await _dio.request<Object>(
       _path,
@@ -848,7 +828,6 @@ class CardanoTransactionsApi {
         _response.data!,
         specifiedType: _responseType,
       ) as BuiltList<JsonObject>;
-
     } catch (error) {
       throw DioError(
         requestOptions: _response.requestOptions,
@@ -869,5 +848,4 @@ class CardanoTransactionsApi {
       extra: _response.extra,
     );
   }
-
 }
