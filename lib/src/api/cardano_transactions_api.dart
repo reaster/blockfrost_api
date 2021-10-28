@@ -7,12 +7,12 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:blockfrost/src/model/inline_response400.dart';
-import 'package:blockfrost/src/model/inline_response403.dart';
-import 'package:blockfrost/src/model/inline_response404.dart';
-import 'package:blockfrost/src/model/inline_response418.dart';
-import 'package:blockfrost/src/model/inline_response429.dart';
-import 'package:blockfrost/src/model/inline_response500.dart';
+// import 'package:blockfrost/src/model/inline_response400.dart';
+// import 'package:blockfrost/src/model/inline_response403.dart';
+// import 'package:blockfrost/src/model/inline_response404.dart';
+// import 'package:blockfrost/src/model/inline_response418.dart';
+// import 'package:blockfrost/src/model/inline_response429.dart';
+// import 'package:blockfrost/src/model/inline_response500.dart';
 import 'package:blockfrost/src/model/tx_content.dart';
 import 'package:blockfrost/src/model/tx_content_utxo.dart';
 import 'package:built_collection/built_collection.dart';
@@ -761,7 +761,7 @@ class CardanoTransactionsApi {
         error: error,
       );
     }
-    print("txsHashUtxosGet -> ${_response.data!}");
+    //print("txsHashUtxosGet -> ${_response.data!}");
     return Response<TxContentUtxo>(
       data: _responseData,
       headers: _response.headers,
