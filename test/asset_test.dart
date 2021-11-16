@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // On-chain metadata stored in the minting transaction under label 721, community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85 
+    // On-chain metadata stored in the minting transaction under label 721, community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85
     // BuiltMap<String, JsonObject> onchainMetadata
     test('to test the property `onchainMetadata`', () async {
       // TODO
@@ -53,6 +53,5 @@ void main() {
     test('to test the property `metadata`', () async {
       // TODO
     });
-
   });
 }

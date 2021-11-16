@@ -36,7 +36,8 @@ class NutLinkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/nutlink/{address}'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/nutlink/{address}'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -114,7 +115,8 @@ class NutLinkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/nutlink/{address}/tickers'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/nutlink/{address}/tickers'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -281,7 +283,8 @@ class NutLinkApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/nutlink/tickers/{ticker}'.replaceAll('{' r'ticker' '}', ticker.toString());
+    final _path = r'/nutlink/tickers/{ticker}'
+        .replaceAll('{' r'ticker' '}', ticker.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

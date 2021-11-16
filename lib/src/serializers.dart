@@ -154,4 +154,5 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(Iso8601DateTimeSerializer()))
     .build();
 
-Serializers standardSerializers = (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
+Serializers standardSerializers =
+    (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

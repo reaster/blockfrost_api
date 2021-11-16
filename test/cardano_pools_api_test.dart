@@ -19,7 +19,8 @@ void main() {
     //
     //Future<BuiltList<String>> poolsGet({ int count, int page, String order }) async
     test('test poolsGet', () async {
-      final Response<BuiltList<String>> response = await testnet.poolsGet(count: 100, page: 1, order: 'asc');
+      final Response<BuiltList<String>> response =
+          await testnet.poolsGet(count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -32,9 +33,11 @@ void main() {
     //Future<BuiltList<String>> poolsPoolIdBlocksGet(String poolId, { int count, int page, String order }) async
     test('test poolsPoolIdBlocksGet', () async {
       // final poolId1 = 'pool1adur9jcn0dkjpm3v8ayf94yn3fe5xfk2rqfz7rfpuh6cw6evd7w';
-      final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
+      final poolId1 =
+          'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
       final Response<BuiltList<String>> response =
-          await testnet.poolsPoolIdBlocksGet(poolId: poolId1, count: 100, page: 1, order: 'asc');
+          await testnet.poolsPoolIdBlocksGet(
+              poolId: poolId1, count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data?.forEach((s) => print(s));
       }
@@ -46,9 +49,11 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> poolsPoolIdDelegatorsGet(String poolId, { int count, int page, String order }) async
     test('test poolsPoolIdDelegatorsGet', () async {
-      final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
+      final poolId1 =
+          'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
       final Response<BuiltList<JsonObject>> response =
-          await testnet.poolsPoolIdDelegatorsGet(poolId: poolId1, count: 100, page: 1, order: 'asc');
+          await testnet.poolsPoolIdDelegatorsGet(
+              poolId: poolId1, count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -60,8 +65,10 @@ void main() {
     //
     //Future<Pool> poolsPoolIdGet(String poolId) async
     test('test poolsPoolIdGet', () async {
-      final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
-      final Response<Pool> response = await testnet.poolsPoolIdGet(poolId: poolId1);
+      final poolId1 =
+          'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
+      final Response<Pool> response =
+          await testnet.poolsPoolIdGet(poolId: poolId1);
       if (response.statusCode == 200 && response.data != null) {
         print(response.data);
       }
@@ -73,8 +80,10 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> poolsPoolIdHistoryGet(String poolId, { int count, int page, String order }) async
     test('test poolsPoolIdHistoryGet', () async {
-      final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
-      final Response<BuiltList<JsonObject>> response = await testnet.poolsPoolIdHistoryGet(poolId: poolId1);
+      final poolId1 =
+          'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
+      final Response<BuiltList<JsonObject>> response =
+          await testnet.poolsPoolIdHistoryGet(poolId: poolId1);
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -86,8 +95,10 @@ void main() {
     //
     //Future<AnyOfpoolMetadataobject> poolsPoolIdMetadataGet(String poolId) async
     test('test poolsPoolIdMetadataGet', () async {
-      final poolId1 = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
-      final Response<AnyOfpoolMetadataobject> response = await testnet.poolsPoolIdMetadataGet(poolId: poolId1);
+      final poolId1 =
+          'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd';
+      final Response<AnyOfpoolMetadataobject> response =
+          await testnet.poolsPoolIdMetadataGet(poolId: poolId1);
       if (response.statusCode == 200 && response.data != null) {
         print(response.data);
       }
@@ -117,7 +128,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> poolsRetiredGet({ int count, int page, String order }) async
     test('test poolsRetiredGet', () async {
-      final Response<BuiltList<JsonObject>> response = await testnet.poolsRetiredGet(count: 100, page: 1, order: 'asc');
+      final Response<BuiltList<JsonObject>> response =
+          await testnet.poolsRetiredGet(count: 100, page: 1, order: 'asc');
       if (response.statusCode == 200 && response.data != null) {
         response.data!.forEach((s) => print(s));
       }
@@ -152,7 +164,8 @@ homepage: https://www.youtube.com/watch?v=oUdUReqB25M}
           ..poolId = 'pool1qa22ym0t8w9fg0ejlp0duhzcy6a24uyfjsyx5jugrjw6wsfetyd'
           ..hex = '0754a26deb3b8a943f32f85ede5c5826baaaf08994086a4b881c9da7'
           ..url = 'https://raw.githubusercontent.com/kiwipool/stn/t/whaka.json'
-          ..hash = '4c36b0e6f34587361fb5b87a593474079de33185023559ed525b54be2c37533f'
+          ..hash =
+              '4c36b0e6f34587361fb5b87a593474079de33185023559ed525b54be2c37533f'
           ..ticker = 'WHAKA'
           ..name = 'Sexy MotherWhaka by Kiwipool Staking'
           ..description = 'The names says it all'
@@ -163,7 +176,8 @@ homepage: https://www.youtube.com/watch?v=oUdUReqB25M}
       final json1 = serializers.toJson(AnyOfpoolMetadataobject.serializer, r1);
       print(json1);
       expect(json1, isNotNull);
-      final r2 = serializers.fromJson(AnyOfpoolMetadataobject.serializer, json1);
+      final r2 =
+          serializers.fromJson(AnyOfpoolMetadataobject.serializer, json1);
       print(r2);
       expect(r1, r2);
     });

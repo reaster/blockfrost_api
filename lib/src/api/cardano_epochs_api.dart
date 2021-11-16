@@ -188,7 +188,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/blocks'.replaceAll('{' r'number' '}', number.toString());
+    final _path = r'/epochs/{number}/blocks'
+        .replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -352,7 +353,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}'.replaceAll('{' r'number' '}', number.toString());
+    final _path =
+        r'/epochs/{number}'.replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -429,7 +431,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/next'.replaceAll('{' r'number' '}', number.toString());
+    final _path = r'/epochs/{number}/next'
+        .replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -507,7 +510,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/parameters'.replaceAll('{' r'number' '}', number.toString());
+    final _path = r'/epochs/{number}/parameters'
+        .replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -584,7 +588,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/previous'.replaceAll('{' r'number' '}', number.toString());
+    final _path = r'/epochs/{number}/previous'
+        .replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -664,7 +669,8 @@ class CardanoEpochsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/epochs/{number}/stakes'.replaceAll('{' r'number' '}', number.toString());
+    final _path = r'/epochs/{number}/stakes'
+        .replaceAll('{' r'number' '}', number.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

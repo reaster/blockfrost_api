@@ -122,7 +122,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/blocks'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/blocks'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -204,7 +205,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/delegators'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/delegators'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -283,7 +285,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path =
+        r'/pools/{pool_id}'.replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -361,7 +364,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/history'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/history'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -440,7 +444,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/metadata'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/metadata'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -516,7 +521,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/relays'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/relays'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -594,7 +600,8 @@ class CardanoPoolsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/pools/{pool_id}/updates'.replaceAll('{' r'pool_id' '}', poolId.toString());
+    final _path = r'/pools/{pool_id}/updates'
+        .replaceAll('{' r'pool_id' '}', poolId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

@@ -27,7 +27,8 @@ class CardanoAccountsApi {
   /// Assets associated with the account addresses
   ///
   /// Obtain information about assets associated with addresses of a specific account.  <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
-  Future<Response<BuiltList<JsonObject>>> accountsStakeAddressAddressesAssetsGet({
+  Future<Response<BuiltList<JsonObject>>>
+      accountsStakeAddressAddressesAssetsGet({
     required String stakeAddress,
     int? count,
     int? page,
@@ -39,8 +40,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path =
-        r'/accounts/{stake_address}/addresses/assets'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/addresses/assets'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -122,7 +123,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/addresses'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/addresses'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -204,8 +206,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path =
-        r'/accounts/{stake_address}/delegations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/delegations'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -284,7 +286,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -362,7 +365,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/history'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/history'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -444,7 +448,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/mirs'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/mirs'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -526,8 +531,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path =
-        r'/accounts/{stake_address}/registrations'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/registrations'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -609,7 +614,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/accounts/{stake_address}/rewards'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/rewards'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -691,8 +697,8 @@ class CardanoAccountsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path =
-        r'/accounts/{stake_address}/withdrawals'.replaceAll('{' r'stake_address' '}', stakeAddress.toString());
+    final _path = r'/accounts/{stake_address}/withdrawals'
+        .replaceAll('{' r'stake_address' '}', stakeAddress.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

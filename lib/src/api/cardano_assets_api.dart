@@ -39,7 +39,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/{asset}/addresses'.replaceAll('{' r'asset' '}', asset.toString());
+    final _path = r'/assets/{asset}/addresses'
+        .replaceAll('{' r'asset' '}', asset.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -118,7 +119,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/{asset}'.replaceAll('{' r'asset' '}', asset.toString());
+    final _path =
+        r'/assets/{asset}'.replaceAll('{' r'asset' '}', asset.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -196,7 +198,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/{asset}/history'.replaceAll('{' r'asset' '}', asset.toString());
+    final _path = r'/assets/{asset}/history'
+        .replaceAll('{' r'asset' '}', asset.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -278,7 +281,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/{asset}/transactions'.replaceAll('{' r'asset' '}', asset.toString());
+    final _path = r'/assets/{asset}/transactions'
+        .replaceAll('{' r'asset' '}', asset.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -360,7 +364,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/{asset}/txs'.replaceAll('{' r'asset' '}', asset.toString());
+    final _path =
+        r'/assets/{asset}/txs'.replaceAll('{' r'asset' '}', asset.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -523,7 +528,8 @@ class CardanoAssetsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/assets/policy/{policy_id}'.replaceAll('{' r'policy_id' '}', policyId.toString());
+    final _path = r'/assets/policy/{policy_id}'
+        .replaceAll('{' r'policy_id' '}', policyId.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

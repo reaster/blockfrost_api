@@ -113,7 +113,8 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/{hash_or_number}'.replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
+    final _path = r'/blocks/{hash_or_number}'
+        .replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -190,7 +191,8 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/{hash_or_number}/next'.replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
+    final _path = r'/blocks/{hash_or_number}/next'
+        .replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -270,7 +272,8 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/{hash_or_number}/previous'.replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
+    final _path = r'/blocks/{hash_or_number}/previous'
+        .replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -351,7 +354,8 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/{hash_or_number}/txs'.replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
+    final _path = r'/blocks/{hash_or_number}/txs'
+        .replaceAll('{' r'hash_or_number' '}', hashOrNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -585,7 +589,8 @@ class CardanoBlocksApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/blocks/slot/{slot_number}'.replaceAll('{' r'slot_number' '}', slotNumber.toString());
+    final _path = r'/blocks/slot/{slot_number}'
+        .replaceAll('{' r'slot_number' '}', slotNumber.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

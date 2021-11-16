@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
 
-
 /// tests for IPFSGatewayApi
 void main() {
   final instance = Blockfrost().getIPFSGatewayApi();
@@ -15,6 +14,5 @@ void main() {
     test('test ipfsGatewayIPFSPathGet', () async {
       // TODO
     });
-
   });
 }

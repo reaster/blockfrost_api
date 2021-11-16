@@ -41,6 +41,5 @@ void main() {
     test('to test the property `decimals`', () async {
       // TODO
     });
-
   });
 }

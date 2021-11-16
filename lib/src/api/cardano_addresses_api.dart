@@ -37,7 +37,8 @@ class CardanoAddressesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/addresses/{address}'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/addresses/{address}'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -112,7 +113,8 @@ class CardanoAddressesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/addresses/{address}/total'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/addresses/{address}/total'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -192,7 +194,8 @@ class CardanoAddressesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/addresses/{address}/transactions'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/addresses/{address}/transactions'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -276,7 +279,8 @@ class CardanoAddressesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/addresses/{address}/txs'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/addresses/{address}/txs'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -358,7 +362,8 @@ class CardanoAddressesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/addresses/{address}/utxos'.replaceAll('{' r'address' '}', address.toString());
+    final _path = r'/addresses/{address}/utxos'
+        .replaceAll('{' r'address' '}', address.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

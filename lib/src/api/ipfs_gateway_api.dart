@@ -33,7 +33,8 @@ class IPFSGatewayApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/gateway/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/ipfs/gateway/{IPFS_path}'
+        .replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

@@ -22,10 +22,15 @@ void main() {
       Response<EpochContent> result = await instance.epochsLatestGet();
       if (result.statusCode == 200 && result.data != null) {
         var startTimeMs = result.data!.startTime;
-        var startTimeDateTime = DateTime.fromMillisecondsSinceEpoch(startTimeMs * 1000, isUtc: true);
+        var startTimeDateTime = DateTime.fromMillisecondsSinceEpoch(
+            startTimeMs * 1000,
+            isUtc: true);
         var lastBlockTimeMs = result.data!.lastBlockTime;
-        var lastBlockTimeDateTime = DateTime.fromMillisecondsSinceEpoch(lastBlockTimeMs * 1000, isUtc: true);
-        print("start: ${startTimeMs}ms -> $startTimeDateTime : last: ${lastBlockTimeMs}ms -> $lastBlockTimeDateTime");
+        var lastBlockTimeDateTime = DateTime.fromMillisecondsSinceEpoch(
+            lastBlockTimeMs * 1000,
+            isUtc: true);
+        print(
+            "start: ${startTimeMs}ms -> $startTimeDateTime : last: ${lastBlockTimeMs}ms -> $lastBlockTimeDateTime");
       }
       print(result);
     });
@@ -36,7 +41,8 @@ void main() {
     //
     //Future<EpochParamContent> epochsLatestParametersGet() async
     test('test epochsLatestParametersGet', () async {
-      Response<EpochParamContent> result = await instance.epochsLatestParametersGet();
+      Response<EpochParamContent> result =
+          await instance.epochsLatestParametersGet();
       print(result);
     });
 
@@ -80,9 +86,11 @@ void main() {
     //
     // Return the protocol parameters for the epoch specified.
     //
-    //Future<EpochParamContent> epochsNumberParametersGet(int number) async
+    //Future<EpochParamContent> epochsNumberParametersGet({int number}) async
     test('test epochsNumberParametersGet', () async {
-      // TODO
+      Response<EpochParamContent> result =
+          await instance.epochsNumberParametersGet(number: 168);
+      print(result);
     });
 
     // Listing of previous epochs

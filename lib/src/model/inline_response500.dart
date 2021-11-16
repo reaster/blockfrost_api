@@ -7,80 +7,82 @@ import 'package:built_value/serializer.dart';
 
 part 'inline_response500.g.dart';
 
+abstract class InlineResponse500
+    implements Built<InlineResponse500, InlineResponse500Builder> {
+  @BuiltValueField(wireName: r'status_code')
+  int get statusCode;
 
+  @BuiltValueField(wireName: r'error')
+  String get error;
 
-abstract class InlineResponse500 implements Built<InlineResponse500, InlineResponse500Builder> {
-    @BuiltValueField(wireName: r'status_code')
-    int get statusCode;
+  @BuiltValueField(wireName: r'message')
+  String get message;
 
-    @BuiltValueField(wireName: r'error')
-    String get error;
+  InlineResponse500._();
 
-    @BuiltValueField(wireName: r'message')
-    String get message;
+  static void _initializeBuilder(InlineResponse500Builder b) => b;
 
-    InlineResponse500._();
+  factory InlineResponse500([void updates(InlineResponse500Builder b)]) =
+      _$InlineResponse500;
 
-    static void _initializeBuilder(InlineResponse500Builder b) => b;
-
-    factory InlineResponse500([void updates(InlineResponse500Builder b)]) = _$InlineResponse500;
-
-    @BuiltValueSerializer(custom: true)
-    static Serializer<InlineResponse500> get serializer => _$InlineResponse500Serializer();
+  @BuiltValueSerializer(custom: true)
+  static Serializer<InlineResponse500> get serializer =>
+      _$InlineResponse500Serializer();
 }
 
-class _$InlineResponse500Serializer implements StructuredSerializer<InlineResponse500> {
-    @override
-    final Iterable<Type> types = const [InlineResponse500, _$InlineResponse500];
+class _$InlineResponse500Serializer
+    implements StructuredSerializer<InlineResponse500> {
+  @override
+  final Iterable<Type> types = const [InlineResponse500, _$InlineResponse500];
 
-    @override
-    final String wireName = r'InlineResponse500';
+  @override
+  final String wireName = r'InlineResponse500';
 
-    @override
-    Iterable<Object?> serialize(Serializers serializers, InlineResponse500 object,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = <Object?>[];
-        result
-            ..add(r'status_code')
-            ..add(serializers.serialize(object.statusCode,
-                specifiedType: const FullType(int)));
-        result
-            ..add(r'error')
-            ..add(serializers.serialize(object.error,
-                specifiedType: const FullType(String)));
-        result
-            ..add(r'message')
-            ..add(serializers.serialize(object.message,
-                specifiedType: const FullType(String)));
-        return result;
+  @override
+  Iterable<Object?> serialize(Serializers serializers, InlineResponse500 object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    result
+      ..add(r'status_code')
+      ..add(serializers.serialize(object.statusCode,
+          specifiedType: const FullType(int)));
+    result
+      ..add(r'error')
+      ..add(serializers.serialize(object.error,
+          specifiedType: const FullType(String)));
+    result
+      ..add(r'message')
+      ..add(serializers.serialize(object.message,
+          specifiedType: const FullType(String)));
+    return result;
+  }
+
+  @override
+  InlineResponse500 deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = InlineResponse500Builder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case r'status_code':
+          result.statusCode = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case r'error':
+          result.error = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case r'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
     }
-
-    @override
-    InlineResponse500 deserialize(Serializers serializers, Iterable<Object?> serialized,
-        {FullType specifiedType = FullType.unspecified}) {
-        final result = InlineResponse500Builder();
-
-        final iterator = serialized.iterator;
-        while (iterator.moveNext()) {
-            final key = iterator.current as String;
-            iterator.moveNext();
-            final Object? value = iterator.current;
-            switch (key) {
-                case r'status_code':
-                    result.statusCode = serializers.deserialize(value,
-                        specifiedType: const FullType(int)) as int;
-                    break;
-                case r'error':
-                    result.error = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-                case r'message':
-                    result.message = serializers.deserialize(value,
-                        specifiedType: const FullType(String)) as String;
-                    break;
-            }
-        }
-        return result.build();
-    }
+    return result.build();
+  }
 }
-

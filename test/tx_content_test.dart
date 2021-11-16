@@ -113,6 +113,5 @@ void main() {
     test('to test the property `assetMintOrBurnCount`', () async {
       // TODO
     });
-
   });
 }

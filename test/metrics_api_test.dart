@@ -20,7 +20,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> metricsEndpointsGet() async
     test('test metricsEndpointsGet', () async {
-      Response<BuiltList<JsonObject>> response = await instance.metricsEndpointsGet();
+      Response<BuiltList<JsonObject>> response =
+          await instance.metricsEndpointsGet();
       print(response.toString());
     });
 

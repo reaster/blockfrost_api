@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
 
-
 /// tests for NutLinkApi
 void main() {
   final instance = Blockfrost().getNutLinkApi();
@@ -34,6 +33,5 @@ void main() {
     test('test nutlinkTickersTickerGet', () async {
       // TODO
     });
-
   });
 }

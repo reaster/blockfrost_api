@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import 'package:blockfrost/blockfrost.dart';
 
-
 /// tests for IPFSPinsApi
 void main() {
   final instance = Blockfrost().getIPFSPinsApi();
@@ -36,6 +35,5 @@ void main() {
     test('test ipfsPinRemoveIPFSPathPost', () async {
       // TODO
     });
-
   });
 }

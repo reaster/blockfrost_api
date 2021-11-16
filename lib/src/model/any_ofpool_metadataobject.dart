@@ -14,7 +14,8 @@ description: The names says it all,
 homepage: https://www.youtube.com/watch?v=oUdUReqB25M}
 */
 
-abstract class AnyOfpoolMetadataobject implements Built<AnyOfpoolMetadataobject, AnyOfpoolMetadataobjectBuilder> {
+abstract class AnyOfpoolMetadataobject
+    implements Built<AnyOfpoolMetadataobject, AnyOfpoolMetadataobjectBuilder> {
   /// Bech32 pool ID that owns the account
   @BuiltValueField(wireName: r'pool_id')
   String get poolId;
@@ -51,39 +52,81 @@ abstract class AnyOfpoolMetadataobject implements Built<AnyOfpoolMetadataobject,
 
   static void _initializeBuilder(AnyOfpoolMetadataobjectBuilder b) => b;
 
-  factory AnyOfpoolMetadataobject([void updates(AnyOfpoolMetadataobjectBuilder b)]) = _$AnyOfpoolMetadataobject;
+  factory AnyOfpoolMetadataobject(
+          [void updates(AnyOfpoolMetadataobjectBuilder b)]) =
+      _$AnyOfpoolMetadataobject;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AnyOfpoolMetadataobject> get serializer => _$AnyOfpoolMetadataobjectSerializer();
+  static Serializer<AnyOfpoolMetadataobject> get serializer =>
+      _$AnyOfpoolMetadataobjectSerializer();
 }
 
-class _$AnyOfpoolMetadataobjectSerializer implements StructuredSerializer<AnyOfpoolMetadataobject> {
+class _$AnyOfpoolMetadataobjectSerializer
+    implements StructuredSerializer<AnyOfpoolMetadataobject> {
   @override
-  final Iterable<Type> types = const [AnyOfpoolMetadataobject, _$AnyOfpoolMetadataobject];
+  final Iterable<Type> types = const [
+    AnyOfpoolMetadataobject,
+    _$AnyOfpoolMetadataobject
+  ];
 
   @override
   final String wireName = r'AnyOfpoolMetadataobject';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, AnyOfpoolMetadataobject object, {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+      Serializers serializers, AnyOfpoolMetadataobject object,
+      {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
-    result..add(r'pool_id')..add(serializers.serialize(object.poolId, specifiedType: const FullType(String)));
-    result..add(r'hex')..add(serializers.serialize(object.hex, specifiedType: const FullType(String)));
-    result..add(r'url')..add(object.url == null ? null : serializers.serialize(object.url, specifiedType: const FullType(String)));
-    result..add(r'hash')..add(object.hash == null ? null : serializers.serialize(object.hash, specifiedType: const FullType(String)));
-    result..add(r'ticker')..add(object.ticker == null ? null : serializers.serialize(object.ticker, specifiedType: const FullType(String)));
-    result..add(r'name')..add(object.name == null ? null : serializers.serialize(object.name, specifiedType: const FullType(String)));
+    result
+      ..add(r'pool_id')
+      ..add(serializers.serialize(object.poolId,
+          specifiedType: const FullType(String)));
+    result
+      ..add(r'hex')
+      ..add(serializers.serialize(object.hex,
+          specifiedType: const FullType(String)));
+    result
+      ..add(r'url')
+      ..add(object.url == null
+          ? null
+          : serializers.serialize(object.url,
+              specifiedType: const FullType(String)));
+    result
+      ..add(r'hash')
+      ..add(object.hash == null
+          ? null
+          : serializers.serialize(object.hash,
+              specifiedType: const FullType(String)));
+    result
+      ..add(r'ticker')
+      ..add(object.ticker == null
+          ? null
+          : serializers.serialize(object.ticker,
+              specifiedType: const FullType(String)));
+    result
+      ..add(r'name')
+      ..add(object.name == null
+          ? null
+          : serializers.serialize(object.name,
+              specifiedType: const FullType(String)));
     result
       ..add(r'description')
-      ..add(object.description == null ? null : serializers.serialize(object.description, specifiedType: const FullType(String)));
+      ..add(object.description == null
+          ? null
+          : serializers.serialize(object.description,
+              specifiedType: const FullType(String)));
     result
       ..add(r'homepage')
-      ..add(object.homepage == null ? null : serializers.serialize(object.homepage, specifiedType: const FullType(String)));
+      ..add(object.homepage == null
+          ? null
+          : serializers.serialize(object.homepage,
+              specifiedType: const FullType(String)));
     return result;
   }
 
   @override
-  AnyOfpoolMetadataobject deserialize(Serializers serializers, Iterable<Object?> serialized,
+  AnyOfpoolMetadataobject deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = AnyOfpoolMetadataobjectBuilder();
 
@@ -94,28 +137,36 @@ class _$AnyOfpoolMetadataobjectSerializer implements StructuredSerializer<AnyOfp
       final Object? value = iterator.current;
       switch (key) {
         case r'pool_id':
-          result.poolId = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.poolId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'hex':
-          result.hex = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.hex = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'url':
-          result.url = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'hash':
-          result.hash = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.hash = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'ticker':
-          result.ticker = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.ticker = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'name':
-          result.name = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'description':
-          result.description = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case r'homepage':
-          result.homepage = serializers.deserialize(value, specifiedType: const FullType(String)) as String;
+          result.homepage = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }

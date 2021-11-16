@@ -119,7 +119,8 @@ class CardanoMetadataApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/metadata/txs/labels/{label}/cbor'.replaceAll('{' r'label' '}', label.toString());
+    final _path = r'/metadata/txs/labels/{label}/cbor'
+        .replaceAll('{' r'label' '}', label.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -201,7 +202,8 @@ class CardanoMetadataApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/metadata/txs/labels/{label}'.replaceAll('{' r'label' '}', label.toString());
+    final _path = r'/metadata/txs/labels/{label}'
+        .replaceAll('{' r'label' '}', label.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{

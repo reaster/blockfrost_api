@@ -12,7 +12,8 @@ void main() {
     interceptors: [MyApiKeyAuthInterceptor()],
   ).getCardanoBlocksApi();
 
-  final blockHash = 'b2bbf218d266af16f83a4ab276fb24363bd1e6721a77d6fc3f52f9835b7ff3a6';
+  final blockHash =
+      'b2bbf218d266af16f83a4ab276fb24363bd1e6721a77d6fc3f52f9835b7ff3a6';
 
   group(CardanoBlocksApi, () {
     // Specific block
@@ -21,10 +22,13 @@ void main() {
     //
     //Future<BlockContent> blocksHashOrNumberGet(String hashOrNumber) async
     test('test blocksHashOrNumberGet', () async {
-      Response<BlockContent> result = await instance.blocksHashOrNumberGet(hashOrNumber: blockHash);
+      Response<BlockContent> result =
+          await instance.blocksHashOrNumberGet(hashOrNumber: blockHash);
       if (result.statusCode == 200 && result.data != null) {
         var millisecondsSinceEpoch = result.data!.time;
-        var dateTime = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch * 1000, isUtc: true);
+        var dateTime = DateTime.fromMillisecondsSinceEpoch(
+            millisecondsSinceEpoch * 1000,
+            isUtc: true);
         print("millisecondsSinceEpoch: $millisecondsSinceEpoch -> $dateTime");
       }
       print(result);
@@ -66,7 +70,9 @@ void main() {
       Response<BlockContent> result = await instance.blocksLatestGet();
       if (result.statusCode == 200 && result.data != null) {
         var millisecondsSinceEpoch = result.data!.time;
-        var dateTime = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch * 1000, isUtc: true);
+        var dateTime = DateTime.fromMillisecondsSinceEpoch(
+            millisecondsSinceEpoch * 1000,
+            isUtc: true);
         print("millisecondsSinceEpoch: $millisecondsSinceEpoch -> $dateTime");
       }
       print(result);

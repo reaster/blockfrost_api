@@ -96,6 +96,5 @@ void main() {
     test('to test the property `confirmations`', () async {
       // TODO
     });
-
   });
 }

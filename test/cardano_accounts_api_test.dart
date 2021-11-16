@@ -12,7 +12,8 @@ void main() {
     interceptors: [MyApiKeyAuthInterceptor()],
   ).getCardanoAccountsApi();
 
-  final stakeAddressAcct1 = 'stake_test1uqnf58xmqyqvxf93d3d92kav53d0zgyc6zlt927zpqy2v9cyvwl7a'; // Account-1
+  final stakeAddressAcct1 =
+      'stake_test1uqnf58xmqyqvxf93d3d92kav53d0zgyc6zlt927zpqy2v9cyvwl7a'; // Account-1
 
   group(CardanoAccountsApi, () {
     // Account associated addresses
@@ -22,7 +23,8 @@ void main() {
     //Future<BuiltList<JsonObject>> accountsStakeAddressAddressesGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressAddressesGet', () async {
       Response<BuiltList<JsonObject>> result =
-          await instance.accountsStakeAddressAddressesGet(stakeAddress: stakeAddressAcct1, count: 20);
+          await instance.accountsStakeAddressAddressesGet(
+              stakeAddress: stakeAddressAcct1, count: 20);
       result.data?.forEach((addr) {
         if (addr.isMap) print(addr.asMap['address']);
       });
@@ -35,8 +37,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> accountsStakeAddressDelegationsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressDelegationsGet', () async {
-      Response<BuiltList<JsonObject>> result =
-          await instance.accountsStakeAddressDelegationsGet(stakeAddress: stakeAddressAcct1);
+      Response<BuiltList<JsonObject>> result = await instance
+          .accountsStakeAddressDelegationsGet(stakeAddress: stakeAddressAcct1);
       // result.data?.forEach((addr) {
       //   if (addr.isMap) print(addr.asMap['address']);
       // });
@@ -49,7 +51,8 @@ void main() {
     //
     //Future<AccountContent> accountsStakeAddressGet(String stakeAddress) async
     test('test accountsStakeAddressGet', () async {
-      Response<AccountContent> result = await instance.accountsStakeAddressGet(stakeAddress: stakeAddressAcct1);
+      Response<AccountContent> result = await instance.accountsStakeAddressGet(
+          stakeAddress: stakeAddressAcct1);
       print(result);
     });
 
@@ -60,7 +63,8 @@ void main() {
     //Future<BuiltList<JsonObject>> accountsStakeAddressHistoryGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressHistoryGet', () async {
       Response<BuiltList<JsonObject>> result =
-          await instance.accountsStakeAddressHistoryGet(stakeAddress: stakeAddressAcct1, count: 20);
+          await instance.accountsStakeAddressHistoryGet(
+              stakeAddress: stakeAddressAcct1, count: 20);
       // result.data?.forEach((addr) {
       //   if (addr.isMap) print(addr.asMap['address']);
       // });
@@ -74,7 +78,8 @@ void main() {
     //Future<BuiltList<JsonObject>> accountsStakeAddressRegistrationsGet(String stakeAddress, { int count, int page, String order }) async
     test('test accountsStakeAddressRegistrationsGet', () async {
       Response<BuiltList<JsonObject>> result =
-          await instance.accountsStakeAddressRegistrationsGet(stakeAddress: stakeAddressAcct1, count: 20);
+          await instance.accountsStakeAddressRegistrationsGet(
+              stakeAddress: stakeAddressAcct1, count: 20);
       // result.data?.forEach((addr) {
       //   if (addr.isMap) print(addr.asMap['address']);
       // });
@@ -92,7 +97,8 @@ void main() {
     // ]
     test('test accountsStakeAddressRewardsGet', () async {
       Response<BuiltList<JsonObject>> result =
-          await instance.accountsStakeAddressRewardsGet(stakeAddress: stakeAddressAcct1, count: 20);
+          await instance.accountsStakeAddressRewardsGet(
+              stakeAddress: stakeAddressAcct1, count: 20);
       result.data?.forEach((reward) {
         if (reward.isMap)
           print(

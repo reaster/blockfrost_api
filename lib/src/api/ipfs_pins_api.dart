@@ -38,7 +38,8 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/add/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/ipfs/pin/add/{IPFS_path}'
+        .replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -194,7 +195,8 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/list/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/ipfs/pin/list/{IPFS_path}'
+        .replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -269,7 +271,8 @@ class IPFSPinsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/ipfs/pin/remove/{IPFS_path}'.replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
+    final _path = r'/ipfs/pin/remove/{IPFS_path}'
+        .replaceAll('{' r'IPFS_path' '}', iPFSPath.toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{

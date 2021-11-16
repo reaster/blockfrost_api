@@ -12,8 +12,10 @@ void main() {
     interceptors: [MyApiKeyAuthInterceptor()],
   ).getCardanoAssetsApi();
 
-  final testcoinPolicyId = '6b8d07d69639e9413dd637a1a815a7323c69c86abbafb66dbfdb1aa7';
-  final coinPolicyId = 'cad58d8073cf9a3a3ee599f1dea35628f8ac275c99636353db00851a5045414345';
+  final testcoinPolicyId =
+      '6b8d07d69639e9413dd637a1a815a7323c69c86abbafb66dbfdb1aa7';
+  final coinPolicyId =
+      'cad58d8073cf9a3a3ee599f1dea35628f8ac275c99636353db00851a5045414345';
   group(CardanoAssetsApi, () {
     // Asset addresses
     //
@@ -21,8 +23,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsAssetAddressesGet(String asset, { int count, int page, String order }) async
     test('test assetsAssetAddressesGet', () async {
-      Response<BuiltList<JsonObject>> result =
-          await instance.assetsAssetAddressesGet(asset: testcoinPolicyId, count: 2);
+      Response<BuiltList<JsonObject>> result = await instance
+          .assetsAssetAddressesGet(asset: testcoinPolicyId, count: 2);
       print(result);
     });
 
@@ -32,9 +34,11 @@ void main() {
     //
     //Future<Asset> assetsAssetGet(String asset) async
     test('test assetsAssetGet', () async {
-      Response<Asset> result = await instance.assetsAssetGet(asset: testcoinPolicyId);
+      Response<Asset> result =
+          await instance.assetsAssetGet(asset: testcoinPolicyId);
       print(result);
-      Response<Asset> result2 = await instance.assetsAssetGet(asset: coinPolicyId);
+      Response<Asset> result2 =
+          await instance.assetsAssetGet(asset: coinPolicyId);
       print(result2);
     });
 
@@ -44,7 +48,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsAssetHistoryGet(String asset, { int count, int page, String order }) async
     test('test assetsAssetHistoryGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.assetsAssetHistoryGet(asset: testcoinPolicyId, count: 2);
+      Response<BuiltList<JsonObject>> result = await instance
+          .assetsAssetHistoryGet(asset: testcoinPolicyId, count: 2);
       print(result);
     });
 
@@ -54,7 +59,8 @@ void main() {
     //
     //Future<BuiltList<String>> assetsAssetTxsGet(String asset, { int count, int page, String order }) async
     test('test assetsAssetTxsGet', () async {
-      Response<BuiltList<String>> result = await instance.assetsAssetTxsGet(asset: testcoinPolicyId, count: 10);
+      Response<BuiltList<String>> result =
+          await instance.assetsAssetTxsGet(asset: testcoinPolicyId, count: 10);
       print(result);
     });
 
@@ -64,7 +70,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsGet({ int count, int page, String order }) async
     test('test assetsGet', () async {
-      Response<BuiltList<JsonObject>> result = await instance.assetsGet(count: 10);
+      Response<BuiltList<JsonObject>> result =
+          await instance.assetsGet(count: 10);
       print(result);
     });
 
@@ -74,8 +81,8 @@ void main() {
     //
     //Future<BuiltList<JsonObject>> assetsPolicyPolicyIdGet(String policyId, { int count, int page, String order }) async
     test('test assetsPolicyPolicyIdGet', () async {
-      Response<BuiltList<JsonObject>> result =
-          await instance.assetsPolicyPolicyIdGet(policyId: testcoinPolicyId, count: 10);
+      Response<BuiltList<JsonObject>> result = await instance
+          .assetsPolicyPolicyIdGet(policyId: testcoinPolicyId, count: 10);
       print(result);
     });
   });
