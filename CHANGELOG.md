@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0-dev.8] - 2021-11-16
+
+### Changed
+
+- fix broken post method using http package hack
+
 ## [1.0.0-dev.7] - 2021-10-24
 
 ### Changed

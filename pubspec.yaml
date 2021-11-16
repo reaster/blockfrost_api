@@ -1,5 +1,5 @@
 name: blockfrost
-version: 1.0.0-dev.7
+version: 1.0.0-dev.8
 description: Dart OpenAPI API blockfrost client based on Dio 4.x
 homepage: https://github.com/reaster/blockfrost_api
 
