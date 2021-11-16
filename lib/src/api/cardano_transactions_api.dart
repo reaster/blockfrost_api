@@ -3,7 +3,9 @@
 //
 
 import 'dart:async';
+import 'dart:typed_data';
 
+import 'package:blockfrost/src/auth/auth.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
@@ -17,6 +19,7 @@ import 'package:blockfrost/src/model/tx_content.dart';
 import 'package:blockfrost/src/model/tx_content_utxo.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
+import 'package:http/http.dart' as http;
 
 class CardanoTransactionsApi {
   final Dio _dio;
@@ -28,9 +31,12 @@ class CardanoTransactionsApi {
   /// Submit a transaction
   ///
   /// Submit an already serialized transaction to the network.
+  /// Requires 'project_id' key-value to be passed in headers.
+  /// Return hex transaction ID
+  ///
   Future<Response<String>> txSubmitPost({
     required String contentType,
-    required List<int> data,
+    required Uint8List data,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -38,65 +44,99 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/tx/submit';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        r'Content-Type': contentType,
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'apiKey',
-            'name': 'ApiKeyAuth',
-            'keyName': 'project_id',
-            'where': 'header',
-          },
-        ],
-        ...?extra,
-      },
-      contentType: [
-        'application/json',
-      ].first,
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{};
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: data,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    String _responseData;
-
-    try {
-      _responseData = _response.data as String;
-    } catch (error) {
-      throw DioError(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioErrorType.other,
-        error: error,
-      );
+    //http hack to fix broken post method
+    //final interceptor = _dio.interceptors.firstWhere((i) => i is AuthInterceptor && );
+    final baseUrl = _dio.options.baseUrl;
+    final uri = Uri.parse(baseUrl + '/tx/submit');
+    final Map<String, String> _headerMap = {'Content-Type': contentType};
+    if (headers != null) {
+      for (String key in headers.keys) {
+        _headerMap[key] = headers[key].toString();
+      }
     }
 
+    final http.Response _response =
+        await http.post(uri, headers: _headerMap, body: data);
+    // print("responce code: ${_response.statusCode}");
+    // print("responce body: ${_response.body}");
+    // print("responce reasonPhrase: ${_response.reasonPhrase}");
+    Headers returnHeaders = Headers();
+    //     for(String key in headers.keys) {
+    //   _headers[key] = headers[key].toString();
+    // }
+    final RequestOptions requestOptions = RequestOptions(path: 'tx/submit');
+
     return Response<String>(
-      data: _responseData,
-      headers: _response.headers,
+      data: _response.body,
+      headers: returnHeaders,
       isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
+      requestOptions: requestOptions,
+      //redirects: _response.,
       statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
+      statusMessage: _response.reasonPhrase,
+      //extra: _response.request
     );
+
+//     final _path = r'/tx/submit';
+//     final _options = Options(
+//       method: r'POST',
+//       headers: <String, dynamic>{
+//         r'Content-Type': contentType,
+//         ...?headers,
+//       },
+//       extra: <String, dynamic>{
+//         'secure': <Map<String, String>>[
+//           {
+//             'type': 'apiKey',
+//             'name': 'ApiKeyAuth',
+//             'keyName': 'project_id',
+//             'where': 'header',
+//           },
+//         ],
+//         ...?extra,
+//       },
+//       contentType: [
+//         'application/cbor',
+// //        'application/json',
+//       ].first,
+//       validateStatus: validateStatus,
+//     );
+
+//     final _queryParameters = <String, dynamic>{};
+
+    // final _response = await _dio.request<Object>(
+    //   _path,
+    //   data: data,
+    //   options: _options,
+    //   queryParameters: _queryParameters,
+    //   cancelToken: cancelToken,
+    //   onSendProgress: onSendProgress,
+    //   onReceiveProgress: onReceiveProgress,
+    // );
+
+//     String _responseData;
+
+//     try {
+//       _responseData = _response.data as String;
+//     } catch (error) {
+//       throw DioError(
+//         requestOptions: _response.requestOptions,
+//         response: _response,
+//         type: DioErrorType.other,
+//         error: error,
+//       );
+//     }
+
+//     return Response<String>(
+//       data: _responseData,
+//       headers: _response.headers,
+//       isRedirect: _response.isRedirect,
+//       requestOptions: _response.requestOptions,
+//       redirects: _response.redirects,
+//       statusCode: _response.statusCode,
+//       statusMessage: _response.statusMessage,
+//       extra: _response.extra,
+//     );
   }
 
   /// Transaction delegation certificates
@@ -111,7 +151,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/delegations'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/delegations'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -261,7 +302,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/metadata/cbor'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path = r'/txs/{hash}/metadata/cbor'
+        .replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -336,7 +378,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/metadata'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/metadata'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -411,7 +454,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/mirs'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/mirs'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -486,7 +530,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/pool_retires'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path = r'/txs/{hash}/pool_retires'
+        .replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -561,7 +606,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/pool_updates'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path = r'/txs/{hash}/pool_updates'
+        .replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -636,7 +682,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/stakes'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/stakes'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -711,7 +758,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/utxos'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/utxos'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -786,7 +834,8 @@ class CardanoTransactionsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/txs/{hash}/withdrawals'.replaceAll('{' r'hash' '}', hash.toString());
+    final _path =
+        r'/txs/{hash}/withdrawals'.replaceAll('{' r'hash' '}', hash.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
