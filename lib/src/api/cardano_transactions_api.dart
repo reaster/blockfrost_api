@@ -5,7 +5,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:blockfrost/src/auth/auth.dart';
+// import 'package:blockfrost/src/auth/auth.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
